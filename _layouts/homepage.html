@@ -8,16 +8,10 @@ layout: base
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 {% endif %}">
       {% if page.before-content %}
-      <div class="row">
-        <div class="col-6 before-content">
+        <div class="before-content">
           {% for file in page.before-content %}
             {% include {{ file }} %}
           {% endfor %}
-        </div>
-        <div class="col-6">
-            <img src="/assets/img/avater.png">
-        </div>
-
       </div>
 
       {% endif %}
