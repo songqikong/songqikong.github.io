@@ -6,7 +6,7 @@ layout: base
 
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
-    <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+    <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 {% endif %}">
 
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
@@ -78,23 +78,24 @@ layout: base
       </ul>
       {% include comments.html %}
     </div>
+	<!-- Gitalk start -->
+	<div id="gitalk-container"></div> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+	<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+	<script>
+		var gitalk  = new Gitalk ({
+			id: window.location.pathname,   // Ensure uniqueness and length less than 50
+			clientID: '3620ef5a9f46ed0e3e6c',
+			clientSecret: '7c653668c5becda9946ce8d4bfb6537ef736a0ee',
+			repo: 'songqikong.github.io',
+			owner: 'songqikong',
+			admin: ['songqikong'],
+				distractionFreeMode: false  // Facebook-like distraction free mode
+		})
+		gitalk.render('gitalk-container')
+	</script>
+	<!-- Gitalk end -->
+
+
   </div>
 </div>
-
-<!-- Gitalk start -->
-<div id="gitalk-container"></div> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script>
-    var gitalk  = new Gitalk ({
-        id: window.location.pathname,   // Ensure uniqueness and length less than 50
-        clientID: '3620ef5a9f46ed0e3e6c',
-        clientSecret: '7c653668c5becda9946ce8d4bfb6537ef736a0ee',
-        repo: 'songqikong.github.io',
-        owner: 'songqikong',
-        admin: ['songqikong'],
-		    distractionFreeMode: false  // Facebook-like distraction free mode
-    })
-    gitalk.render('gitalk-container')
-</script>
-<!-- Gitalk end -->
 
