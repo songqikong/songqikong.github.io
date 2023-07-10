@@ -187,6 +187,12 @@ footer-hover-col: "#0085A1"
 # --- Comments --- #
 ####################
 
+# Gitalk settings
+comment_gitalk_clientId: 3620ef5a9f46ed0e3e6c
+comment_gitalk_clientSecret: 7c653668c5becda9946ce8d4bfb6537ef736a0ee
+comment_gitalk_repo: songqikong.github.io
+github_username: songqikong
+
 # To use Disqus comments, sign up to https://disqus.com and fill in your Disqus shortname (NOT the userid)
 #disqus: ""
 
