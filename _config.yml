@@ -21,7 +21,7 @@ author: Songqi Kong
 
 navbar-links:
   CV: "https://songqikong.github.io/assets/CV_before_master.pdf"
-  Blog: "aboutme"
+  Blog: "BLOG"
   Cycling: "cycling"
 #   Resources:
 #     - Beautiful Jekyll: "https://beautifuljekyll.com"
@@ -57,7 +57,7 @@ social-network-links:
 #   twitter: daattali
 #   patreon: DeanAttali
 #   youtube: c/daattali
-  zhihu: "https://www.zhihu.com/people/baka5"
+  medium: "https://www.zhihu.com/people/baka5"
 #  medium: yourname
 #  reddit: yourname
 #  linkedin: daattali
