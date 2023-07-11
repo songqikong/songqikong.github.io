@@ -13,7 +13,7 @@ tags: [study, deep learning
 
 ​	在接触Pytorch之前，我只知道Numpy是Python里一个非常强大的数据处理工具，特别是Numpy的ndarray，提供了非常多处理数组的函数；所以在用过Pytorch后我好奇的第一个问题就是，为什么放着现成的ndarray不用，而去使用一个名为Tensor的数据结构？搜索以后，所有的结果都指向一个答案：<u>Tensor能使用GPU进行运算，而numpy不行</u>，那么问题又来了，**为什么呢？**
 
-<img src="./assets/img/image-20230711101813212.png" alt="numpy与tensor分别实现转置数列" style="zoom:67%;" />
+<img src="/assets/img/image-20230711101813212.png" alt="numpy与tensor分别实现转置数列" style="zoom:67%;" />
 
 [^1]: numpy与tensor分别实现转置数列
 
@@ -27,7 +27,7 @@ tags: [study, deep learning
 
 ​	自Volta架构起，Nvidia在其显卡中引入了Tensor Core这一特殊的Unit，使其单精度运算运算能力比上一世代提升了12倍，而其CUDA工具套件就是访问Tensor Core的api接口。这下终于真相大白：**Tensor在其数据结构中实现了CUDA套件提供的API，所以其能够使用GPU进行运算。**
 
-<img src="./assets/img/image-20230711110106947.png" alt="image-20230711110106947" style="zoom:67%;" />
+<img src="/assets/img/image-20230711110106947.png" alt="image-20230711110106947" style="zoom:67%;" />
 
 [^2]: 在Pytorch中选择GPU或CPU进行运算
 
@@ -37,9 +37,9 @@ tags: [study, deep learning
 
 ​	在生成螺旋数据部分，我认为最重要的是理解N/D/C/H在X和Y中的含义；X 为特征矩阵，它为样本集中的每个样本确定一个特征向量，因为在二维坐标系中所谓的特征无非是x轴坐标与y轴坐标，因此每个样本只有两个**特征维度且就是x轴坐标与y轴坐标**；Y为样本标签，因此它只是一个**one-hot**，用来标记每一个Point的类别。
 
-<img src="./assets/img/image-20230711143812345.png" alt="image-20230711143812345" style="zoom:67%;" />
+<img src="/assets/img/image-20230711143812345.png" alt="image-20230711143812345" style="zoom:67%;" />
 
-<img src="./assets/img/image-20230711143926295.png" alt="image-20230711143926295" style="zoom:67%;" />
+<img src="/assets/img/image-20230711143926295.png" alt="image-20230711143926295" style="zoom:67%;" />
 
 [^3]: X与Y的Tensor
 
@@ -47,7 +47,7 @@ tags: [study, deep learning
 
 ​	这个问题我在之前的学习中也思考过，我在此给出我的答案：全连接神经网络是一个线性分类器，**单层感知机无法解决分类问题中的异或问题**，因为其决策边界是线性的，体现不出二维世界的坐标关系；激活函数的引入，**可以将线性的值域扩展到非线性的域中**，为决策边界带来非线性的因素，更能体现二维世界的坐标关系。
 
-<img src="./assets/img/image-20230711150227278.png" alt="image-20230711150227278" style="zoom:67%;" />
+<img src="/assets/img/image-20230711150227278.png" alt="image-20230711150227278" style="zoom:67%;" />
 
 [^4]: 加入Relu激活函数与未加Relu函数的对比
 
@@ -59,11 +59,11 @@ tags: [study, deep learning
 
 #### 2.1 AlexNet & LeNet
 
-​	![v2-e9a257c28ac97f4a2f3015bba33da7e3_b](./assets/img/v2-e9a257c28ac97f4a2f3015bba33da7e3_b.png)
+​	![v2-e9a257c28ac97f4a2f3015bba33da7e3_b](/assets/img/v2-e9a257c28ac97f4a2f3015bba33da7e3_b.png)
 
 [^5]: AlexNet Structure
 
-![image-20230711153459013](./assets/img/image-20230711153459013.png)
+![image-20230711153459013](/assets/img/image-20230711153459013.png)
 
 [^6]: LeNet Structure
 
@@ -79,11 +79,11 @@ tags: [study, deep learning
 
 ​	引用1.2中的思考：激活函数的引入，**可以将线性的值域扩展到非线性的域中**，为决策边界带来非线性的因素，更能体现二维世界的坐标关系。
 
-<img src="./assets/img/20210106110219329.png" alt="20210106110219329" style="zoom: 20%;" />
+<img src="/assets/img/20210106110219329.png" alt="20210106110219329" style="zoom: 20%;" />
 
 [^7]: Relu激活函数
 
-<img src="./assets/img/image-20230711161158152.png" alt="image-20230711161158152" style="zoom:50%;" />
+<img src="/assets/img/image-20230711161158152.png" alt="image-20230711161158152" style="zoom:50%;" />
 
 [^8]: sigmioid激活函数
 
@@ -103,7 +103,7 @@ tags: [study, deep learning
 
 ​	不过在此我提出一点个人观点：浅层的神经网络可以学习到很多低级特征（如猫的毛发，猫的头部轮廓），深层的神经网络可以学习到高级特征（如猫的头是由朝上的耳朵、长长的胡子和圆的头组成的）；假如一个网络宽而浅，它自然能学习到巨量的低级特征，但是它并不知道那么多独特的特征组合在一起才是一个猫的头，它会认为只要样本具有这些特征，那就是猫。
 
-![image-20230711164540560](./assets/img/image-20230711164540560.png)
+![image-20230711164540560](/assets/img/image-20230711164540560.png)
 
 [^9]: 对于宽而浅的模型来说，左右这两坨，都是猫，尽管右边只是些图形，没有意义。
 
