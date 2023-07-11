@@ -20,6 +20,7 @@ author: Songqi Kong
 ###############################################
 
 navbar-links:
+  About me: "https://songqikong.github.io/"
   CV: "https://songqikong.github.io/assets/CV_before_master.pdf"
   Blog: "BLOG"
   Cycling: "CYCLING"
