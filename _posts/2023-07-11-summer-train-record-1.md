@@ -15,7 +15,7 @@ tags: [study, deep learning]
 
 <img src="/assets/img/image-20230711101813212.png" alt="numpy与tensor分别实现转置数列" style="zoom:67%;" />
 
-[^1]: numpy与tensor分别实现转置数列
+[1]: numpy与tensor分别实现转置数列
 
 *显卡与挖矿：*	
 
@@ -29,7 +29,9 @@ tags: [study, deep learning]
 
 <img src="/assets/img/image-20230711110106947.png" alt="image-20230711110106947" style="zoom:67%;" />
 
-[^2]: 在Pytorch中选择GPU或CPU进行运算
+[2]: 在Pytorch中选择GPU或CPU进行运算
+
+------
 
 
 
@@ -41,7 +43,7 @@ tags: [study, deep learning]
 
 <img src="/assets/img/image-20230711143926295.png" alt="image-20230711143926295" style="zoom:67%;" />
 
-[^3]: X与Y的Tensor
+[3]: X与Y的Tensor
 
 ​	在课程2中给出了两个用Sequential表示的网络结构，第一个为单层感知机，包含一个输入层与输出层；第二个网络在输入层和输出层之间增加了一个Relu激活函数，网络的准确率大为提升（50% -> 95%）。我认为在此需要思考的问题是：<u>为什么加入Relu激活函数以后会使网络的正确率大幅度提高呢？</u>
 
@@ -49,7 +51,9 @@ tags: [study, deep learning]
 
 <img src="/assets/img/image-20230711150227278.png" alt="image-20230711150227278" style="zoom:67%;" />
 
-[^4]: 加入Relu激活函数与未加Relu函数的对比
+[4]: 加入Relu激活函数与未加Relu函数的对比
+
+------
 
 
 
@@ -61,11 +65,11 @@ tags: [study, deep learning]
 
 ​	![v2-e9a257c28ac97f4a2f3015bba33da7e3_b](/assets/img/v2-e9a257c28ac97f4a2f3015bba33da7e3_b.png)
 
-[^5]: AlexNet Structure
+[5]: AlexNet Structure
 
 ![image-20230711153459013](/assets/img/image-20230711153459013.png)
 
-[^6]: LeNet Structure
+[6]: LeNet Structure
 
 ​	要说AlexNet有什么特点，我认为最大的便是其引入了LRN层；在《[**神经网络与深度学习**](https://nndl.github.io/)》中，作者认为任何损害优化的方法都称为正则化，正则化有利于加强模型的泛化能力。
 
@@ -73,19 +77,23 @@ tags: [study, deep learning]
 
 ​	AlexNet与LeNet相比，最明显的区别是前者引入了更多的卷积层，更多的卷积层意味着AlexNet能够学习到更多的参数，对模型的拟合能力有很大的提升。其次AlexNet的的池化层使用的是Max Pooling，而Lenet使用的是Average Pooling。
 
+------
+
 
 
 #### 2.2 激活函数的作用
 
 ​	引用1.2中的思考：激活函数的引入，**可以将线性的值域扩展到非线性的域中**，为决策边界带来非线性的因素，更能体现二维世界的坐标关系。
 
-<img src="/assets/img/20210106110219329.png" alt="20210106110219329" style="zoom: 20%;" />
+<img src="/assets/img/20210106110219329.png" alt="20210106110219329" style="zoom: 25%;" />
 
-[^7]: Relu激活函数
+[7]: Relu激活函数
 
 <img src="/assets/img/image-20230711161158152.png" alt="image-20230711161158152" style="zoom:50%;" />
 
-[^8]: sigmioid激活函数
+[8]: sigmioid激活函数
+
+------
 
 
 
@@ -94,6 +102,8 @@ tags: [study, deep learning]
 ​	说到梯度消失就必须提到梯度下降，梯度下降是用于优化参数学习的一个方法；本质上就求目标函数的局部最小值，因此我们通常采用反向传播反复求其梯度找到局部最小值。
 
 ​	根据链式求导法则，如果我们整个链中某个环节的值过于小，则最终的梯度很容易消失；以sigmoid激活函数为例[8]，如果网络中存在sigmoid函数，在求梯度时如果进入其梯度极小区，那么整个链式求导的值就会变得很小，甚至消失。
+
+------
 
 
 
@@ -105,13 +115,17 @@ tags: [study, deep learning]
 
 ![image-20230711164540560](/assets/img/image-20230711164540560.png)
 
-[^9]: 对于宽而浅的模型来说，左右这两坨，都是猫，尽管右边只是些图形，没有意义。
+[9]: 对于宽而浅的模型来说，左右这两坨，都是猫，尽管右边只是些图形，没有意义。
+
+------
 
 
 
 #### 2.5 为什么要使用Softmax?
 
 ​	这题我会，Softmax将模型输出的每个类的权重进行计算，通过转化为一个概率分布，用于表示属于某类的概率大小。
+
+------
 
 
 
@@ -120,6 +134,8 @@ tags: [study, deep learning]
 ​	这个问题太难为我了，如果我炼过很多炉子我肯定有个答案，但是我实践经验约等于没有。
 
 ​	所以我直接百度了，Adam = SGD + Momentum + AdaGrad/AdaDelta，这让Adam具有了SGD不具有的惯性下降与自适应学习率的能力，按理说Adam应该比SGD更加有效。
+
+------
 
 
 
