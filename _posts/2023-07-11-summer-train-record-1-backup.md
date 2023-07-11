@@ -27,7 +27,7 @@ tags: [study, deep learning
 
 ​	自Volta架构起，Nvidia在其显卡中引入了Tensor Core这一特殊的Unit，使其单精度运算运算能力比上一世代提升了12倍，而其CUDA工具套件就是访问Tensor Core的api接口。这下终于真相大白：**Tensor在其数据结构中实现了CUDA套件提供的API，所以其能够使用GPU进行运算。**
 
-<img src="/assets/img/image-20230711110106947.png" alt="image-20230711110106947" style="zoom:67%;" />
+<img src="./assets/img/image-20230711110106947.png" alt="image-20230711110106947" style="zoom:67%;" />
 
 [^2]: 在Pytorch中选择GPU或CPU进行运算
 
@@ -37,9 +37,9 @@ tags: [study, deep learning
 
 ​	在生成螺旋数据部分，我认为最重要的是理解N/D/C/H在X和Y中的含义；X 为特征矩阵，它为样本集中的每个样本确定一个特征向量，因为在二维坐标系中所谓的特征无非是x轴坐标与y轴坐标，因此每个样本只有两个**特征维度且就是x轴坐标与y轴坐标**；Y为样本标签，因此它只是一个**one-hot**，用来标记每一个Point的类别。
 
-<img src="/assets/img/image-20230711143812345.png" alt="image-20230711143812345" style="zoom:67%;" />
+<img src="./assets/img/image-20230711143812345.png" alt="image-20230711143812345" style="zoom:67%;" />
 
-<img src="/assets/img/image-20230711143926295.png" alt="image-20230711143926295" style="zoom:67%;" />
+<img src="./assets/img/image-20230711143926295.png" alt="image-20230711143926295" style="zoom:67%;" />
 
 [^3]: X与Y的Tensor
 
@@ -125,7 +125,7 @@ tags: [study, deep learning
 
 #### 2.7 ……
 
-
+![image-20230711174150419](./../assets/img/image-20230711174150419.png)
 
 ## Part Ⅲ: 进阶内容
 
