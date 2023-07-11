@@ -8,3 +8,5 @@ tags: [study, deep learning]
 **THIS IS A TEST**
 
 for something.
+
+![image-20230711094603003](assets/img/image-20230711094603003.png)
