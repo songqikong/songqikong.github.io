@@ -3,11 +3,28 @@ layout: base
 ---
 
 {% include header.html type="post" %}
+{% include toc.html html=content %}
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-
+{% if site.toc %}
+  <div class="container">  
+    <div class="contents">
+      <article class="markdown-body">
+        {{ page.content }}
+      </article>
+    </div>   
+    <div class="table-of-contents">
+      <h2>Contents</h2>
+      {% include toc.html html=content %}
+    </div>
+  </div>
+{% else %}
+  <article class="markdown-body">
+    {{ page.content }}
+  </article>
+{% endif %}
 
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
@@ -108,7 +125,7 @@ layout: base
   <script> 
     MathJax = {
       tex: {
-        inlineMath: [['$', '$']],
+        inlineMath: [['$', '$'], ['$$', '$$']],
         processEscapes: true
       }
     };
