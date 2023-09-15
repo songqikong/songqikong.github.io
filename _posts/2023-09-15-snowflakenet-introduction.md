@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A Brief Study note of "SnowFlakeNet"
-subtitle: SnowflakeNet: Point Cloud Completion by Snowflake Point Deconvolution with Skip-Transformer, ICCV 2021 & TPAMI 2023
+subtitle: SnowflakeNet Point Cloud Completion by Snowflake Point Deconvolution with Skip-Transformer, ICCV 2021 & TPAMI 2023
 tags: [paper reading, deep learning, point cloud completion]
 ---
 
