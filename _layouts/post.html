@@ -125,9 +125,9 @@ layout: base
     </div>
 
     <div class='col-md-2 col-xs-0'>
-        <div class="toc">
-          {% include toc.html html=content ordered=true h_min=4%}
-        </div>
+        <!-- <div class="toc"> -->
+          {% include toc.html html=content sanitize=true ordered=false h_min=2 class=toc %}
+        <!-- </div> -->
     </div>
 
   </div>
@@ -177,6 +177,7 @@ layout: base
       }
     }
   }
+
 
   @media screen and (max-width: 1050px) {
     .toc {
