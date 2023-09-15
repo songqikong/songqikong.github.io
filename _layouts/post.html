@@ -8,22 +8,24 @@ layout: base
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <!-- {% if site.toc %} -->
-  <div class="container">  
-    <div class="contents">
-      <article class="markdown-body">
-        {{ page.content }}
-      </article>
-    </div>   
-    <div class="table-of-contents">
-      <h2>Contents</h2>
-      {% include toc.html html=content %}
-    </div>
-  </div>
+
 <!-- {% else %}
   <article class="markdown-body">
     {{ page.content }}
   </article>
 {% endif %} -->
+
+<div class="container">  
+  <div class="contents">
+    <article class="markdown-body">
+      {{ page.content }}
+    </article>
+  </div>   
+  <div class="table-of-contents">
+    <h2>Contents</h2>
+    {% include toc.html html=content %}
+  </div>
+</div>
 
 <style>
   .container {
@@ -63,9 +65,8 @@ layout: base
             }
         }
     }
-}
-
-@media screen and (max-width: 1050px) {
+  }
+  @media screen and (max-width: 1050px) {
     .post-content {
         .container {
             width: 100%;
