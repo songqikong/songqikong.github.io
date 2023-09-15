@@ -4,6 +4,19 @@ layout: base
 
 {% include header.html type="post" %}
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script> 
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$']],
+      processEscapes: true
+    }
+  };
+  </script>
+
+
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 {% endif %}">
