@@ -106,7 +106,7 @@ layout: base
     </div>
 
     <div class='col-md-3 col-xs-0'>
-        <div class="toc">
+        <div class="toc" style="color: #004098;">
           {% include toc.html html=content h_max=2 class='toc_style' %}
         </div>
     </div>
@@ -126,7 +126,7 @@ layout: base
 
 <style>
   .toc_style{
-    font-size: 14px;
+      font-size: 14px;
       line-height: 24px;
       a {
         color: #474b4d;
@@ -147,20 +147,6 @@ layout: base
     margin-bottom: 80px;
     height: fit-content;
     margin-left: 30px;
-
-    h2 {
-      font-family: fantasy;
-      color: #e32e00;
-    }
-
-    a {
-        color: #474b4d;
-        font-size: 14px;
-        &:hover {
-          color: #1675ac;
-          text-decoration: underline;
-        }
-    }
 
     ul {
       margin-left: 20px;
