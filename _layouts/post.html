@@ -107,7 +107,7 @@ layout: base
 
     <div class='col-md-3 col-xs-0'>
         <div class="toc">
-          {% include toc.html html=content%}
+          {% include toc.html html=content h_max=2 class='toc_style' %}
         </div>
     </div>
 
@@ -125,6 +125,12 @@ layout: base
 </script>
 
 <style>
+  .toc_style{
+    font-size: 14px;
+      line-height: 24px;
+      color: #005b81;
+  }
+
   .toc {
     padding: 10px;
     border-left: 2px solid #efefef;
