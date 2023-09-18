@@ -127,12 +127,10 @@ pcd_child = pcd_child + delta
 
 ### b. Point-wise splitting operation
 
-逐点分裂操作旨在为每个 $h_{j}^{i-1}\in H_{i-1}$生成多个子点特征。 它是一种特殊的一维反卷积策略，其中核大小和步长等于ri。
+逐点分裂操作旨在为每个 $h_{j}^{i-1}\in H_{i-1}$ 生成多个子点特征。 它是一种特殊的一维反卷积策略，其中核大小和步长等于ri。
 
-实际上，每个 $\begin{aligned}h_j^{i-1}\in H_{i-1}\end{aligned}$ 共享同一组内核，并以逐点方式产生多个子点特征。为清楚起见我们将 $h_j^{i-1}$ 的第m个logit 表示为 $h_{j,m}^{i-1}$ ，其对应的内核用 $K_{m}$ 表示。从技术上讲，$K_{m}$是个大小为rix C'的矩阵，$K_{m}$的第k行表示为 $K_{m,k}$ ，第k个子点特征 $g_{j,k}$ 由下式给出
-$
-\mathbf{g}_{j,k}=\sum_{m}h_{j,m}^{i-1}\mathbf{k}_{m,k}.
-$
+实际上，每个 $\begin{aligned}h_j^{i-1}\in H_{i-1}\end{aligned}$ 共享同一组内核，并以逐点方式产生多个子点特征。为清楚起见我们将 $h_j^{i-1}$ 的第m个logit 表示为 $h_{j,m}^{i-1}$ ，其对应的内核用 $K_{m}$ 表示。从技术上讲，$K_{m}$ 是个大小为rix C'的矩阵， $K_{m}$ 的第k行表示为 $K_{m,k}$ ，第k个子点特征 $g_{j,k}$ 由下式给出
+ $\mathbf{g}_{j,k}=\sum_{m}h_{j,m}^{i-1}\mathbf{k}_{m,k}.$
 此外，逐点分裂操作对于上采样点是灵活的。
 
 - 当ri = 1 时，SPD可以将上一步的点移动到更好的位置;
@@ -151,17 +149,13 @@ $
 <center style="color:#c0c0c0">The detailed structure of skip-transformer.</center>
 
 Skip-Transformer以每个点的特征 $q_{j}^{i-1}$ 作为输入，并与上一步的位移特征 $K_{i}^{i-1}$ 相结合产生形状上下文特征 $h_{j}^{i-1}$ ，其由下式给出：
-$
-\mathbf{h}_{j}^{i-1}=\mathrm{ST}(\mathbf{k}_{j}^{i-1},\mathbf{q}_{j}^{i-1}),
-$
+ $\mathbf{h}_{j}^{i-1}=\mathrm{ST}(\mathbf{k}_{j}^{i-1},\mathbf{q}_{j}^{i-1}),$ 
 上图所示为skip-transformer的结构。引入skip-transformer来学习和细化父点和子点之间的空间上下文，其中"跳跃"一词表示来自上一层的位移特征和当前层的点特征之间的联系。
 
 > 跳跃变压器首先将它们串联起来。然后，将拼接后的特征送入MLP，MLP生成向量 $V_{j}^{i-1}$ 。其中，$V_{j}^{i-1}$作为值向量，包含了之前的点分裂信息。
-> 为了进一步将局部形状上下文聚合为 $V_{j}^{i-1}$ ，跳跃变压器使用 $q_{j}^{i-1}$ 作为查询，$K_{j}^{i-1}$作为密钥来估计注意力向量 $a_{j}^{i-1}$ ，其中 $a_{j}^{i-1}$ 表示当前分裂应该给予前一个分裂多少注意力。为了使跳跃变压器能够专注于局部模式，我们计算每个点与其k近邻( k-NN)之间的注意力向量。k - NN策略也有助于降低计算成本。
+> 为了进一步将局部形状上下文聚合为 $V_{j}^{i-1}$ ，跳跃变压器使用 $q_{j}^{i-1}$ 作为查询，$K_{j}^{i-1}$ 作为密钥来估计注意力向量 $a_{j}^{i-1}$ ，其中 $a_{j}^{i-1}$ 表示当前分裂应该给予前一个分裂多少注意力。为了使跳跃变压器能够专注于局部模式，我们计算每个点与其k近邻( k-NN)之间的注意力向量。k - NN策略也有助于降低计算成本。
 > 具体来说，给定第个点特征 $q_{j}^{i-1}$ ，$q_{j}^{i-1}$与第k个近邻的位移特征{$K_{j,l}^{i-1}$|L =1，2，.，k}之间的注意力向量 $a_{j,l}^{i-1}$ 可计算如下：
-> $
-> \mathbf{a}_{j,l}^{i-1}=\frac{\exp(\mathrm{MLP}(\mathbf{q}_j^{i-1})\oplus(\mathbf{k}_{j,l}^{i-1})))}{\sum_{l=1}^k\exp(\mathrm{MLP}((\mathbf{q}_j^{i-1})\oplus(\mathbf{k}_{j,l}^{i-1})))},
-> $
+>  $\mathbf{a}_{j,l}^{i-1}=\frac{\exp(\mathrm{MLP}(\mathbf{q}_j^{i-1})\oplus(\mathbf{k}_{j,l}^{i-1})))}{\sum_{l=1}^k\exp(\mathrm{MLP}((\mathbf{q}_j^{i-1})\oplus(\mathbf{k}_{j,l}^{i-1})))} $
 
 其中⊕表示逐元的加法， ⊙ 为Hadamard Product（哈达玛乘积）；注意第一个SPD没有先前的位移特征。
 
@@ -233,31 +227,23 @@ class SkipTransformer(nn.Module):
 
 ## 3.4 Training Loss
 
-文章使用Chamfer distance (CD) 作为主要损失函数。为了明确约束种子生成和随后的拆分过程中生成的点云，我们将ground truth点云下采样到与 {Pc, P1, P2, P3} 相同的采样密度，其中我们将四个 CD 损失的总和定义为完成损失，用 Lcompletion 表示。此外，我们还利用Cycle4Completion中的部分匹配损失来保留输入点云的形状结构。这是一个单向约束，旨在匹配一个形状，而不约束相反的方向。由于部分匹配损失只需要输出点云部分匹配输入，我们将其作为保留损失Lpreservation保存，总训练损失表示为:$\mathcal{L}=\mathcal{L}_\text{completion}+\lambda\mathcal{L}_\text{preservation}.$
+文章使用Chamfer distance (CD) 作为主要损失函数。为了明确约束种子生成和随后的拆分过程中生成的点云，我们将ground truth点云下采样到与 {Pc, P1, P2, P3} 相同的采样密度，其中我们将四个 CD 损失的总和定义为完成损失，用 Lcompletion 表示。此外，我们还利用Cycle4Completion中的部分匹配损失来保留输入点云的形状结构。这是一个单向约束，旨在匹配一个形状，而不约束相反的方向。由于部分匹配损失只需要输出点云部分匹配输入，我们将其作为保留损失Lpreservation保存，总训练损失表示为: $\mathcal{L}=\mathcal{L}_\text{completion}+\lambda\mathcal{L}_\text{preservation}.$ 
 
 
-$
-{\cal L}_{\mathrm{CD}_{2}}({\cal X},{\cal Y})=\sum_{\mathbf{x}\in{\cal X}}\min_{\mathbf{y}\in{\cal Y}}\|\mathbf{x}-\mathbf{y}\|_{2}+\sum_{\mathbf{y}\in{\cal Y}}\operatorname*{min}_{\mathbf{x}\in{\cal X}}\|\mathbf{y}-\mathbf{x}\|_{2},
-$
+ ${\cal L}_{\mathrm{CD}_{2}}({\cal X},{\cal Y})=\sum_{\mathbf{x}\in{\cal X}}\min_{\mathbf{y}\in{\cal Y}}\|\mathbf{x}-\mathbf{y}\|_{2}+\sum_{\mathbf{y}\in{\cal Y}}\operatorname*{min}_{\mathbf{x}\in{\cal X}}\|\mathbf{y}-\mathbf{x}\|_{2},$ 
 
 <center style="color:#c0c0c0; font-size:14px">Chamfer Distance Version2</center>
 
-$
-{\cal L}_{\mathrm{CD}_{1}}({\cal X},{\cal Y})=\frac{1}{2}\sum_{\mathbf{x}\in{\cal X}}\min_{\mathbf{y}\in{\cal Y}}\|\mathbf{x}-\mathbf{y}\|+\frac{1}{2}\sum_{\mathbf{y}\in{\cal Y}}\min_{\mathbf{x}\in{\cal X}}\|\mathbf{y}-\mathbf{x}\|.
-$
+ ${\cal L}_{\mathrm{CD}_{1}}({\cal X},{\cal Y})=\frac{1}{2}\sum_{\mathbf{x}\in{\cal X}}\min_{\mathbf{y}\in{\cal Y}}\|\mathbf{x}-\mathbf{y}\|+\frac{1}{2}\sum_{\mathbf{y}\in{\cal Y}}\min_{\mathbf{x}\in{\cal X}}\|\mathbf{y}-\mathbf{x}\|.$ 
 
 <center style="color:#c0c0c0; font-size:14px">Chamfer Distance Version1</center>
 
-$
-\mathcal{L}_{partial}(\mathcal{X},\mathcal{Y})=\sum_{\mathbf{x}\in\mathcal{X}}\min_{\mathbf{y}\in\mathcal{Y}}\|\mathbf{x}-\mathbf{y}\|_2.
-$
+ $\mathcal{L}_{partial}(\mathcal{X},\mathcal{Y})=\sum_{\mathbf{x}\in\mathcal{X}}\min_{\mathbf{y}\in\mathcal{Y}}\|\mathbf{x}-\mathbf{y}\|_2.$ 
 
 <center style="color:#c0c0c0; font-size:14px">Lpreservation</center>
 
 同时，作者也效仿 MSN和 SpareNet将地球自转距离( Earth Mover ' s Distance，EMD )作为训练损失，其定义如下：
-$
-\mathcal{L}_{\mathrm{EMD}}=\min_{\phi:\mathcal{X}\rightarrow\mathcal{Y}}\sum_{x\in\mathcal{X}}\|\mathbf{x}-\phi(\mathbf{x})\|_{2},
-$
+ $\mathcal{L}_{\mathrm{EMD}}=\min_{\phi:\mathcal{X}\rightarrow\mathcal{Y}}\sum_{x\in\mathcal{X}}\|\mathbf{x}-\phi(\mathbf{x})\|_{2},$
 
 <center style="color:#c0c0c0; font-size:14px">Earth Mover ' s Distance</center>
 
@@ -328,9 +314,7 @@ Fidelity是指生成点云与真实点云之间的重叠程度，也就是生成
 点云自编码的任务旨在从编码后精简的样本中中重建点云。由于它严重依赖于解码器的生成能力，我们在点云自编码中使用 SnowflakeNet 的解码部分来评估雪花点反卷积的生成能力。
 
 使用“Diffusion Probabilistic Models for 3D Point Cloud Generation”同样的设置，使用ShapaNet数据集。采用常用的Chamfer distance(CD)和Earth Mover's distance(EMD)作为评价指标。
-$
-\mathcal{L}_{recon}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_2}(\mathcal{P}_i,\mathcal{P}_i^{'})+\mathcal{L}_{\mathrm{EMD}}(\mathcal{P}_i,\mathcal{P}_i^{'}),
-$
+ $\mathcal{L}_{recon}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_2}(\mathcal{P}_i,\mathcal{P}_i^{'})+\mathcal{L}_{\mathrm{EMD}}(\mathcal{P}_i,\mathcal{P}_i^{'}),$
 ![image-20230915190940610](/assets/img/image-20230915190940610.png)
 
 ![image-20230915191021594](/assets/img/image-20230915191021594.png)
@@ -352,9 +336,7 @@ $
 单幅图像重建(SVR)的任务，其目标是从图像中重建点云。
 
 使用ShapeNet数据集，在训练时跟踪验证集上的损失以确定何时停止训练。采用 L1 Chamfer distance (CD) 来评估所有对应物之间的生成质量。
-$
-\mathcal{L}_{\mathrm{SVR}}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_1}(\mathcal{P}_i,\mathcal{P}_i^i).
-$
+ $\mathcal{L}_{\mathrm{SVR}}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_1}(\mathcal{P}_i,\mathcal{P}_i^i). $ 
 ![image-20230915193923313](/assets/img/image-20230915193923313.png)
 
 ![image-20230915193931551](/assets/img/image-20230915193931551.png)
@@ -369,9 +351,7 @@ $
 
 > Hausdorff距离是一种衡量两个点云之间的相似度的指标，它是两个点云之间最长距离的最小值。具体来说，它是指在一个点云中的每个点，找到距离其最近的另一个点云中的点，然后取这些距离的最大值。因此，Hausdorff距离可以衡量两个点云之间的形状差异和变形程度。在计算机视觉和计算机图形学中，Hausdorff距离常常被用来评估3D模型之间的相似度和形状变化。
 
-$
-\mathcal{L}_{\mathrm{SVR}}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_1}(\mathcal{P}_i,\mathcal{P}_i^i).
-$
+ $\mathcal{L}_{\mathrm{SVR}}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_1}(\mathcal{P}_i,\mathcal{P}_i^i).$ 
 
 ![image-20230915195122598](/assets/img/image-20230915195122598.png)
 
