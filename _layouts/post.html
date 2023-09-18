@@ -29,7 +29,7 @@ layout: base
 <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row row-cols-12">
     <!-- <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 {% endif %}"> -->
-    <div class="col-md-10 col-xs-12">
+    <div class="col-md-9 col-xs-12">
       {% if page.gh-repo %}
       {% assign gh_split = page.gh-repo | split:'/' %}
       {% assign gh_user = gh_split[0] %}
@@ -124,7 +124,7 @@ layout: base
       <!-- Gitalk end -->
     </div>
 
-    <div class='col-md-2 col-xs-0'>
+    <div class='col-md-3 col-xs-0'>
         <div class="toc">
           {% include toc.html html=content%}
         </div>
