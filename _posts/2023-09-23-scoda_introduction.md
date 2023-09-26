@@ -27,7 +27,35 @@ toc: true
 - 提出了一种体积一致的自训练框架（volume-consistent self-training framework），以提高形状补全对真实扫描复杂不完整性的鲁棒性。
 - 为基于**ScanSalon**的**SCoDA**任务构建了多种评估方法的基准;大量的实验也证明了所提方法的优越性。
 
+# Ⅲ. Method
 
+IF-Nets 是一种有前途的重建方法，本文就是基于IF-Nets进行的改进。我们的方法首先通过提出一种**新的跨域特征融合模块**来改进表示学习，该模块旨在将标签丰富的合成域中学习到的全局级对象形状的知识转移到真实域中。其次，为了在真实数据中耗尽特定领域的信息，针对特定的形状完成任务提出了一种新的**体积一致的自训练方法**。
 
+## 3.1. Implicit Feature Networks
 
+我们首先介绍IF-Nets[Implicit Functions in Feature Space for 3D Shape Reconstruction and Completion]作为我们的重建框架。IF-Net 由用于多尺度特征提取的 3D 卷积神经网络编码器 $g(\cdot)$ 和用于隐式形状解码的多层感知器组成。
 
+给出一个点云样本 $P,$ 首先将他转换为一个体素的表示 $\textbf{X }\in\:\mathbb{R}^{\boldsymbol{N}\times\boldsymbol{N}\times\boldsymbol{N}}$ ，其中
+$\begin{aligned}N&\in\:\mathbb{N}\end{aligned}$ 是输入空间的分辨率。$\text{X}$ 被送入一个L层的感知机 $g(\cdot)$ 来生成多尺度的特征 $\{\mathbf{F}_{1},....,\mathbf{F}_{L}\}$ ，然后他们被上采样到相同的空间维度并沿着channel进行拼接来生成最终特征 $\mathbf{F}=$concat( {upsa $\mathbf{concat}(\{\mathbf{upsample}(\mathbf{F}_{1}),[USD3P],$ $\mathbf{mple}(\mathbf{F}_{1}),[USD3P],\mathbf{upsample}(\mathbf{F}_{L})\})$. Formally:
+$$
+g(\mathbf{X})=\mathbf{F},\quad\mathbf{X}\in\mathbb{R}^{N\times N\times N},\quad\mathbf{F}\in\mathbb{R}^{d\times N\times N\times N}
+$$
+
+where $\text{a}$ is the feature channel number that equals the sum-mation of the channel numbers of $\mathbf{F}_{\boldsymbol{i}}$ .Note that $\text{H}$ has a3D structure aligned with the input $\text{X}$ . Given a point query
+$\mathbf{p}\in\mathbb{R}^{3}$, continuous features $\mathbf{F}(\mathbf{p})$ at this point can be ex-tracted from $\text{F}$ using trilinear interpolation.
+
+Then, the encoding at the point $\text{P}$ is fed into a point-wise
+
+decoder $f(\cdot)$ to give a binary prediction indicating if the point lies inside or outside the shape:
+
+$$
+f(\mathbf{F},\mathbf{p})=f(\mathbf{F}(\mathbf{p}))\mapsto\{0,1\}.
+$$
+
+Given the occupancy value $o(\mathbf{p})\in\{0,1\}$ at each position p pre-computed according to the ground truth shape mesh.a binary cross-entropy loss is used to train $\text{9}$ and $\text{f}$
+
+$$
+\min L_{IF}=\text{BCE}\big(f(\mathbf{F},\mathbf{p}),\:o(\mathbf{p})\big).
+$$
+
+Note that the prediction values can also be continuous signed distance values as in [58].
