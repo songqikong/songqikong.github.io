@@ -38,7 +38,15 @@ IF-Nets 是一种有前途的重建方法，本文就是基于IF-Nets进行的�
 
 我们首先介绍IF-Nets[Implicit Functions in Feature Space for 3D Shape Reconstruction and Completion]作为我们的重建框架。IF-Net 由用于多尺度特征提取的 3D 卷积神经网络编码器 $g(\cdot)$ 和用于隐式形状解码的多层感知器组成。
 
-给出一个点云样本 $P,$ 首先将他转换为一个体素的表示 $\textbf{X }\in\:\mathbb{R}^{\boldsymbol{N}\times\boldsymbol{N}\times\boldsymbol{N}}$ ，其中$\begin{aligned}N&\in\:\mathbb{N}\end{aligned}$ 是输入空间的分辨率。$\text{X}$ 被送入一个L层的感知机 $g(\cdot)$ 来生成多尺度的特征 $\{\mathbf{F}_{1},....,\mathbf{F}_{L}\}$ ，然后他们被上采样到相同的空间维度并沿着channel进行拼接来生成最终特征 $\mathbf{F}=\mathbf{concat}(\{\mathbf{upsample}(\mathbf{F}_{1}),...,\mathbf{upsample}(\mathbf{F}_{L})\})$. 理论上：
+给出一个点云样本 $P,$ 首先将他转换为一个体素的表示$\textbf{X}\in\:\mathbb{R}^{\boldsymbol{N}\times\boldsymbol{N}\times\boldsymbol{N}}$ ，其中 $\begin{aligned}N&\in\:\mathbb{N}\end{aligned}$ 是输入空间的分辨率。 $\text{X}$ 被送入一个L层的感知机 $g(\cdot)$ 来生成多尺度的特征 
+$$
+\{\mathbf{F}_{1},....,\mathbf{F}_{L}\}
+$$
+然后他们被上采样到相同的空间维度并沿着channel进行拼接来生成最终特征 
+$$
+\mathbf{F}=\mathbf{concat}(\{\mathbf{upsample}(\mathbf{F}_{1}),...,\mathbf{upsample}(\mathbf{F}_{L})\})
+$$
+
 $$
 g(\mathbf{X})=\mathbf{F},\quad\mathbf{X}\in\mathbb{R}^{N\times N\times N},\quad\mathbf{F}\in\mathbb{R}^{d\times N\times N\times N}
 $$
@@ -65,7 +73,7 @@ $$
 
 原始IF-Net的训练需要ground truth形状来生成大量的occupancy labels来监督f(·)的输出，但大多数真实扫描都与ground truth不配对。因此，我们开发了一个**跨域特征融合模块**来很好地传递标签丰富的源域中的知识。我们利用源知识的想法源于一个重要的观察结果：尽管合成数据与真实扫描具有不同的局部模式，但特定类别的全局级知识（例如，公共结构和粗形状）可以在两个域中共享。此外，标签较少的目标数据可能足以学习丰富的局部级信息。另一方面，IF-Nets 通过利用局部表示进行形状补全，因此在不引入源域偏差的情况下提取高质量的局部级特征是很重要的。
 
-为此，我们开发了一个用于知识转移的跨域特征融合模块（CDFF）。首先，两个形状编码器 gs(·) 和 gt(·) 用于源数据和目标数据的特征提取，分别生成 Fs 和 Ft。如上所述，Fs 包含丰富的全局信息，Ft 在提供特定领域的局部级表示方面更可靠。采用简单的线性组合将它们融合成 F：
+为此，我们开发了一个用于知识转移的跨域特征融合模块（CDFF）。首先，两个形状编码器 gs(·) 和 gt(·) 用于源数据和目标数据的特征提取，分别生成 Fs 和 Ft。如上所述，Fs 包含丰富的全局信息，Ft 在提供特定领域的局部级表示方面更可靠。采用简单的线性组合将它们融合成 F:
 $$
 \mathbf{F}=\mathbf{w}\cdot\mathbf{F}_{s}+(1-\mathbf{w})\cdot\mathbf{F}_{t}
 $$
@@ -74,11 +82,11 @@ $$
 - (i)利用Fs中的全局特征，将Ft用于局部特征(基于我们的观察)
 - (ii)自适应学习w以保持灵活性。
 
-自适应权重向量 w 计算如下：
+自适应权重向量 w 计算如下:
 $$
 \mathbf{w}=\alpha\cdot h(\mathbf{F}_s\odot\mathbf{F}_t)+\mathbf{w}^0
 $$
-其中 α ∈ R+ 是自适应性的比率，h(·)  → [0, 1] 是输出层具有 sigmoid 激活的两层 MLP，⊙ 表示逐元素乘法的操作加上空间维度上的全局池化（返回维度为 d 的向量）。w0 ∈ [0, 1] 是一个常数权重向量，这意味着从我们的观察中得出的先验，其中每个值 w0i 简单地由线性映射定义，如下所示：
+其中 α ∈ R+ 是自适应性的比率，h(·)  → [0, 1] 是输出层具有 sigmoid 激活的两层 MLP，⊙ 表示逐元素乘法的操作加上空间维度上的全局池化（返回维度为 d 的向量）。w0 ∈ [0, 1] 是一个常数权重向量，这意味着从我们的观察中得出的先验，其中每个值 w0i 简单地由线性映射定义，如下所示:
 $$
 w_i^0=\frac{l_i}{L+1},i\in\{1,2,\cdots,d\}
 $$
@@ -96,7 +104,7 @@ $$
 
 <center style="font-size:14px; color:#c0c0c0">Figure 2. Overview of the proposed method. Two IF-Net encoders are used for the source and the target domain, respectively, and they share an implicit function decoder. The cross-domain feature fusion (CDFF) works by adaptively combining the global-level and local-level knowledge learned from the source and target domain, respectively. The volume-consistency self-training (VCST) works by enforcing the prediction consistency between two different augmented views to learn the local details.</center>
 
-给定输入的两个视图，它们的特征由 g(·) 提取，然后由 f (·) 进行隐式预测：
+给定输入的两个视图，它们的特征由 g(·) 提取，然后由 f (·) 进行隐式预测:
 $$
 g(\mathbf{X}^v)=\mathbf{F}^v,v=A,B,
 $$
@@ -105,7 +113,8 @@ $$
 f(\mathbf{F}^v,\mathbf{p})\mapsto\{0,1\}.
 $$
 
-请注意， $\mathbf{F}^v$  也可以通过我们的 CDFF 模块生成。在这里，我们简化了公式以更好地展示我们的 VCST。一致性约束应用于具有相同点查询 p 的 $f(\mathbf{F}^A,\mathbf{p})$ 和 f $f(\mathbf{F}^B,\mathbf{p})$ 的隐式预测：
+请注意， $\mathbf{F}^v$  也可以通过我们的 CDFF 模块生成。在这里，我们简化了公式以更好地展示我们的 VCST。一致性约束应用于具有相同点查询 p 的 $f(\mathbf{F}^A,\mathbf{p})$ 和 f $f(\mathbf{F}^B,\mathbf{p})$ 的隐式预测:
+
 $$
 minL_{CT}=\text{BCE}\big(f(\mathbf{F}^B,\mathbf{p}),\:f(\mathbf{F}^A,\mathbf{p})\big),
 $$
@@ -130,6 +139,8 @@ $$
 <center><img src="/assets/img/image-20230928163355688.png" alt="image-20230928163355688" /></center>
 
 <center style="font-size:14px; color:#c0c0c0">Table 1. Statistics of the proposed dataset ScanSalon.</center>
+
+
 
 ##### Shape Annotation for Real Scans
 
