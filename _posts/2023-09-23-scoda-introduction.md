@@ -2,9 +2,9 @@
 layout: post
 title: A Brief Study note of "SCoDA"
 subtitle: SCoDA: Domain Adaptive Shape Completion for Real Scans, CVPR 2023
-tags: [paper reading, deep learning, point cloud completion]
+tags: [paper reading, deep learning]
+toc: true
 ---
-
 
 # Ⅰ. Abstract
 
@@ -38,11 +38,14 @@ IF-Nets 是一种有前途的重建方法，本文就是基于IF-Nets进行的�
 
 我们首先介绍IF-Nets[Implicit Functions in Feature Space for 3D Shape Reconstruction and Completion]作为我们的重建框架。IF-Net 由用于多尺度特征提取的 3D 卷积神经网络编码器 $g(\cdot)$ 和用于隐式形状解码的多层感知器组成。
 
-给出一个点云样本 $P,$ 首先将他转换为一个体素的表示$\textbf{X}\in\:\mathbb{R}^{\boldsymbol{N}\times\boldsymbol{N}\times\boldsymbol{N}}$ ，其中 $\begin{aligned}N&\in\:\mathbb{N}\end{aligned}$ 是输入空间的分辨率。 $\text{X}$ 被送入一个L层的感知机 $g(\cdot)$ 来生成多尺度的特征 
+给出一个点云样本 $P,$ 首先将他转换为一个体素的表示$\textbf{X}\in\:\mathbb{R}^{\boldsymbol{N}\times\boldsymbol{N}\times\boldsymbol{N}}$ ，其中 $\begin{aligned}N&\in\:\mathbb{N}\end{aligned}$ 是输入空间的分辨率。 $\text{X}$ 被送入一个L层的感知机 $g(\cdot)$ 来生成多尺度的特征:
+
 $$
 \{\mathbf{F}_{1},....,\mathbf{F}_{L}\}
 $$
-然后他们被上采样到相同的空间维度并沿着channel进行拼接来生成最终特征 
+
+然后他们被上采样到相同的空间维度并沿着channel进行拼接来生成最终特征:
+
 $$
 \mathbf{F}=\mathbf{concat}(\{\mathbf{upsample}(\mathbf{F}_{1}),...,\mathbf{upsample}(\mathbf{F}_{L})\})
 $$
