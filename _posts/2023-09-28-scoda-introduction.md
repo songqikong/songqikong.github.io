@@ -1,10 +1,9 @@
 ---
 layout: post
 title: A Brief Study note of "SCoDA"
-subtitle: SCoDA: Domain Adaptive Shape Completion for Real Scans, CVPR 2023
 tags: [paper reading, deep learning]
-toc: true
 ---
+<center style="font-size:32px; font-weight:bold">SCoDA:Domain Adaptive Shape Completion for Real Scans, CVPR 2023</center>
 
 # Ⅰ. Abstract
 
