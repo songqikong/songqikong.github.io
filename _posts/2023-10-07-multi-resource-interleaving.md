@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "深度学习训练的多源交错"学习笔记
+title: 深度学习训练的多源交错学习笔记
 tags: [paper reading, deep learning]
 ---
 <center style="font-size:32px; font-weight:bold">Multi-Resource Interleaving for Deep Learning Training, SIGCOMM 2022</center>
