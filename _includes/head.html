@@ -4,6 +4,10 @@
 
   <link rel="shortcut icon" href="{{ site.baseurl }}/assets/img/favicon.ico">
 
+  {% unless page.no_latex %}
+    {% include latex.html %}
+  {% endunless %}
+
   {% capture title %}
     {%- if page.share-title -%}
       {{ page.share-title | strip_html | xml_escape }}
