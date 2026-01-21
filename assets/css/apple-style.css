@@ -1,0 +1,327 @@
+/* Apple-style Homepage Design */
+
+:root {
+  --apple-bg-primary: #F5F5F7;
+  --apple-bg-secondary: #FFFFFF;
+  --apple-text-primary: #1D1D1F;
+  --apple-text-secondary: #86868B;
+  --apple-blue: #0071E3;
+  --apple-blue-hover: #0077ED;
+  --apple-border: #D2D2D7;
+  --apple-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --apple-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --apple-shadow-large: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --apple-radius-sm: 12px;
+  --apple-radius-md: 18px;
+  --apple-radius-lg: 24px;
+  --apple-transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Hero Section */
+.apple-hero {
+  padding: 80px 0 60px;
+  background: var(--apple-bg-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.apple-hero .container-md {
+  max-width: 980px;
+}
+
+/* Profile Image */
+.apple-avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.apple-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--apple-shadow-large);
+  transition: var(--apple-transition);
+  border: 4px solid var(--apple-bg-secondary);
+}
+
+.apple-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
+}
+
+/* Hero Text */
+.apple-hero-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.apple-name {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.apple-title {
+  font-size: 24px;
+  color: var(--apple-text-secondary);
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.apple-bio {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--apple-text-primary);
+  margin-bottom: 24px;
+}
+
+.apple-bio a {
+  color: var(--apple-blue);
+  text-decoration: none;
+  transition: var(--apple-transition);
+}
+
+.apple-bio a:hover {
+  color: var(--apple-blue-hover);
+  text-decoration: underline;
+}
+
+/* Language Switch */
+.apple-lang-switch {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.apple-lang-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background: var(--apple-bg-secondary);
+  color: var(--apple-blue);
+  border-radius: var(--apple-radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: var(--apple-transition);
+  box-shadow: var(--apple-shadow-light);
+}
+
+.apple-lang-link:hover {
+  background: var(--apple-blue);
+  color: #FFFFFF;
+  box-shadow: var(--apple-shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* Section Styling */
+.apple-section {
+  padding: 60px 0;
+  background: var(--apple-bg-secondary);
+  margin-bottom: 0;
+}
+
+.apple-section h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--apple-text-primary);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+/* Card Container */
+.apple-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Info Card */
+.apple-card {
+  background: var(--apple-bg-primary);
+  border-radius: var(--apple-radius-lg);
+  padding: 32px;
+  transition: var(--apple-transition);
+  box-shadow: var(--apple-shadow-light);
+}
+
+.apple-card:hover {
+  box-shadow: var(--apple-shadow-large);
+  transform: translateY(-4px);
+}
+
+/* Education List */
+.apple-edu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.apple-edu-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--apple-border);
+  transition: var(--apple-transition);
+}
+
+.apple-edu-item:last-child {
+  border-bottom: none;
+}
+
+.apple-edu-item:hover {
+  background: rgba(0, 113, 227, 0.03);
+  margin: 0 -16px;
+  padding: 20px 16px;
+  border-radius: var(--apple-radius-sm);
+}
+
+.apple-edu-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--apple-blue), var(--apple-blue-hover));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  font-size: 20px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.apple-edu-content {
+  flex: 1;
+}
+
+.apple-edu-course {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.apple-edu-institution {
+  font-size: 14px;
+  color: var(--apple-text-secondary);
+  font-weight: 500;
+}
+
+/* Academic Experience Section */
+.apple-academic-section {
+  background: var(--apple-bg-primary);
+  padding: 60px 0;
+}
+
+.apple-academic-card {
+  background: var(--apple-bg-secondary);
+  border-radius: var(--apple-radius-lg);
+  padding: 36px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: var(--apple-shadow-light);
+  transition: var(--apple-transition);
+}
+
+.apple-academic-card:hover {
+  box-shadow: var(--apple-shadow-large);
+}
+
+.apple-academic-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--apple-text-primary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.apple-academic-status {
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #34C759, #30D158);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .apple-hero {
+    padding: 40px 0;
+    min-height: auto;
+  }
+
+  .apple-name {
+    font-size: 36px;
+  }
+
+  .apple-title {
+    font-size: 20px;
+  }
+
+  .apple-bio {
+    font-size: 15px;
+  }
+
+  .apple-section {
+    padding: 40px 0;
+  }
+
+  .apple-section h3 {
+    font-size: 24px;
+  }
+
+  .apple-cards-container {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+  }
+
+  .apple-card {
+    padding: 24px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.apple-animate {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.apple-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.apple-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.apple-delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* Remove original styles overrides */
+.course, .institution {
+  margin: 0;
+}
