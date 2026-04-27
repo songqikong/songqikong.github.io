@@ -68,10 +68,12 @@ footer {
   display: none !important;
 }
 
-/* Prevent page-level scrolling; oc-layout handles its own scroll */
-html, body {
-  overflow: hidden;
-  height: 100%;
+/* Prevent page-level scrolling on desktop; oc-layout handles its own scroll */
+@media (min-width: 901px) {
+  html, body {
+    overflow: hidden;
+    height: 100%;
+  }
 }
 
 /* Remove ALL Bootstrap padding/margins so oc-layout fills 100% */
@@ -81,6 +83,7 @@ body>.container-fluid,
   margin: 0 !important;
   max-width: 100% !important;
   width: 100% !important;
+  overflow-x: hidden;
 }
 
 .container-fluid[role="main"]>.row {
@@ -689,23 +692,27 @@ body>.container-fluid,
    ============================================ */
 @media (max-width: 900px) {
   .oc-layout {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+    min-height: calc(100vh - 50px);
   }
 
   .oc-content {
     grid-template-columns: 1fr;
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .oc-sidebar {
     grid-row: auto;
     border-right: none;
     border-bottom: 1px solid var(--oc-border);
-    padding: 20px 0;
+    padding: 16px 0;
+    gap: 14px;
   }
 
   .oc-main {
-    padding: 20px 0;
+    padding: 16px 0;
   }
 
   .oc-grid {
@@ -713,13 +720,61 @@ body>.container-fluid,
   }
 
   .oc-topbar {
-    padding: 10px 16px;
+    padding: 10px 12px;
+    gap: 4px;
+  }
+
+  .oc-topbar-left {
+    gap: 6px;
+    font-size: 11px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .oc-topbar-left .oc-cmd {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .oc-topbar-left span[style] {
+    display: none;
   }
 
   .oc-bottombar {
-    padding: 10px 16px;
+    padding: 10px 12px;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  /* Research title: allow venue to wrap on mobile */
+  .oc-research-title {
+    flex-wrap: wrap;
+  }
+
+  .oc-research-venue {
+    white-space: normal;
+  }
+
+  /* Item title line: allow meta to wrap */
+  .oc-item-title-line {
+    flex-wrap: wrap;
+  }
+
+  .oc-item-title-line > .oc-item-meta {
+    flex-shrink: 1;
+    white-space: normal;
+  }
+
+  /* Card padding */
+  .oc-card {
+    padding: 12px;
+  }
+
+  /* Section header */
+  .oc-section-header {
+    font-size: 12px;
+    flex-wrap: wrap;
   }
 }
 
@@ -731,7 +786,45 @@ body>.container-fluid,
 
   .oc-stats {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
+  }
+
+  .oc-topbar-right .oc-status-text {
+    display: none;
+  }
+
+  .oc-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .oc-link {
+    font-size: 11px;
+  }
+
+  .oc-item {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .oc-item-title {
+    font-size: 12px;
+  }
+
+  .oc-item-sub {
+    font-size: 11px;
+  }
+
+  .oc-research-title {
+    font-size: 12px;
+  }
+
+  .oc-research-title code {
+    font-size: 11px;
+  }
+
+  .oc-bio {
+    font-size: 12px;
   }
 }
 
