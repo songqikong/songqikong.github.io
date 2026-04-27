@@ -54,6 +54,9 @@
 /* Account for fixed navbar height */
 .navbar-custom {
   position: relative !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  transition: none !important;
 }
 
 /* Kill the Jekyll header & footer & container padding on homepage */
@@ -63,6 +66,12 @@
 
 footer {
   display: none !important;
+}
+
+/* Prevent page-level scrolling; oc-layout handles its own scroll */
+html, body {
+  overflow: hidden;
+  height: 100%;
 }
 
 /* Remove ALL Bootstrap padding/margins so oc-layout fills 100% */
@@ -364,6 +373,7 @@ body>.container-fluid,
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  align-items: start;
 }
 
 .oc-card {
@@ -478,6 +488,22 @@ body>.container-fluid,
   line-height: 1.4;
 }
 
+.oc-item-title-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.oc-item-title-line > .oc-item-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.oc-item-title-line > .oc-item-meta {
+  flex-shrink: 0;
+}
+
 .oc-item-sub {
   font-size: 12px;
   color: var(--oc-text-secondary);
@@ -503,6 +529,23 @@ body>.container-fluid,
   color: var(--oc-text);
   line-height: 1.5;
   margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.oc-research-title > span:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+.oc-research-venue {
+  font-family: var(--oc-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--oc-text-tertiary);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .oc-research-title code {
