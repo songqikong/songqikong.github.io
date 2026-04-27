@@ -1,99 +1,247 @@
 ---
 layout: homepage
-title: Hi, I'm Songqi (孔松琦)
-subtitle: Master student at OUC
-use-site-title: true
+full-width: true
 ---
 
 <link rel="stylesheet" href="{{ '/assets/css/apple-style.css' | relative_url }}">
 
-<!-- Apple Style Hero Section -->
-<section class="apple-hero">
-  <div class="container-md">
-    <div class="apple-avatar-container apple-animate">
-      <img decoding="async" src="/assets/img/avater.png" alt="Songqi Kong" class="apple-avatar">
+<!-- OpenCode-style Terminal Layout -->
+<div class="oc-layout">
+
+  <!-- Top Bar -->
+  <div class="oc-topbar oc-fade-in">
+    <div class="oc-topbar-left">
+      <span class="oc-prompt">$</span>
+      <span class="oc-cmd">cat ~/profile.md</span>
+      <span style="color: var(--oc-text-tertiary);">// songqikong.github.io</span>
     </div>
-    
-    <div class="apple-hero-text apple-animate apple-delay-1">
-      <h1 class="apple-name">Hi, I'm Songqi</h1>
-      <p class="apple-title">孔松琦 | Master student at OUC</p>
-      <p class="apple-bio">
-        I am a Master student at <a href="http://eweb.ouc.edu.cn/">CV Front Cross Group</a> of 
-        <a href="http://eweb.ouc.edu.cn/">Ocean University of China</a>, 
-        advised by Professor <a href="https://tocaiqing.github.io/">Cai Qing</a>. 
-        I received my B.Eng from Qingdao University of Technology.
-        My main research direction is scene understanding of 3D vision. 
-        My current research interests include point cloud completion and scene segmentation.
-      </p>
-      <p class="apple-bio">
-        When I'm not studying, I like to work out and <a href="https://songqikong.github.io/cycling">cycling</a>. 
-        I learned to swim this summer. Swimming is just as fun as riding a bike!
-      </p>
-      <div class="apple-lang-switch">
-        <a href="https://songqikong.github.io/index_cn" class="apple-lang-link">
-          🌐 中文
-        </a>
+    <div class="oc-topbar-right">
+      <div class="oc-status-dot"></div>
+      <span class="oc-status-text">online</span>
+      <a href="https://songqikong.github.io/index_cn" class="oc-lang-btn">中文</a>
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="oc-content">
+
+    <!-- Left Sidebar - Profile -->
+    <div class="oc-sidebar">
+      <div class="oc-avatar-wrap oc-fade-in oc-delay-1">
+        <img src="/assets/img/avater.png" alt="Songqi Kong" class="oc-avatar">
+        <div class="oc-avatar-info">
+          <h1>Songqi Kong</h1>
+          <span class="oc-handle">@songqikong</span>
+        </div>
+      </div>
+
+      <div class="oc-sidebar-section oc-fade-in oc-delay-2">
+        <span class="oc-sidebar-label">// about</span>
+        <p class="oc-bio">
+          Master student at <a href="http://eweb.ouc.edu.cn/">CV Front Cross Group</a>,
+          <a href="http://eweb.ouc.edu.cn/">Ocean University of China</a>,
+          advised by <a href="https://tocaiqing.github.io/">Prof. Cai Qing</a>.
+          BS from Qingdao University of Technology.
+        </p>
+      </div>
+
+      <div class="oc-sidebar-section oc-fade-in oc-delay-3">
+        <span class="oc-sidebar-label">// research</span>
+        <div class="oc-tags">
+          <span class="oc-tag">3D Vision</span>
+          <span class="oc-tag">Point Cloud</span>
+          <span class="oc-tag">Scene Seg</span>
+          <span class="oc-tag">Completion</span>
+        </div>
+      </div>
+
+      <div class="oc-sidebar-section oc-fade-in oc-delay-4">
+        <span class="oc-sidebar-label">// interests</span>
+        <div class="oc-tags">
+          <span class="oc-tag">Cycling</span>
+          <span class="oc-tag">Swimming</span>
+          <span class="oc-tag">Fitness</span>
+        </div>
+      </div>
+
+      <div class="oc-sidebar-section oc-fade-in oc-delay-5">
+        <span class="oc-sidebar-label">// links</span>
+        <div class="oc-links">
+          <a href="https://github.com/songqikong" class="oc-link">
+            <svg class="oc-link-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            github.com/songqikong
+          </a>
+          <a href="mailto:songqikong@outlook.com" class="oc-link">
+            <svg class="oc-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+            songqikong@outlook.com
+          </a>
+          <a href="https://songqikong.github.io/cycling" class="oc-link">
+            <svg class="oc-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="5.5" cy="17.5" r="3.5" />
+              <circle cx="18.5" cy="17.5" r="3.5" />
+              <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2" />
+            </svg>
+            cycling log
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Area -->
+    <div class="oc-main">
+      <div class="oc-section-header oc-fade-in oc-delay-2">
+        <span class="oc-prompt">$</span> ls -la ~/experience/
+        <span class="oc-comment">// education & work</span>
+      </div>
+
+      <div class="oc-grid">
+        <!-- Education Card -->
+        <div class="oc-card oc-fade-in oc-delay-3">
+          <div class="oc-card-header">
+            <span class="oc-card-title">Education</span>
+          </div>
+          <div class="oc-items">
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">Master of Science in Agricultural Informatization</div>
+                <div class="oc-item-sub">Ocean University of China</div>
+                <div class="oc-item-meta">2023 → 2026</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">Bachelor of Science in Computer Science</div>
+                <div class="oc-item-sub">Qingdao University of Technology</div>
+                <div class="oc-item-meta">2018 → 2022</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Internship Card -->
+        <div class="oc-card oc-fade-in oc-delay-4">
+          <div class="oc-card-header">
+            <span class="oc-card-title">Internship</span>
+          </div>
+
+
+
+          <div class="oc-items">
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">Perception Algorithm Engineer</div>
+                <div class="oc-item-sub">DeepRoute.AI</div>
+                <div class="oc-item-meta">2026/01 → 2026/04</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">Cloud Computing Architect</div>
+                <div class="oc-item-sub">Tencent Cloud Technology Co., Ltd</div>
+                <div class="oc-item-meta">2025/05 → present</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">Assistant Java Engineer</div>
+                <div class="oc-item-sub">Tianjin Huaning Electronics Co., Ltd</div>
+                <div class="oc-item-meta">2023/02 → 2023/05</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Card - Full Width -->
+        <div class="oc-card oc-card--full oc-fade-in oc-delay-5">
+          <div class="oc-card-header">
+            <span class="oc-card-title">Research</span>
+            <span class="oc-card-badges">
+              <span class="oc-badge oc-badge--green">1 Accepted</span>
+              <span class="oc-badge oc-badge--amber">2 Under Review</span>
+            </span>
+          </div>
+          <div class="oc-bio" style="margin-bottom: 10px;">
+            Research interests include 3D vision, LiDAR and point cloud algorithms in autonomous driving, and 3D
+            reconstruction from uncalibrated scenarios.
+          </div>
+          <div class="oc-items">
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-research-title">
+                  <code>MESC-3D</code>: Mining Effective Semantic Cues for 3D Reconstruction from a Single Image
+                </div>
+                <div class="oc-item-sub">CVPR · CCF-A · Accepted</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-research-title">
+                  <code>AS4C</code>: Arbitrary-Scale Self-Supervised Semantic Scene Completion from LiDAR
+                </div>
+                <div class="oc-item-sub">ACM MM · CCF-A · Under Review</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-research-title">
+                  <code>SMSPC</code>: Semantic-aware Multi-class Self-supervised Point Cloud Completion
+                </div>
+                <div class="oc-item-sub">TVCG · CCF-A · Under Review</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">Self-supervised 3D Point Cloud Completion Method for Underwater Objects</div>
+                <div class="oc-item-sub">Invention Patent · Granted</div>
+              </div>
+            </div>
+            <div class="oc-item">
+              <span class="oc-item-marker">[*]</span>
+              <div class="oc-item-body">
+                <div class="oc-item-title">3D Object Reconstruction from a Single Uncalibrated View</div>
+                <div class="oc-item-sub">Invention Patent · Granted</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Education & Internship Section -->
-<section class="apple-section">
-  <div class="apple-cards-container">
-    <!-- Education Card -->
-    <div class="apple-card apple-animate apple-delay-2">
-      <h3>🎓 Education</h3>
-      <ul class="apple-edu-list">
-        <li class="apple-edu-item">
-          <div class="apple-edu-icon">🎓</div>
-          <div class="apple-edu-content">
-            <p class="apple-edu-course">MS in Agricultural informatization, 2023 - now</p>
-            <p class="apple-edu-institution">Ocean University of China</p>
-          </div>
-        </li>
-        <li class="apple-edu-item">
-          <div class="apple-edu-icon">🎓</div>
-          <div class="apple-edu-content">
-            <p class="apple-edu-course">BS in Computer Science, 2018 - 2022</p>
-            <p class="apple-edu-institution">Qingdao University of Technology</p>
-          </div>
-        </li>
-      </ul>
+  <!-- Bottom Bar -->
+  <div class="oc-bottombar oc-fade-in oc-delay-6">
+    <div class="oc-stats">
+      <div class="oc-stat">
+        <span class="oc-stat-value">3</span>
+        <span class="oc-stat-label">paper</span>
+      </div>
+      <div class="oc-stat">
+        <span class="oc-stat-value">3</span>
+        <span class="oc-stat-label">internships</span>
+      </div>
+      <div class="oc-stat">
+        <span class="oc-stat-value">3D Vision</span>
+        <span class="oc-stat-label">research</span>
+      </div>
     </div>
-
-    <!-- Internship Card -->
-    <div class="apple-card apple-animate apple-delay-3">
-      <h3>💼 Internship</h3>
-      <ul class="apple-edu-list">
-        <li class="apple-edu-item">
-          <div class="apple-edu-icon">💼</div>
-          <div class="apple-edu-content">
-            <p class="apple-edu-course">Cloud Computing Architect, 2025/5 - now</p>
-            <p class="apple-edu-institution">Tencent Cloud Technology Co., Ltd</p>
-          </div>
-        </li>
-        <li class="apple-edu-item">
-          <div class="apple-edu-icon">💼</div>
-          <div class="apple-edu-content">
-            <p class="apple-edu-course">Assistant Java Engineer, 2023/2 - 2023/5</p>
-            <p class="apple-edu-institution">Tianjin Huaning Electronics Co., Ltd</p>
-          </div>
-        </li>
-      </ul>
+    <div style="font-family: var(--oc-mono); font-size: 11px; color: var(--oc-text-tertiary);">
+      last updated: 2026 <span class="oc-cursor"></span>
     </div>
   </div>
-</section>
 
-<!-- Academic Experience Section -->
-<section class="apple-academic-section">
-  <div class="container-md">
-    <h3 style="text-align: center; margin-bottom: 32px;">🔬 Academic Experience</h3>
-    <div class="apple-academic-card apple-animate">
-      <p class="apple-academic-title">
-        SMSPC: Semantic-aware Multi-class Self-supervised Point Cloud Completion
-      </p>
-      <span class="apple-academic-status">In transit</span>
-    </div>
-  </div>
-</section>
+</div>
