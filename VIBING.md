@@ -8,67 +8,46 @@ full-width: true
   <div class="oc-topbar oc-fade-in">
     <div class="oc-topbar-left">
       <span class="oc-prompt">$</span>
-      <span class="oc-cmd">ls -la ~/cycling/</span>
-      <span style="color: var(--oc-text-tertiary);">// photo gallery</span>
+      <span class="oc-cmd">ls -la ~/vibing/</span>
+      <span style="color: var(--oc-text-tertiary);">// coding toys</span>
     </div>
     <div class="oc-topbar-right">
-      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">4 items</span>
+      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">2 items</span>
     </div>
+  </div>
+
+  <!-- Description -->
+  <div class="oc-vibing-desc oc-fade-in">
+    A collection of small projects I built through <span class="oc-vibing-highlight">Vibe Coding</span> — keeping a record makes it even more rewarding ✨
   </div>
 
   <!-- Gallery Grid -->
   <div style="padding: 10px; flex: 1;">
     <div class="oc-gallery">
 
-      <!-- Photo 1 -->
+      <!-- Toy 1 -->
       <div class="oc-gallery-item oc-fade-in oc-delay-1">
         <div class="oc-gallery-img-wrap">
           <div class="oc-spinner"></div>
-          <img src="/assets/img/2024_6_5.jpg" alt="West Coast of Qingdao" class="oc-gallery-img" loading="lazy">
+          <img src="/assets/img/vibing-2048.jpg" alt="2048" class="oc-gallery-img" loading="lazy">
         </div>
         <div class="oc-gallery-info">
-          <div class="oc-gallery-filename">2024_6_5.jpg</div>
-          <div class="oc-gallery-caption">The seaside on the west coast of Qingdao</div>
-          <div class="oc-gallery-meta">2024/06/05</div>
+          <div class="oc-gallery-filename">2048</div>
+          <div class="oc-gallery-caption">Classic 2048 sliding puzzle game</div>
+          <div class="oc-gallery-meta"><a href="/2048" style="color:var(--oc-blue);text-decoration:none;">Play →</a></div>
         </div>
       </div>
 
-      <!-- Photo 2 -->
+      <!-- Toy 2 -->
       <div class="oc-gallery-item oc-fade-in oc-delay-2">
         <div class="oc-gallery-img-wrap">
           <div class="oc-spinner"></div>
-          <img src="/assets/img/2024_4_24.jpg" alt="Mount Dazhu" class="oc-gallery-img" loading="lazy">
+          <img src="/assets/img/vibing-flappybird.jpg" alt="Flappy Bird" class="oc-gallery-img" loading="lazy">
         </div>
         <div class="oc-gallery-info">
-          <div class="oc-gallery-filename">2024_4_24.jpg</div>
-          <div class="oc-gallery-caption">At the foot of Mount Dazhu</div>
-          <div class="oc-gallery-meta">2024/04/24</div>
-        </div>
-      </div>
-
-      <!-- Photo 3 -->
-      <div class="oc-gallery-item oc-fade-in oc-delay-3">
-        <div class="oc-gallery-img-wrap">
-          <div class="oc-spinner"></div>
-          <img src="/assets/img/bike-2.jpg" alt="Spring Bridge" class="oc-gallery-img" loading="lazy">
-        </div>
-        <div class="oc-gallery-info">
-          <div class="oc-gallery-filename">bike-2.jpg</div>
-          <div class="oc-gallery-caption">Hexi District, Tianjin — Spring Bridge over Haihe River</div>
-          <div class="oc-gallery-meta">2023/04/24</div>
-        </div>
-      </div>
-
-      <!-- Photo 4 -->
-      <div class="oc-gallery-item oc-fade-in oc-delay-4">
-        <div class="oc-gallery-img-wrap">
-          <div class="oc-spinner"></div>
-          <img src="/assets/img/bike-1.png" alt="My Bicycle" class="oc-gallery-img" loading="lazy">
-        </div>
-        <div class="oc-gallery-info">
-          <div class="oc-gallery-filename">bike-1.png</div>
-          <div class="oc-gallery-caption">Heping District, Tianjin — My Bicycle</div>
-          <div class="oc-gallery-meta">2023/04/09</div>
+          <div class="oc-gallery-filename">flappy_bird</div>
+          <div class="oc-gallery-caption">Flappy Bird clone built with Canvas API</div>
+          <div class="oc-gallery-meta"><a href="/flappybird" style="color:var(--oc-blue);text-decoration:none;">Play →</a></div>
         </div>
       </div>
 
@@ -79,24 +58,37 @@ full-width: true
   <div class="oc-bottombar oc-fade-in oc-delay-5">
     <div class="oc-stats">
       <div class="oc-stat">
-        <span class="oc-stat-value">4</span>
-        <span class="oc-stat-label">photos</span>
+        <span class="oc-stat-value">2</span>
+        <span class="oc-stat-label">toys</span>
       </div>
       <div class="oc-stat">
-        <span class="oc-stat-value">2</span>
-        <span class="oc-stat-label">cities</span>
+        <span class="oc-stat-value">0</span>
+        <span class="oc-stat-label">done</span>
       </div>
     </div>
     <div style="font-family: var(--oc-mono); font-size: 11px; color: var(--oc-text-tertiary);">
-      ~/cycling/ <span class="oc-cursor"></span>
+      ~/vibing/ <span class="oc-cursor"></span>
     </div>
   </div>
 </div>
 
 <style>
 /* ============================================
-   Cycling Gallery - OpenCode Geek Style
+   Vibing Gallery - OpenCode Geek Style
    ============================================ */
+
+.oc-vibing-desc {
+  padding: 16px 20px;
+  font-size: 15px;
+  color: var(--oc-text);
+  line-height: 1.7;
+  border-bottom: 1px solid var(--oc-border);
+}
+
+.oc-vibing-highlight {
+  color: var(--oc-blue);
+  font-weight: 600;
+}
 .oc-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

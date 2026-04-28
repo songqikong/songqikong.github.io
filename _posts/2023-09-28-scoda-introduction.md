@@ -11,7 +11,7 @@ tags: [paper reading, deep learning]
 
 文章认为从真实世界扫描到的的三维形状补全是一个很有挑战性的任务，目前的工作仅仅集中在对合成数据进行基准测试（如从CAD模型中模拟扫描过程获取的点云），但是真实扫描数据和合成数据的差异性限制了这些工作的泛化性能；因此文章提出了一个新的任务：**SCoDa**（Domain Adaptive ShapeCompletion），即**对从合成数据出发对真实扫描形状进行补全的域自适应**。文章提出了一个新的数据集：**ScanSalon**（realScans with Shape manual annotations），是人工从扫描的数据中创造的3D模型；又提出了一种新的跨域特征融合方法用于知识转移，以及一种新的体积一致的自训练框架，用于从真实数据中进行鲁棒学习。
 
-<center style="font-size:14px; color:#c0c0c0"><img src="/assets/img/image-20230927184404751.png" alt="image-20230927184404751" />Figure 1. The proposed task SCoDA aims to transfer the knowledge in the synthetic domain to the reconstruction of noisy and incomplete real scans. A dataset, ScanSalon, with paired real scans and 3D models is contributed.</center>
+<center style="font-size:14px; color:#c0c0c0"><img src="/assets/img/posts/image-20230927184404751.png" alt="image-20230927184404751" />Figure 1. The proposed task SCoDA aims to transfer the knowledge in the synthetic domain to the reconstruction of noisy and incomplete real scans. A dataset, ScanSalon, with paired real scans and 3D models is contributed.</center>
 
 
 
@@ -102,7 +102,7 @@ $$
 
 具体来说，我们首先采用无监督聚类算法（例如 k-means 聚类）将点云划分为 K 个不同的部分（示例见图 2）。聚类操作仅基于点的空间位置，它粗略地将对象扫描分割成多个分量。使用预先计算的分区，可以通过从原始真实扫描中随机丢弃不同的点簇来生成两个视图 Xa 和 Xb，其中 K ≥ Ka &gt; Kb。此外，我们还对两个视图进行了两次随机下采样，以创建不同的稀疏性。请注意，基于聚类的增强实际上是表面感知增强。与随机屏蔽一些空间体积的基于体积的方法相比，我们的增强策略在一定程度上意味着包含更多的**对象部分知识（object-part knowledge）**。
 
-<center><img src="/assets/img/image-20230927182604041.png" alt="image-20230927182604041" /></center>
+<center><img src="/assets/img/posts/image-20230927182604041.png" alt="image-20230927182604041" /></center>
 
 <center style="font-size:14px; color:#c0c0c0">Figure 2. Overview of the proposed method. Two IF-Net encoders are used for the source and the target domain, respectively, and they share an implicit function decoder. The cross-domain feature fusion (CDFF) works by adaptively combining the global-level and local-level knowledge learned from the source and target domain, respectively. The volume-consistency self-training (VCST) works by enforcing the prediction consistency between two different augmented views to learn the local details.</center>
 
@@ -126,7 +126,7 @@ $$
 
 # Ⅳ. Dataset
 
-<center style="font-size:14px; color:#c0c0c0"><img src="/assets/img/image-20230927184531375.png" alt="image-20230927184531375" /</center>
+<center style="font-size:14px; color:#c0c0c0"><img src="/assets/img/posts/image-20230927184531375.png" alt="image-20230927184531375" /</center>
 
 <center style="font-size:14px; color:#c0c0c0">Figure 3. The procedure of 3D model crafting. From left to right: (i) extracting the object scan from a scene; (ii) constructing a coarse mesh frame to fit the scan; (iii) adding fine details; (iv) adjusting the defects detected by inspectors.</center>
 
@@ -138,7 +138,7 @@ $$
 
 真实扫描分别从室内和室外物体的ScanNet和KITTI数据集两个数据集中收集。根据两个数据集提供的点级实例分割注释，从场景点云中提取对象扫描；然后将他们旋转并正则化到相同的姿势和尺度。这些数据也与ShapeNet数据库=中的模型对齐，后者提供了一堆合成模型作为源域。
 
-<center><img src="/assets/img/image-20230928163355688.png" alt="image-20230928163355688" /></center>
+<center><img src="/assets/img/posts/image-20230928163355688.png" alt="image-20230928163355688" /></center>
 
 <center style="font-size:14px; color:#c0c0c0">Table 1. Statistics of the proposed dataset ScanSalon.</center>
 
@@ -153,7 +153,7 @@ $$
 
 考虑到ScanNet和KITTI扫描中物体的不可访问性，我们尽了最大的努力为这些扫描创建artificial ground truth。
 
-<center><img src="/assets/img/image-20230928164508268.png" alt="image-20230928164508268" /></center>
+<center><img src="/assets/img/posts/image-20230928164508268.jpg" alt="image-20230928164508268" /></center>
 
 <center style="font-size:14px; color:#c0c0c0">Figure 4. ScanSalon data visualization. Each tuple includes: point cloud (left), created mesh (middle), and photo references (right).</center>
 

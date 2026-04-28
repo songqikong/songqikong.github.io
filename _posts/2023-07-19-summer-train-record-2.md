@@ -15,7 +15,7 @@ tags: [study, deep learning]
 
 #### 1.1 MNIST 数据集分类
 
-<img src="/assets/img/image-20230720162021713.png" alt="image-20230720162021713" style="zoom: 50%;" />
+<img src="/assets/img/posts/image-20230720162021713.png" alt="image-20230720162021713" style="zoom: 50%;" />
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图1-1. DataLoader</center> 
 
@@ -25,7 +25,7 @@ tags: [study, deep learning]
 
 
 
-<img src="/assets/img/image-20230720162528080.png" style="zoom:50%;" />
+<img src="/assets/img/posts/image-20230720162528080.png" style="zoom:50%;" />
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图1-2. 全连接神经网络与CNN</center> 
 
@@ -35,7 +35,7 @@ tags: [study, deep learning]
 
 
 
-<img src="/assets/img/image-20230720162915230.png" alt="image-20230720162915230" style="zoom:50%;" />
+<img src="/assets/img/posts/image-20230720162915230.png" alt="image-20230720162915230" style="zoom:50%;" />
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图1-2. 全连接神经网络与CNN</center> 
 
@@ -47,13 +47,13 @@ tags: [study, deep learning]
 
 ​    CIFAR10数据集不同于MINST，他的每个Class有更多的特征需要学习，我最直观的体现是在Colab上用T4跑的好慢，以前记得可以用V100呀，怎么不能用了，抠门。
 
-<img src="/assets/img/image-20230720164749679.png" alt="image-20230720164749679" style="zoom:50%;" />
+<img src="/assets/img/posts/image-20230720164749679.png" alt="image-20230720164749679" style="zoom:50%;" />
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图1-3. 魔改版LeNet准确率</center> 
 
 ​    可以看到这个网络模型在CIFAR10上的准确率确实低，关于改进方法，练习中给出的代码只训练了10轮，我修改为训练50轮后再训练，但是正确率并没有提升。
 
-![image-20230720170717636](/assets/img/image-20230720170717636.png)
+![image-20230720170717636](/assets/img/posts/image-20230720170717636.png)
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图1-4. 训练50轮</center> 
 
@@ -102,13 +102,13 @@ tags: [study, deep learning]
 
 ​    全连接层的input一定是一个1 * 1 * n的特征图，因此在将特征图输入到全连接层之前需要进行Flatten处理，全连接层的作用是将卷积层获得的低级特征整合为高级特征，如将一个 1 * 1 * 4096的特征图连接为一个84 * 1 * 1的特征图。
 
-<img src="/assets/img/image-20230720141352552.png" alt="image-20230720141352552" style="zoom:50%;" />
+<img src="/assets/img/posts/image-20230720141352552.png" alt="image-20230720141352552" style="zoom:50%;" />
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图2-1. LeNet中的FC</center> 
 
 ​    1 * 1 * n的卷积input不一定非得是1 * 1 * n的特征图，**如果Input是1 * 1 * n的特征图，那么卷积与FC没有任何区别**；但是如果input的channel不是1的话，1*1的卷积可以起到降维的作用。
 
-![image-20230720142340042](/assets/img/image-20230720142340042.png)
+![image-20230720142340042](/assets/img/posts/image-20230720142340042.png)
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图2-2. 1*1 conv的降维</center> 
 
@@ -120,7 +120,7 @@ tags: [study, deep learning]
 
 ​    残差块的引入很好的解决了深度学习中**梯度消失**的问题，卷积层的引入使得深度网络的拟合能力大大提升，但是卷积层的特性使得在卷积采样时会丢弃图像的一些信息。引入残差的概念，可以很好的保存这些特征。避免出现梯度消失的现象。
 
-![image-20230720144051218](/assets/img/image-20230720144051218.png)
+![image-20230720144051218](/assets/img/posts/image-20230720144051218.png)
 
 <center style="font-size:14px;color:#C0C0C0;text-decoration:underline">图2-3. 残差网络结构节选</center> 
 

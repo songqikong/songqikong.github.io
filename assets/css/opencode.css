@@ -35,6 +35,244 @@
 }
 
 /* ============================================
+   Dark Theme (OpenCode.ai style)
+   ============================================ */
+html.dark-theme {
+  --oc-bg: #0D1117;
+  --oc-bg-alt: #161B22;
+  --oc-bg-card: #1C2128;
+  --oc-bg-terminal: #0D1117;
+  --oc-text: #E6EDF3;
+  --oc-text-secondary: #8B949E;
+  --oc-text-tertiary: #6E7681;
+  --oc-blue: #58A6FF;
+  --oc-blue-light: #79C0FF;
+  --oc-blue-lighter: #A5D6FF;
+  --oc-blue-bg: rgba(88, 166, 255, 0.1);
+  --oc-blue-border: rgba(88, 166, 255, 0.2);
+  --oc-blue-glow: rgba(88, 166, 255, 0.15);
+  --oc-border: #30363D;
+  --oc-border-light: #21262D;
+}
+
+html.dark-theme body {
+  background: var(--oc-bg);
+  color: var(--oc-text);
+}
+
+/* Dark navbar */
+html.dark-theme .navbar-custom {
+  background-color: #0D1117 !important;
+  border-bottom: 1px solid #30363D !important;
+}
+
+html.dark-theme .navbar-custom .navbar-brand {
+  color: #E6EDF3 !important;
+}
+
+html.dark-theme .navbar-custom .nav-link {
+  color: #8B949E !important;
+}
+
+html.dark-theme .navbar-custom .nav-link:hover {
+  color: #58A6FF !important;
+}
+
+html.dark-theme .navbar-custom .dropdown-menu {
+  background-color: #161B22 !important;
+  border: 1px solid #30363D;
+}
+
+html.dark-theme .navbar-custom .dropdown-item {
+  color: #8B949E !important;
+}
+
+html.dark-theme .navbar-custom .dropdown-item:hover {
+  background-color: rgba(88, 166, 255, 0.15) !important;
+  color: #E6EDF3 !important;
+}
+
+/* Dark theme toggle button - terminal style */
+.oc-term-btn {
+  background: none;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  border-radius: 4px;
+  width: 36px;
+  height: 32px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #58A6FF;
+  font-family: var(--oc-mono);
+  font-size: 16px;
+  line-height: 1;
+  transition: all var(--oc-transition);
+  position: relative;
+  padding: 0;
+}
+
+.oc-term-btn:hover {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: var(--oc-blue);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+}
+
+.oc-term-btn:active {
+  transform: scale(0.95);
+}
+
+.oc-term-btn-icon {
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+}
+
+html.dark-theme .oc-term-btn .icon-sun { display: inline-block; }
+html.dark-theme .oc-term-btn .icon-moon { display: none; }
+html:not(.dark-theme) .oc-term-btn .icon-sun { display: none; }
+html:not(.dark-theme) .oc-term-btn .icon-moon { display: inline-block; }
+
+/* Hamburger button inherits .oc-term-btn sizing */
+
+.oc-hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 16px;
+}
+
+.oc-hamburger-lines span {
+  display: block;
+  height: 2px;
+  background: #58A6FF;
+  border-radius: 1px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.oc-hamburger-lines span:nth-child(1) { width: 100%; }
+.oc-hamburger-lines span:nth-child(2) { width: 70%; }
+.oc-hamburger-lines span:nth-child(3) { width: 85%; }
+
+.oc-hamburger:hover .oc-hamburger-lines span {
+  width: 100%;
+  background: #fff;
+}
+
+.oc-hamburger[aria-expanded="true"] .oc-hamburger-lines span:nth-child(1) {
+  transform: rotate(45deg) translate(3.5px, 3.5px);
+  width: 100%;
+}
+.oc-hamburger[aria-expanded="true"] .oc-hamburger-lines span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.oc-hamburger[aria-expanded="true"] .oc-hamburger-lines span:nth-child(3) {
+  transform: rotate(-45deg) translate(3.5px, -3.5px);
+  width: 100%;
+}
+
+/* Override Bootstrap navbar-toggler defaults */
+.navbar-custom .navbar-toggler {
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar-custom .navbar-toggler:focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+/* Dark badges */
+html.dark-theme .oc-badge--green {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ADE80;
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+html.dark-theme .oc-badge--amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #FBBF24;
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+/* Dark code blocks (blog) */
+html.dark-theme code {
+  background-color: rgba(88, 166, 255, 0.1);
+  color: #58A6FF;
+}
+
+html.dark-theme pre code {
+  background-color: #0D1117;
+  color: #E6EDF3;
+}
+
+html.dark-theme .highlight > pre {
+  background: #0D1117;
+  border: 1px solid #30363D;
+}
+
+/* Dark blog post preview */
+html.dark-theme .post-preview {
+  border-color: #30363D;
+  background: #161B22;
+}
+
+html.dark-theme .post-preview:hover {
+  border-color: #58A6FF;
+  background: #1C2128;
+}
+
+html.dark-theme .post-preview .post-title {
+  color: #E6EDF3;
+}
+
+/* Dark blockquote */
+html.dark-theme blockquote {
+  background: rgba(88, 166, 255, 0.06);
+  border-left-color: #58A6FF;
+  color: #C9D1D9;
+}
+
+/* Dark blog tags */
+html.dark-theme .blog-tags a {
+  background: rgba(88, 166, 255, 0.1);
+  color: #58A6FF;
+  border-color: rgba(88, 166, 255, 0.2);
+}
+
+html.dark-theme .blog-tags a:hover {
+  background: #58A6FF;
+  color: #0D1117;
+  border-color: #58A6FF;
+}
+
+/* Dark footer (blog pages) */
+html.dark-theme body:not(:has(.oc-layout)) footer {
+  background-color: #0D1117 !important;
+  border-top-color: #30363D;
+}
+
+html.dark-theme footer .list-inline-item a {
+  border-color: #30363D;
+  color: #8B949E;
+  background: #161B22;
+}
+
+html.dark-theme footer .list-inline-item a:hover {
+  background: #58A6FF;
+  color: #0D1117;
+  border-color: #58A6FF;
+}
+
+/* Dark avatar border glow */
+html.dark-theme .oc-avatar:hover {
+  border-color: #58A6FF;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
+}
+
+/* ============================================
    Main Container - Full Viewport, No Scroll
    ============================================ */
 .oc-layout {
@@ -59,26 +297,27 @@
   transition: none !important;
 }
 
-/* Kill the Jekyll header & footer & container padding on homepage */
-.intro-header {
+/* Kill the Jekyll header & footer & container padding on oc-layout pages only */
+body:has(.oc-layout) .intro-header {
   display: none !important;
 }
 
-footer {
+body:has(.oc-layout) footer {
   display: none !important;
 }
 
 /* Prevent page-level scrolling on desktop; oc-layout handles its own scroll */
 @media (min-width: 901px) {
-  html, body {
+  html:has(.oc-layout),
+  html:has(.oc-layout) body {
     overflow: hidden;
     height: 100%;
   }
 }
 
 /* Remove ALL Bootstrap padding/margins so oc-layout fills 100% */
-body>.container-fluid,
-.container-fluid[role="main"] {
+body:has(.oc-layout) > .container-fluid,
+body:has(.oc-layout) .container-fluid[role="main"] {
   padding: 0 !important;
   margin: 0 !important;
   max-width: 100% !important;
@@ -86,12 +325,12 @@ body>.container-fluid,
   overflow-x: hidden;
 }
 
-.container-fluid[role="main"]>.row {
+body:has(.oc-layout) .container-fluid[role="main"] > .row {
   margin: 0 !important;
 }
 
-.container-fluid[role="main"]>.row>.col,
-.container-fluid[role="main"]>.row>[class*="col-"] {
+body:has(.oc-layout) .container-fluid[role="main"] > .row > .col,
+body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   padding: 0 !important;
   margin: 0 !important;
   max-width: 100% !important;
@@ -829,10 +1068,212 @@ body>.container-fluid,
 }
 
 /* ============================================
+   i18n Language Toggle
+   ============================================ */
+html.lang-en [data-lang="cn"],
+html.lang-cn [data-lang="en"] {
+  display: none !important;
+}
+
+/* ============================================
    Override Beautiful Jekyll defaults
    ============================================ */
 .apple-hero,
 .apple-section,
 .apple-academic-section {
   display: none !important;
+}
+
+/* ============================================
+   Blog Page Styles
+   (from custom-styles.css, for non-oc-layout pages)
+   ============================================ */
+
+/* --- Global Defaults --- */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--oc-sans);
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: var(--oc-blue);
+  color: #fff;
+}
+
+/* --- Navbar Terminal Style (Blog Pages) --- */
+.navbar-custom {
+  background-color: #0F172A !important;
+  border-bottom: 1px solid rgba(37, 99, 235, 0.2) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.navbar-custom .nav-link {
+  font-family: var(--oc-mono);
+  font-size: 13px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.navbar-custom .nav-link:hover {
+  color: var(--oc-blue-light) !important;
+}
+
+.navbar-custom .nav-link::before {
+  content: '~/';
+  opacity: 0.5;
+  font-size: 11px;
+}
+
+.navbar-custom .dropdown-menu {
+  background-color: #1E293B !important;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 8px;
+  font-family: var(--oc-mono);
+  font-size: 12px;
+}
+
+.navbar-custom .dropdown-item {
+  color: #CBD5E1 !important;
+  transition: all 0.15s ease;
+}
+
+.navbar-custom .dropdown-item:hover {
+  background-color: rgba(37, 99, 235, 0.15) !important;
+  color: #fff !important;
+}
+
+/* --- Links --- */
+a {
+  color: var(--oc-blue);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--oc-blue-light);
+}
+
+/* --- Code Blocks --- */
+code {
+  font-family: var(--oc-mono);
+  background-color: var(--oc-blue-bg);
+  color: var(--oc-blue);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+pre code {
+  background-color: #0F172A;
+  color: #E2E8F0;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.highlight > pre {
+  background: #0F172A;
+  border-radius: 8px;
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  border-left: 3px solid var(--oc-blue);
+}
+
+/* --- Blog Tags --- */
+.blog-tags a {
+  font-family: var(--oc-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--oc-blue-bg);
+  color: var(--oc-blue);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+  transition: all 0.2s ease;
+}
+
+.blog-tags a:hover {
+  background: var(--oc-blue);
+  color: #fff;
+  border-color: var(--oc-blue);
+}
+
+/* --- Post Preview --- */
+.post-preview {
+  border: 1px solid var(--oc-border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.post-preview:hover {
+  border-color: var(--oc-blue);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1), 0 2px 8px rgba(37, 99, 235, 0.08);
+  background: rgba(37, 99, 235, 0.02);
+}
+
+.post-preview .post-title {
+  transition: color 0.2s ease;
+}
+
+.post-preview:hover .post-title {
+  color: var(--oc-blue);
+}
+
+/* --- Blockquote --- */
+blockquote {
+  border-left: 3px solid var(--oc-blue);
+  background: var(--oc-blue-bg);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  font-style: normal;
+}
+
+/* --- Footer (Blog Pages) --- */
+body:not(:has(.oc-layout)) footer {
+  background-color: #F8FAFC !important;
+  border-top: 1px solid var(--oc-border);
+}
+
+footer .list-inline-item a {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--oc-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--oc-text-secondary);
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+footer .list-inline-item a:hover {
+  background: var(--oc-blue);
+  color: #fff;
+  border-color: var(--oc-blue);
+  transform: translateY(-2px);
+}
+
+/* --- Scroll Animations --- */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Responsive (Blog) --- */
+@media (max-width: 767px) {
+  .post-preview:hover {
+    transform: none;
+  }
 }

@@ -4,6 +4,11 @@
 
   <link rel="shortcut icon" href="{{ site.baseurl }}/assets/img/favicon.ico">
 
+  <!-- Preconnect to CDNs for faster resource loading -->
+  <link rel="preconnect" href="https://cdn.bootcdn.net" crossorigin>
+  <link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
   {% unless page.no_latex %}
     {% include latex.html %}
   {% endunless %}

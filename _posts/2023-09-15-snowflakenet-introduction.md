@@ -12,13 +12,13 @@ toc: true
 
 文章指出以往的点云补全方法受到： 1）点云离散特性 2）点的非结构化预测 的影响，导致很难揭示出局部几何特性信息。因此文章提出了附带SPD（Snowflake Point Deconvolution）模块的SnowfakeNet网络结构；SnowflakeNet 将完整点云的生成建模为 3D 空间中点的雪花状生长。同时提出了SPD模块中的skip-transformer来学习具体的几何信息。
 
-![image-20230915150400514](/assets/img/image-20230915150400514.png)
+![image-20230915150400514](/assets/img/posts/image-20230915150400514.png)
 
 <center style="color:#c0c0c0">Illustration of snowflake point deconvolution (SPD)</center>
 
 # Ⅱ Introduction:
 
-![image-20230915152416549](/assets/img/image-20230915152416549.png)
+![image-20230915152416549](/assets/img/posts/image-20230915152416549.png)
 
 <center style="color:#c0c0c0">Visual comparison of point cloud completion results.</center>
 
@@ -32,7 +32,7 @@ toc: true
 
 # Ⅲ SnowflakeNet
 
-![image-20230915153135402](/assets/img/image-20230915153135402.png)
+![image-20230915153135402](/assets/img/posts/image-20230915153135402.png)
 
 <center style="color:#c0c0c0; font-size:14px">(a) The overall architecture of SnowflakeNet, which consists of three modules: feature extraction, seed generation and point generation. (b) The details of seed generation module. (c) Snowflake point deconvolution (SPD). Note that N , Nc and Ni are the number of points, C and C′ are the number of point feature channels that are 512 and 128, respectively.</center>
 
@@ -66,7 +66,7 @@ l3_xyz, l3_points = self.sa_module_3(l2_xyz, l2_points)  # (B, 3, 1), (B, out_di
 
 ### b. Seed generation module
 
-![image-20230915154629823](/assets/img/image-20230915154629823.png)
+![image-20230915154629823](/assets/img/posts/image-20230915154629823.png)
 
 种子生成器的目标是生成一个粗略但完整的点云P0，其大小为N0 × 3，能够捕获目标形状的几何和结构。
 
@@ -92,7 +92,7 @@ completion = self.mlp_4(x3)  # (b, 3, 256)
 
 ### c. Point generation module
 
-![image-20230915154928750](/assets/img/image-20230915154928750.png)
+![image-20230915154928750](/assets/img/posts/image-20230915154928750.png)
 
 点生成模块由3个雪花点反卷积( SPD )步骤组成，每个步骤以上一步点云为输入，通过上采样因子(用r1 , r2和r3表示)对其进行分割，得到P1、P2、P3，点尺寸分别为N1 × 3、N2 × 3、N3 × 3。SPDs协作为每个种子点生成符合局部模式的有根树结构。
 
@@ -146,7 +146,7 @@ $$
 
 ## 3.3 Skip-Transformer
 
-![image-20230915170259781](/assets/img/image-20230915170259781.png)
+![image-20230915170259781](/assets/img/posts/image-20230915170259781.png)
 
 <center style="color:#c0c0c0">The detailed structure of skip-transformer.</center>
 
@@ -278,7 +278,7 @@ Omitted
 2. No-att 变体从 skip-transformer 中删除了转换器机制，其中 SPD 前一层的特征直接添加到当前 SPD 层的特征中。
 3. No-connect 变体从 SPD 层中删除了整个 skip-transformer，因此 SPD 层之间没有建立特征连接。
 
-![image-20230915181857638](/assets/img/image-20230915181857638.png)
+![image-20230915181857638](/assets/img/posts/image-20230915181857638.png)
 
 
 
@@ -292,7 +292,7 @@ Omitted
 
 (4) PCN-baseline 是原始 PCN 方法的性能 ，它在消融研究的相同设置下训练和评估
 
-![image-20230915182053752](/assets/img/image-20230915182053752.png)
+![image-20230915182053752](/assets/img/posts/image-20230915182053752.png)
 
 # Ⅴ Improvement of TPAMI Version
 
@@ -310,19 +310,19 @@ Omitted.
 
 ### a. Extension to the KITTI benchmark
 
-![image-20230915184936680](/assets/img/image-20230915184936680.png)
+![image-20230915184936680](/assets/img/posts/image-20230915184936680.png)
 
 Fidelity是指生成点云与真实点云之间的重叠程度，也就是生成点云覆盖了多少真实点云，取值范围在0到1之间。MMD是指生成点云与真实点云之间的最小匹配距离，也就是生成点云与真实点云之间的距离越小，MMD值越小，生成点云质量越好。
 
-![image-20230915185009048](/assets/img/image-20230915185009048.png)
+![image-20230915185009048](/assets/img/posts/image-20230915185009048.png)
 
 ### b. Extension to the ScanNet
 
 为了进一步评估稀疏点云补全在现实场景中的性能，文章在Completion3D数据集上使用SnowflakeNet的预训练模型，并在ScanNet数据集中的椅子实例上评估其性能，而无需进行微调。
 
-![image-20230915185138127](/assets/img/image-20230915185138127.png)
+![image-20230915185138127](/assets/img/posts/image-20230915185138127.png)
 
-![image-20230915185215528](/assets/img/image-20230915185215528.png)
+![image-20230915185215528](/assets/img/posts/image-20230915185215528.png)
 
 ## 5.3 Point Cloud Auto-Encoding
 
@@ -332,11 +332,11 @@ Fidelity是指生成点云与真实点云之间的重叠程度，也就是生成
 $$
 \mathcal{L}_{recon}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_2}(\mathcal{P}_i,\mathcal{P}_i^{'})+\mathcal{L}_{\mathrm{EMD}}(\mathcal{P}_i,\mathcal{P}_i^{'})
 $$
-![image-20230915190940610](/assets/img/image-20230915190940610.png)
+![image-20230915190940610](/assets/img/posts/image-20230915190940610.png)
 
-![image-20230915191021594](/assets/img/image-20230915191021594.png)
+![image-20230915191021594](/assets/img/posts/image-20230915191021594.png)
 
-![image-20230915191030072](/assets/img/image-20230915191030072.png)
+![image-20230915191030072](/assets/img/posts/image-20230915191030072.png)
 
 文章在图15中可视化了潜在代码之间的interpolation and extrapolation，其中源形状为黄色，interpolation 形状和extrapolation形状为红色。图 15 显示 即使过渡在不同类别之间（最后一行的桌子和椅子）SnowflakeNet 的输出能够根据潜在插值和外推平滑地传输。
 
@@ -344,9 +344,9 @@ $$
 
 点云生成任务。文章采用DPM的方法并在 ShapeNet 数据集上进行实验。文章使用覆盖率分数 (the coverage score, COV)、最小匹配距离 (MMD)、1-NN 分类器准确度 (1-NNA) 和 Jenson-Shannon 散度 (JSD)作为Metric。
 
-![image-20230915193258183](/assets/img/image-20230915193258183.png)
+![image-20230915193258183](/assets/img/posts/image-20230915193258183.png)
 
-![image-20230915193311545](/assets/img/image-20230915193311545.png)
+![image-20230915193311545](/assets/img/posts/image-20230915193311545.png)
 
 ## 5.5 Single Image Reconstruction
 
@@ -357,9 +357,9 @@ $$
 $$
 \mathcal{L}_{\mathrm{SVR}}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_1}(\mathcal{P}_i,\mathcal{P}_i^i)
 $$
-![image-20230915193923313](/assets/img/image-20230915193923313.png)
+![image-20230915193923313](/assets/img/posts/image-20230915193923313.png)
 
-![image-20230915193931551](/assets/img/image-20230915193931551.png)
+![image-20230915193931551](/assets/img/posts/image-20230915193931551.png)
 
 ## 5.6 Point Cloud Upsampling
 
@@ -375,6 +375,6 @@ $$
 \mathcal{L}_{\mathrm{SVR}}=\sum_{i\in\{0,2\}}\mathcal{L}_{\mathrm{CD}_1}(\mathcal{P}_i,\mathcal{P}_i^i)
 $$
 
-![image-20230915195122598](/assets/img/image-20230915195122598.png)
+![image-20230915195122598](/assets/img/posts/image-20230915195122598.png)
 
-![image-20230915195141541](/assets/img/image-20230915195141541.png)
+![image-20230915195141541](/assets/img/posts/image-20230915195141541.png)

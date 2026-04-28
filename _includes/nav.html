@@ -6,9 +6,16 @@
     <a class="navbar-brand" href="{{ '' | absolute_url }}">{{ site.title }}</a>
   {%- endif -%}
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <!-- Mobile right controls: theme toggle + hamburger, terminal style -->
+  <div class="d-flex d-xl-none align-items-center" style="margin-left: auto; gap: 4px;">
+    <button class="oc-term-btn" onclick="toggleTheme()" title="Toggle theme">
+      <span class="oc-term-btn-icon icon-moon">◐</span>
+      <span class="oc-term-btn-icon icon-sun">◑</span>
+    </button>
+    <button class="oc-term-btn oc-hamburger" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oc-hamburger-lines"><span></span><span></span><span></span></span>
+    </button>
+  </div>
 
   <div class="collapse navbar-collapse" id="main-navbar">
     <ul class="navbar-nav ml-auto">
@@ -39,6 +46,12 @@
         </li>
       {%- endif -%}
     </ul>
+
+    <!-- Dark mode toggle - desktop version (shown only at xl+) -->
+    <button class="oc-term-btn d-none d-xl-inline-flex" onclick="toggleTheme()" title="Toggle theme" style="margin-left: 8px;">
+      <span class="oc-term-btn-icon icon-moon">◐</span>
+      <span class="oc-term-btn-icon icon-sun">◑</span>
+    </button>
   </div>
 
   {% if site.navbar-extra %}
@@ -58,5 +71,91 @@
   {% endif %}
 
 </nav>
+
+<!-- Inline navbar interactivity - works instantly, no CDN dependency -->
+<style>
+.navbar-collapse.oc-collapsing {
+  position: relative;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+</style>
+<script>
+(function(){
+  function ocCollapseToggle(target) {
+    if (target.classList.contains('show')) {
+      // Collapse: set explicit height first, then transition to 0
+      target.style.height = target.scrollHeight + 'px';
+      target.offsetHeight; // force reflow
+      target.classList.remove('collapse','show');
+      target.classList.add('collapsing','oc-collapsing');
+      target.style.height = '0px';
+      target.setAttribute('aria-expanded', 'false');
+      var onEnd = function() {
+        target.classList.remove('collapsing','oc-collapsing');
+        target.classList.add('collapse');
+        target.style.height = '';
+        target.removeEventListener('transitionend', onEnd);
+      };
+      target.addEventListener('transitionend', onEnd);
+      // Fallback in case transitionend doesn't fire
+      setTimeout(function(){ if (target.classList.contains('oc-collapsing')) onEnd(); }, 350);
+    } else {
+      // Expand: transition from 0 to scrollHeight
+      target.classList.remove('collapse');
+      target.classList.add('collapsing','oc-collapsing');
+      target.style.height = '0px';
+      target.offsetHeight; // force reflow
+      target.style.height = target.scrollHeight + 'px';
+      target.setAttribute('aria-expanded', 'true');
+      var onEnd = function() {
+        target.classList.remove('collapsing','oc-collapsing');
+        target.classList.add('collapse','show');
+        target.style.height = '';
+        target.removeEventListener('transitionend', onEnd);
+      };
+      target.addEventListener('transitionend', onEnd);
+      setTimeout(function(){ if (target.classList.contains('oc-collapsing')) onEnd(); }, 350);
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    // Collapse toggle
+    var toggler = e.target.closest('[data-toggle="collapse"]');
+    if (toggler) {
+      e.preventDefault();
+      toggler.setAttribute('aria-expanded', toggler.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+      var sel = toggler.getAttribute('data-target') || toggler.getAttribute('href');
+      var target = document.querySelector(sel);
+      if (target) ocCollapseToggle(target);
+      return;
+    }
+    // Dropdown toggle
+    var ddToggle = e.target.closest('[data-toggle="dropdown"]');
+    if (ddToggle) {
+      e.preventDefault();
+      var parent = ddToggle.parentElement;
+      var isOpen = parent.classList.contains('show');
+      // Close all dropdowns
+      document.querySelectorAll('.dropdown.show').forEach(function(d){
+        d.classList.remove('show');
+        d.querySelector('[data-toggle="dropdown"]').setAttribute('aria-expanded','false');
+      });
+      if (!isOpen) {
+        parent.classList.add('show');
+        ddToggle.setAttribute('aria-expanded','true');
+      }
+      return;
+    }
+    // Close dropdown on outside click
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown.show').forEach(function(d){
+        d.classList.remove('show');
+        d.querySelector('[data-toggle="dropdown"]').setAttribute('aria-expanded','false');
+      });
+    }
+  });
+})();
+</script>
 
 {% include search.html %}

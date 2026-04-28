@@ -22,6 +22,7 @@ author: Songqi Kong
 navbar-links:
   About me: "/"
   Blog: "BLOG"
+  Vibing: "VIBING"
   Cycling: "CYCLING"
 #   Resources:
 #     - Beautiful Jekyll: "https://beautifuljekyll.com"
@@ -151,7 +152,7 @@ footer-hover-col: "#0085A1"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
 site-css:
-  - "/assets/css/custom-styles.css"
+  - "/assets/css/opencode.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
