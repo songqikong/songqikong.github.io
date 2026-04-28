@@ -12,7 +12,7 @@ full-width: true
       <span style="color: var(--oc-text-tertiary);">// coding toys</span>
     </div>
     <div class="oc-topbar-right">
-      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">2 items</span>
+      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">4 items</span>
     </div>
   </div>
 
@@ -51,6 +51,32 @@ full-width: true
         </div>
       </div>
 
+      <!-- Toy 3 -->
+      <div class="oc-gallery-item oc-fade-in oc-delay-3">
+        <div class="oc-gallery-img-wrap">
+          <div class="oc-spinner"></div>
+          <img src="/assets/img/vibing-germanymap.jpg" alt="Germany Map" class="oc-gallery-img" loading="lazy">
+        </div>
+        <div class="oc-gallery-info">
+          <div class="oc-gallery-filename">germany_map</div>
+          <div class="oc-gallery-caption">Interactive choropleth map of 401 German districts</div>
+          <div class="oc-gallery-meta"><a href="/germany-map" style="color:var(--oc-blue);text-decoration:none;">View →</a></div>
+        </div>
+      </div>
+
+      <!-- Toy 4 -->
+      <div class="oc-gallery-item oc-fade-in oc-delay-4">
+        <div class="oc-gallery-img-wrap">
+          <div class="oc-spinner"></div>
+          <img src="/assets/img/vibing-japanmap.jpg" alt="Japan Map" class="oc-gallery-img" loading="lazy">
+        </div>
+        <div class="oc-gallery-info">
+          <div class="oc-gallery-filename">japan_map</div>
+          <div class="oc-gallery-caption">Interactive choropleth map of 47 Japanese prefectures</div>
+          <div class="oc-gallery-meta"><a href="/japan-map" style="color:var(--oc-blue);text-decoration:none;">View →</a></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -58,7 +84,7 @@ full-width: true
   <div class="oc-bottombar oc-fade-in oc-delay-5">
     <div class="oc-stats">
       <div class="oc-stat">
-        <span class="oc-stat-value">2</span>
+        <span class="oc-stat-value">4</span>
         <span class="oc-stat-label">toys</span>
       </div>
       <div class="oc-stat">
