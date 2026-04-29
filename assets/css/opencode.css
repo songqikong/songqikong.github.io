@@ -430,6 +430,8 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   grid-template-columns: 240px 1fr;
   grid-template-rows: 1fr;
   gap: 0;
+  min-height: 0;
+  overflow-y: auto;
   max-width: 100%;
   width: 100%;
   margin: 0;
@@ -508,6 +510,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   font-size: 13px;
   line-height: 1.6;
   color: var(--oc-text-secondary);
+  margin: 15px 0;
 }
 
 .oc-bio a {

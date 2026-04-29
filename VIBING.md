@@ -12,7 +12,7 @@ full-width: true
       <span style="color: var(--oc-text-tertiary);">// coding toys</span>
     </div>
     <div class="oc-topbar-right">
-      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">4 items</span>
+      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">5 items</span>
     </div>
   </div>
 
@@ -34,7 +34,7 @@ full-width: true
         <div class="oc-gallery-info">
           <div class="oc-gallery-filename">2048</div>
           <div class="oc-gallery-caption">Classic 2048 sliding puzzle game</div>
-          <div class="oc-gallery-meta"><a href="/2048" style="color:var(--oc-blue);text-decoration:none;">Play →</a></div>
+          <div class="oc-gallery-meta"><a href="/vibing/2048" style="color:var(--oc-blue);text-decoration:none;">Play →</a></div>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ full-width: true
         <div class="oc-gallery-info">
           <div class="oc-gallery-filename">flappy_bird</div>
           <div class="oc-gallery-caption">Flappy Bird clone built with Canvas API</div>
-          <div class="oc-gallery-meta"><a href="/flappybird" style="color:var(--oc-blue);text-decoration:none;">Play →</a></div>
+          <div class="oc-gallery-meta"><a href="/vibing/flappybird" style="color:var(--oc-blue);text-decoration:none;">Play →</a></div>
         </div>
       </div>
 
@@ -60,7 +60,7 @@ full-width: true
         <div class="oc-gallery-info">
           <div class="oc-gallery-filename">germany_map</div>
           <div class="oc-gallery-caption">Interactive choropleth map of 401 German districts</div>
-          <div class="oc-gallery-meta"><a href="/germany-map" style="color:var(--oc-blue);text-decoration:none;">View →</a></div>
+          <div class="oc-gallery-meta"><a href="/vibing/germany-map" style="color:var(--oc-blue);text-decoration:none;">View →</a></div>
         </div>
       </div>
 
@@ -73,7 +73,20 @@ full-width: true
         <div class="oc-gallery-info">
           <div class="oc-gallery-filename">japan_map</div>
           <div class="oc-gallery-caption">Interactive choropleth map of 47 Japanese prefectures</div>
-          <div class="oc-gallery-meta"><a href="/japan-map" style="color:var(--oc-blue);text-decoration:none;">View →</a></div>
+          <div class="oc-gallery-meta"><a href="/vibing/japan-map" style="color:var(--oc-blue);text-decoration:none;">View →</a></div>
+        </div>
+      </div>
+
+      <!-- Toy 5 -->
+      <div class="oc-gallery-item oc-fade-in oc-delay-5">
+        <div class="oc-gallery-img-wrap">
+          <div class="oc-spinner"></div>
+          <img src="/assets/img/vibing-politest.png" alt="Political Test" class="oc-gallery-img" loading="lazy">
+        </div>
+        <div class="oc-gallery-info">
+          <div class="oc-gallery-filename">political_test</div>
+          <div class="oc-gallery-caption">8values-style political compass with 32 Chinese internet identity labels</div>
+          <div class="oc-gallery-meta"><a href="/vibing/political-test" style="color:var(--oc-blue);text-decoration:none;">Take →</a></div>
         </div>
       </div>
 
@@ -84,7 +97,7 @@ full-width: true
   <div class="oc-bottombar oc-fade-in oc-delay-5">
     <div class="oc-stats">
       <div class="oc-stat">
-        <span class="oc-stat-value">4</span>
+        <span class="oc-stat-value">5</span>
         <span class="oc-stat-label">toys</span>
       </div>
       <div class="oc-stat">
