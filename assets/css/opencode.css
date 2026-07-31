@@ -718,7 +718,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   color: var(--oc-blue);
   flex-shrink: 0;
   line-height: 1.5;
-  margin-top: 1px;
+  align-self: center;
 }
 
 .oc-item-body {
@@ -747,6 +747,28 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
 
 .oc-item-title-line > .oc-item-meta {
   flex-shrink: 0;
+}
+
+.oc-item-title-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.oc-item-sub-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oc-item-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  flex-shrink: 0;
+  align-self: center;
 }
 
 .oc-item-sub {

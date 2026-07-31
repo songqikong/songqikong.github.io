@@ -1,6 +1,6 @@
 # songqikong.github.io
 
-> Personal website of **Songqi Kong** (孔松琦) — built with [Beautiful Jekyll](https://beautifuljekyll.com/) and a custom **OpenCode** dark terminal theme.
+> Personal website of **Songqi(Carson) Kong** (孔松琦) — built with [Beautiful Jekyll](https://beautifuljekyll.com/) and a custom **OpenCode** dark terminal theme.
 
 ---
 
