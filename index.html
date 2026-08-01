@@ -27,9 +27,8 @@ full-width: true
     <div class="oc-topbar-right">
       <div class="oc-status-dot"></div>
       <span class="oc-status-text">online</span>
-      <a onclick="toggleLang()" class="oc-lang-btn" style="cursor:pointer">
-        <span data-lang="en">中文</span>
-        <span data-lang="cn">EN</span>
+      <a onclick="toggleLang()" class="oc-lang-btn" title="Switch language" style="cursor:pointer">
+        <i class="fas fa-language" aria-hidden="true"></i>
       </a>
     </div>
   </div>
@@ -100,14 +99,6 @@ full-width: true
             </svg>
             kkanshan@outlook.com
           </a>
-          <a href="https://songqikong.github.io/CYCLING" class="oc-link">
-            <svg class="oc-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="5.5" cy="17.5" r="3.5" />
-              <circle cx="18.5" cy="17.5" r="3.5" />
-              <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h2" />
-            </svg>
-            <span data-lang="en">cycling log</span><span data-lang="cn">骑行日志</span>
-          </a>
         </div>
       </div>
     </div>
@@ -119,6 +110,52 @@ full-width: true
         <span class="oc-comment"><span data-lang="en">// education &amp; work</span><span data-lang="cn">//
             教育与工作</span></span>
       </div> -->
+
+      <div class="oc-card oc-fade-in oc-delay-2">
+        <div class="oc-card-header">
+          <span class="oc-card-title" data-lang="en">Recent Blogs</span>
+          <span class="oc-card-title" data-lang="cn">最新博客</span>
+          <span class="oc-card-badges">
+            <a href="/BLOG" class="oc-link oc-blog-more" data-lang="en">all →</a>
+            <a href="/BLOG" class="oc-link oc-blog-more" data-lang="cn">全部 →</a>
+          </span>
+        </div>
+        <div class="oc-blogs-grid">
+          {% for post in site.posts limit:4 %}
+          {% assign thumb = post.thumbnail-img %}
+          {% if thumb == nil or thumb == '' %}
+            {% assign content_parts = post.content | split: '<img ' %}
+            {% if content_parts.size > 1 %}
+              {% assign img_tag = content_parts[1] | split: '>' | first %}
+              {% assign src_parts = img_tag | split: 'src="' %}
+              {% if src_parts.size > 1 %}
+                {% assign thumb = src_parts[1] | split: '"' | first %}
+                {% assign thumb = thumb | remove_first: '../' | remove_first: '../' | remove_first: '../' %}
+                {% assign thumb = thumb | relative_url %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+          <a href="{{ post.url }}" class="oc-blog-mini">
+            <span class="oc-blog-mini-row">
+              {% if thumb %}
+              <img class="oc-blog-mini-thumb" src="{{ thumb }}" alt="" loading="lazy">
+              {% else %}
+              <span class="oc-blog-mini-thumb oc-blog-mini-thumb-fb">{{ post.title | strip_html | truncate: 1, '' }}</span>
+              {% endif %}
+              <span class="oc-blog-mini-title">{{ post.title | strip_html }}</span>
+            </span>
+            <span class="oc-blog-mini-meta">
+              <span class="oc-blog-mini-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+              {% if post.tags.size > 0 %}
+              <span class="oc-blog-mini-tags">
+                {% for tag in post.tags limit:2 %}<span class="oc-tag">{{ tag }}</span>{% endfor %}
+              </span>
+              {% endif %}
+            </span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
 
       <div class="oc-grid">
         <!-- Education Card -->
@@ -134,12 +171,12 @@ full-width: true
                 <div class="oc-item-title-line">
                   <span class="oc-item-title" data-lang="en">Master of Science in Agricultural Informatization</span>
                   <span class="oc-item-title" data-lang="cn">农业工程与信息技术硕士</span>
-                  <span class="oc-item-meta">2023 → 2026</span>
                 </div>
                 <div class="oc-item-sub-row">
                   <div class="oc-item-sub" data-lang="en">Ocean University of China</div>
                   <div class="oc-item-sub" data-lang="cn">中国海洋大学</div>
                 </div>
+                <span class="oc-item-meta">2023 → 2026</span>
               </div>
             </div>
             <div class="oc-item">
@@ -149,12 +186,12 @@ full-width: true
                 <div class="oc-item-title-line">
                   <span class="oc-item-title" data-lang="en">Bachelor of Science in Computer Science</span>
                   <span class="oc-item-title" data-lang="cn">计算机科学与技术学士</span>
-                  <span class="oc-item-meta">2018 → 2022</span>
                 </div>
                 <div class="oc-item-sub-row">
                   <div class="oc-item-sub" data-lang="en">Qingdao University of Technology</div>
                   <div class="oc-item-sub" data-lang="cn">青岛理工大学</div>
                 </div>
+                <span class="oc-item-meta">2018 → 2022</span>
               </div>
             </div>
           </div>
@@ -174,48 +211,48 @@ full-width: true
                 <div class="oc-item-title-line">
                   <span class="oc-item-title" data-lang="en">Algorithm Engineer</span>
                   <span class="oc-item-title" data-lang="cn">算法工程师</span>
-                  <span class="oc-item-meta" data-lang="en">2026/07 → Present</span>
-                  <span class="oc-item-meta" data-lang="cn">2026/07 → 至今</span>
                 </div>
                 <div class="oc-item-sub">XGRIDS</div>
+                <span class="oc-item-meta" data-lang="en">2026/07 → Present</span>
+                <span class="oc-item-meta" data-lang="cn">2026/07 → 至今</span>
               </div>
             </div>
             <div class="oc-item">
               <span class="oc-item-marker">[*]</span>
               <img class="oc-item-icon" src="/assets/img/icons/deeproute.svg" alt="DeepRoute.AI">
               <div class="oc-item-body">
-                <div class="oc-item-title-line">
-                  <span class="oc-item-title-group">
-                    <span class="oc-item-title" data-lang="en">Perception Algorithm Engineer</span>
-                    <span class="oc-item-title" data-lang="cn">感知算法工程师</span>
-                    <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
-                    <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
-                  </span>
+                  <div class="oc-item-title-line">
+                    <span class="oc-item-title-group">
+                      <span class="oc-item-title" data-lang="en">Perception Algorithm Engineer</span>
+                      <span class="oc-item-title" data-lang="cn">感知算法工程师</span>
+                      <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
+                      <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
+                    </span>
+                  </div>
+                  <div class="oc-item-sub-row">
+                    <div class="oc-item-sub" data-lang="en">DeepRoute.AI</div>
+                    <div class="oc-item-sub" data-lang="cn">元戎启行 (DeepRoute.ai)</div>
+                  </div>
                   <span class="oc-item-meta">2026/01 → 2026/04</span>
-                </div>
-                <div class="oc-item-sub-row">
-                  <div class="oc-item-sub" data-lang="en">DeepRoute.AI</div>
-                  <div class="oc-item-sub" data-lang="cn">元戎启行 (DeepRoute.ai)</div>
-                </div>
               </div>
             </div>
             <div class="oc-item">
               <span class="oc-item-marker">[*]</span>
               <img class="oc-item-icon" src="/assets/img/icons/tencentcloud.svg" alt="Tencent Cloud">
               <div class="oc-item-body">
-                <div class="oc-item-title-line">
-                  <span class="oc-item-title-group">
-                    <span class="oc-item-title" data-lang="en">Cloud Computing Architect</span>
-                    <span class="oc-item-title" data-lang="cn">云计算架构师</span>
-                    <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
-                    <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
-                  </span>
+                  <div class="oc-item-title-line">
+                    <span class="oc-item-title-group">
+                      <span class="oc-item-title" data-lang="en">Cloud Computing Architect</span>
+                      <span class="oc-item-title" data-lang="cn">云计算架构师</span>
+                      <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
+                      <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
+                    </span>
+                  </div>
+                  <div class="oc-item-sub-row">
+                    <div class="oc-item-sub" data-lang="en">Tencent Cloud Technology Co., Ltd</div>
+                    <div class="oc-item-sub" data-lang="cn">腾讯云科技有限公司</div>
+                  </div>
                   <span class="oc-item-meta">2025/05 → 2025/08</span>
-                </div>
-                <div class="oc-item-sub-row">
-                  <div class="oc-item-sub" data-lang="en">Tencent Cloud Technology Co., Ltd</div>
-                  <div class="oc-item-sub" data-lang="cn">腾讯云科技有限公司</div>
-                </div>
               </div>
             </div>
             <!-- <div class="oc-item">
@@ -265,11 +302,11 @@ full-width: true
                 <div class="oc-research-title">
                   <span><code>MESC-3D</code>: Mining Effective Semantic Cues for 3D Reconstruction from a Single
                     Image</span>
-                  <span class="oc-research-venue" data-lang="en">CVPR · Accepted</span>
-                  <span class="oc-research-venue" data-lang="cn">CVPR录用</span>
                 </div>
                 <div class="oc-item-sub" data-lang="en">3D Reconstruction · Single Image · Semantic Cues</div>
                 <div class="oc-item-sub" data-lang="cn">三维重建 · 单图像 · 语义线索</div>
+                <span class="oc-research-venue" data-lang="en">CVPR · Accepted</span>
+                <span class="oc-research-venue" data-lang="cn">CVPR录用</span>
               </div>
             </div>
             <!-- <div class="oc-item">
@@ -289,11 +326,11 @@ full-width: true
               <div class="oc-item-body">
                 <div class="oc-research-title">
                   <span><code>SMSPC</code>: Semantic-aware Multi-class Self-supervised Point Cloud Completion</span>
-                  <span class="oc-research-venue" data-lang="en">TIP · Under Review</span>
-                  <span class="oc-research-venue" data-lang="cn">TIP在投</span>
                 </div>
                 <div class="oc-item-sub" data-lang="en">Point Cloud Completion · Multi-class · Self-Supervised</div>
                 <div class="oc-item-sub" data-lang="cn">点云补全 · 多类别 · 自监督</div>
+                <span class="oc-research-venue" data-lang="en">TIP · Under Review</span>
+                <span class="oc-research-venue" data-lang="cn">TIP在投</span>
               </div>
             </div>
             <div class="oc-item">
@@ -302,11 +339,11 @@ full-width: true
                 <div class="oc-research-title">
                   <span data-lang="en">Self-supervised 3D Point Cloud Completion Method for Underwater Objects</span>
                   <span data-lang="cn">一种针对水下目标物的自监督三维点云补全方法</span>
-                  <span class="oc-research-venue" data-lang="en">Invention Patent · Granted</span>
-                  <span class="oc-research-venue" data-lang="cn">发明专利 · 已授权</span>
                 </div>
                 <div class="oc-item-sub" data-lang="en">Underwater · Point Cloud Completion · Self-Supervised</div>
                 <div class="oc-item-sub" data-lang="cn">水下目标 · 点云补全 · 自监督</div>
+                <span class="oc-research-venue" data-lang="en">Invention Patent · Granted</span>
+                <span class="oc-research-venue" data-lang="cn">发明专利 · 已授权</span>
               </div>
             </div>
             <div class="oc-item">
@@ -315,11 +352,11 @@ full-width: true
                 <div class="oc-research-title">
                   <span data-lang="en">3D Object Reconstruction from a Single Uncalibrated View</span>
                   <span data-lang="cn">一种基于非标定单视图的三维目标重建方法</span>
-                  <span class="oc-research-venue" data-lang="en">Invention Patent · Granted</span>
-                  <span class="oc-research-venue" data-lang="cn">发明专利 · 已授权</span>
                 </div>
                 <div class="oc-item-sub" data-lang="en">3D Reconstruction · Uncalibrated · Single View</div>
                 <div class="oc-item-sub" data-lang="cn">三维重建 · 非标定 · 单视图</div>
+                <span class="oc-research-venue" data-lang="en">Invention Patent · Granted</span>
+                <span class="oc-research-venue" data-lang="cn">发明专利 · 已授权</span>
               </div>
             </div>
           </div>

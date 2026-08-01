@@ -1,38 +1,21 @@
 <footer>
-  <div class="container-md beautiful-jekyll-footer">
-    <div class="row">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-      {% if page.footer-extra %}
-        <div class="footer-custom-content">
-          {% for file in page.footer-extra %}
-            {% include {{ file }} %}
-          {% endfor %}
-        </div>
-      {% endif %}
-      <p class="copyright text-muted">
-      
-      {% if site.url-pretty %}
-        <span class="author-site">
-          <a href="{% if site.url-canonical %}{{ site.url-canonical }}{% else %}{{ '' | absolute_url }}{% endif %}">{{ site.url-pretty }}</a>
-        </span>
-      {% endif %}
-
-      {% if site.matomo %}
-        {% if site.matomo.opt-out %}
-          <a href="http://{{- site.matomo.uri -}}/index.php?module=CoreAdminHome&action=optOut" target="_blank" class="text_muted">Do-not-Track</a>
-        {% endif %}
-      {% endif%}
-
-      {% if site.edit_page_button and site.github.repository_url %}
-        Friends Links &nbsp;&bull;&nbsp; <a href="http://kyle-kun.top">kyle-kun</a> &nbsp;&bull;&nbsp; <a href="http://jrhong.top/">jrhong</a>
-       {% endif%}
-
-      </p>
-      {% unless site.remove-ads %}<p class="theme-by text-muted">
-        Powered by
-        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
-      </p>{% endunless %}
+  <div class="oc-bottombar oc-footer-bar">
+    <div class="oc-stats">
+      <div class="oc-stat">
+        <span class="oc-stat-value">{{ site.posts.size }}</span>
+        <span class="oc-stat-label">posts</span>
       </div>
+      <div class="oc-stat">
+        <span class="oc-stat-value" id="busuanzi_value_site_uv">--</span>
+        <span class="oc-stat-label">visitors</span>
+      </div>
+      <div class="oc-stat">
+        <span class="oc-stat-value" id="busuanzi_value_site_pv">--</span>
+        <span class="oc-stat-label">views</span>
+      </div>
+    </div>
+    <div style="font-family: var(--oc-mono); font-size: 11px; color: var(--oc-text-tertiary);">
+      last updated: 2026 <span class="oc-cursor"></span>
     </div>
   </div>
 </footer>

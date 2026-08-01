@@ -11,8 +11,10 @@ html {
 }
 
 body {
-  /* font-family: 'Lora', 'Times New Roman', serif; */
-  font-family: 'Noto Sans SC', 'Roboto', sans-serif;
+  /* VSCode-style font chain: first match wins, falls back to next if missing.
+     Latin -> Lato; CJK -> Noto Sans CJK SC / PingFang / YaHei; web fonts as enhancement */
+  font-family: 'Lato', 'Noto Sans CJK SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
+    'Segoe UI', 'Roboto', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.125rem;
   color: {{ site.text-col | default: "#404040" }};
   position: relative;
@@ -635,7 +637,7 @@ footer .footer-custom-content {
 /* --- Post and page headers --- */
 
 .intro-header {
-  margin: 5rem 0 1.25rem;
+  margin: 3rem 0 1.25rem;
   position: relative;
 }
 .intro-header.big-img {
@@ -648,7 +650,7 @@ footer .footer-custom-content {
   margin-bottom: 2.1875rem;
 }
 nav.top-nav-short-permanent ~ header > .intro-header {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 nav.top-nav-short-permanent ~ header > .intro-header.big-img {
   margin-top: 3.1875rem;
@@ -867,6 +869,8 @@ table tr td :last-child {
 /* --- Code blocks --- */
 
 code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', 'Consolas',
+    'Menlo', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
   padding: 0.125rem 0.25rem;
   color: #c7254e;
   background-color: #f9f2f4;
@@ -879,52 +883,15 @@ pre code {
   border-radius: 0;
 }
 
-pre {
-  font-size: 0.875rem;
-  line-height: 1.5em;
-  border-radius: 0.25rem;
-  padding: 0.59375rem;
-}
-.highlight pre {
-  border: none;
-  background: none;
-  margin: 0;
-}
-.highlight > pre {
-  background-image: linear-gradient(
-    rgba(0,0,0,0.03), rgba(0,0,0,0.03) 1.5em, rgba(0,0,0,0.02) 1.5em, rgba(0,0,0,0.02) 3em);
-  background-size: auto 3em;
-  background-position-y: 0.625rem;
-  border: 1px solid rgba(0,0,0,0.1);
-  border-left: 0.4375rem solid #444;
-}
-.highlight > pre:not([class~="highlight"]) { /* code block with line number */
-  padding: 0;
-}
-.highlight table,
-.highlight tr,
-.highlight td { /* to be removed after fixing table styles */
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-}
-.highlight pre.lineno {
-  color: rgba(0,0,0,0.3);
-  border-radius: 0;
-  border-right: 2px solid #444;
-}
+ pre {
+   font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', 'Consolas',
+     'Menlo', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+   font-size: 0.875rem;
+   line-height: 1.5em;
+   border-radius: 0.25rem;
+   padding: 0.59375rem;
+ }
 
-/* Make line numbers unselectable: excludes line numbers from copy-paste user ops */
-.lineno {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.lineno::selection, .lineno::-moz-selection {
-  background: none;
-}
 
 /* Fix table border github gist snippets */
 

@@ -23,7 +23,27 @@ layout: base
 
     <div class="oc-blog-list">
       {% for post in posts %}
-      <a href="{{ post.url | absolute_url }}" class="oc-blog-item oc-fade-in" style="animation-delay: {{ forloop.index | times: 0.05 }}s;">
+      {% assign thumb = post.thumbnail-img %}
+      {% if thumb == nil or thumb == '' %}
+        {% assign content_parts = post.content | split: '<img ' %}
+        {% if content_parts.size > 1 %}
+          {% assign img_tag = content_parts[1] | split: '>' | first %}
+          {% assign src_parts = img_tag | split: 'src="' %}
+          {% if src_parts.size > 1 %}
+            {% assign thumb = src_parts[1] | split: '"' | first %}
+            {% assign thumb = thumb | remove_first: '../' | remove_first: '../' | remove_first: '../' %}
+            {% assign thumb = thumb | relative_url %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+      <a href="{{ post.url }}" class="oc-blog-item oc-fade-in" style="animation-delay: {{ forloop.index | times: 0.05 }}s;">
+        <div class="oc-blog-thumb">
+          {% if thumb %}
+          <img src="{{ thumb }}" alt="" loading="lazy">
+          {% else %}
+          <span class="oc-blog-thumb-fallback">{{ post.title | strip_html | truncate: 1, '' }}</span>
+          {% endif %}
+        </div>
         <div class="oc-blog-item-left">
           <div class="oc-blog-title">{{ post.title | strip_html }}</div>
           {% if post.subtitle %}
@@ -51,11 +71,11 @@ layout: base
     {% if paginator.total_pages > 1 %}
     <div class="oc-blog-pagination">
       {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | absolute_url }}" class="oc-blog-page-btn">← Newer</a>
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="oc-blog-page-btn">← Newer</a>
       {% endif %}
       <span class="oc-blog-page-info">{{ paginator.page }} / {{ paginator.total_pages }}</span>
       {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | absolute_url }}" class="oc-blog-page-btn">Older →</a>
+      <a href="{{ paginator.next_page_path | relative_url }}" class="oc-blog-page-btn">Older →</a>
       {% endif %}
     </div>
     {% endif %}
@@ -111,6 +131,7 @@ layout: base
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 14px;
     padding: 14px 16px;
     background: var(--oc-bg-alt);
     border: 1px solid var(--oc-border);
@@ -118,6 +139,39 @@ layout: base
     text-decoration: none;
     color: var(--oc-text);
     transition: all var(--oc-transition);
+  }
+
+  .oc-blog-thumb {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--oc-border);
+    background: var(--oc-bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .oc-blog-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--oc-transition);
+  }
+
+  .oc-blog-thumb-fallback {
+    font-family: var(--oc-mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--oc-blue);
+    user-select: none;
+  }
+
+  .oc-blog-item:hover .oc-blog-thumb img {
+    transform: scale(1.06);
   }
 
   .oc-blog-item:hover {

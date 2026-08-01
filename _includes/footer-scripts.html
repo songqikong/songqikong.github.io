@@ -27,3 +27,15 @@
     <script src="{{ js | relative_url }}" defer></script>
   {% endfor %}
 {% endif %}
+
+<script>
+  window.addEventListener('load', function () {
+    if (document.getElementById('busuanzi_value_site_uv') || document.getElementById('busuanzi_value_site_pv')) {
+      var s = document.createElement('script');
+      s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  });
+</script>
+
