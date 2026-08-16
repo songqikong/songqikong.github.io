@@ -59,24 +59,25 @@
     var container = document.getElementById('page-views-container');
     if (!base || !el || !container) return;
     var real = false;
-    function showPlaceholder() {
-      container.style.display = 'inline';
-      if (!real) el.textContent = '--';
+    function reveal(n) {
+      var ld = document.getElementById('page-views-loading');
+      if (ld) ld.style.display = 'none';
+      el.textContent = n;
+      el.style.display = 'inline';
     }
-    // Fallback: reveal the placeholder if the worker is slow or unreachable.
-    setTimeout(showPlaceholder, 3000);
+    // Fallback: swap the loading dots for '--' if the worker is slow or unreachable.
+    setTimeout(function () { if (!real) reveal('--'); }, 3000);
     fetch(base + '/count?path=' + encodeURIComponent(location.pathname), { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('bad status')); })
       .then(function (d) {
         if (d && typeof d.count === 'number') {
           real = true;
-          el.textContent = d.count;
-          container.style.display = 'inline';
+          reveal(d.count);
         } else {
-          showPlaceholder();
+          reveal('--');
         }
       })
-      .catch(showPlaceholder);
+      .catch(function () { reveal('--'); });
   })();
 </script>
 {% endif %}

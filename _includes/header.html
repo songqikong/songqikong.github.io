@@ -49,8 +49,9 @@
             {% if page.readtime %}
               {% include readtime.html %}
             {% endif %}
-            <span class="post-meta post-views" id="page-views-container" style="display:none">
-              <span id="page-views-count">--</span> views
+            <span class="post-meta post-views" id="page-views-container">
+              <span class="post-views-loading" id="page-views-loading"><span class="post-views-dot"></span><span class="post-views-dot"></span><span class="post-views-dot"></span></span>
+              <span id="page-views-count" style="display:none">--</span> views
             </span>
           </div>
           {% endif %}
@@ -88,8 +89,9 @@
             {% if page.readtime %}
               {% include readtime.html %}
             {% endif %}
-            <span class="post-meta post-views" id="page-views-container" style="display:none">
-              <span id="page-views-count">--</span> views
+            <span class="post-meta post-views" id="page-views-container">
+              <span class="post-views-loading" id="page-views-loading"><span class="post-views-dot"></span><span class="post-views-dot"></span><span class="post-views-dot"></span></span>
+              <span id="page-views-count" style="display:none">--</span> views
             </span>
           </div>
           {% endif %}

@@ -1584,6 +1584,43 @@ body:not(:has(.oc-layout)) footer {
   font-weight: 700;
 }
 
+/* Per-post view counter loading dots */
+.post-heading .post-meta-row .post-views-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+
+.post-views-loading .post-views-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--oc-blue);
+  animation: oc-views-blink 1.2s ease-in-out infinite;
+}
+
+.post-views-loading .post-views-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.post-views-loading .post-views-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes oc-views-blink {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-views-loading .post-views-dot {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
 /* Intro header bottom accent */
 .intro-header {
   border-bottom: 1px solid var(--oc-border);
