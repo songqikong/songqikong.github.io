@@ -684,9 +684,15 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
 
 .oc-blog-mini-meta {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.oc-blog-mini-tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .oc-blog-mini-date {
