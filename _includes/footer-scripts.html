@@ -30,7 +30,7 @@
 
 <script>
   (function () {
-    if (!document.getElementById('busuanzi_value_site_uv') && !document.getElementById('busuanzi_value_site_pv') && !document.getElementById('busuanzi_value_page_pv')) return;
+    if (!document.getElementById('busuanzi_value_site_uv') && !document.getElementById('busuanzi_value_site_pv')) return;
 
     // 不蒜子 (busuanzi) 2.3 client, inlined verbatim from
     // //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js so the count
@@ -49,4 +49,35 @@
     }, 3000);
   })();
 </script>
+
+<!-- Per-post view counter (Cloudflare Worker, see counter-worker.js) -->
+{% if site.view_counter_url != '' %}
+<script>
+  (function () {
+    var base = '{{ site.view_counter_url }}'.replace(/\/+$/, '');
+    var el = document.getElementById('page-views-count');
+    var container = document.getElementById('page-views-container');
+    if (!base || !el || !container) return;
+    var real = false;
+    function showPlaceholder() {
+      container.style.display = 'inline';
+      if (!real) el.textContent = '--';
+    }
+    // Fallback: reveal the placeholder if the worker is slow or unreachable.
+    setTimeout(showPlaceholder, 3000);
+    fetch(base + '/count?path=' + encodeURIComponent(location.pathname), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('bad status')); })
+      .then(function (d) {
+        if (d && typeof d.count === 'number') {
+          real = true;
+          el.textContent = d.count;
+          container.style.display = 'inline';
+        } else {
+          showPlaceholder();
+        }
+      })
+      .catch(showPlaceholder);
+  })();
+</script>
+{% endif %}
 
