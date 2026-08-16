@@ -22,7 +22,7 @@
   --oc-border-light: #F1F5F9;
 
   /* Mono Font */
-  --oc-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  --oc-mono: 'Monaco', 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
   --oc-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
   /* Spacing */
@@ -1307,7 +1307,7 @@ code {
 }
 
 pre {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', 'Consolas',
+  font-family: 'Monaco', 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', 'Consolas',
     'Menlo', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
   background-color: #0F172A;
   color: #E2E8F0;
