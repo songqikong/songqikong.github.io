@@ -58,6 +58,7 @@
     var el = document.getElementById('page-views-count');
     var container = document.getElementById('page-views-container');
     if (!base || !el || !container) return;
+
     var real = false;
     function reveal(n) {
       var ld = document.getElementById('page-views-loading');
@@ -65,19 +66,39 @@
       el.textContent = n;
       el.style.display = 'inline';
     }
-    // Fallback: swap the loading dots for '--' if the worker is slow or unreachable.
-    setTimeout(function () { if (!real) reveal('--'); }, 3000);
-    fetch(base + '/count?path=' + encodeURIComponent(location.pathname), { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('bad status')); })
-      .then(function (d) {
-        if (d && typeof d.count === 'number') {
-          real = true;
-          reveal(d.count);
-        } else {
-          reveal('--');
-        }
-      })
-      .catch(function () { reveal('--'); });
+
+    function attempt(triesLeft) {
+      fetch(base + '/count?path=' + encodeURIComponent(location.pathname), { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('bad status')); })
+        .then(function (d) {
+          if (d && typeof d.count === 'number') {
+            real = true;
+            reveal(d.count);
+          } else {
+            reveal('--');
+          }
+        })
+        .catch(function () {
+          // One retry after a short delay for transient network failures.
+          if (triesLeft > 0) setTimeout(function () { attempt(triesLeft - 1); }, 1500);
+          else reveal('--');
+        });
+    }
+
+    function start() {
+      // Fallback: swap the loading dots for '--' if the worker is slow or unreachable.
+      setTimeout(function () { if (!real) reveal('--'); }, 3000);
+      attempt(1);
+    }
+
+    // If Chrome pre-rendered this page in the background, wait until it
+    // becomes visible: the user should see the loading animation, and the
+    // view should only count for an actual visit, not a speculative preload.
+    if ('prerendering' in document && document.prerendering) {
+      document.addEventListener('prerenderingchange', start, { once: true });
+    } else {
+      start();
+    }
   })();
 </script>
 {% endif %}
