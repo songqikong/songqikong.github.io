@@ -1,25 +1,24 @@
 ---
-layout: base
+layout: acad-default
 ---
 
 {% assign posts = paginator.posts | default: site.posts %}
 
-<div class="oc-layout" style="height: calc(100vh - 50px); overflow: auto;">
+<div class="oc-layout">
 
-  <!-- Top Bar -->
-  <div class="oc-topbar oc-fade-in">
-    <div class="oc-topbar-left">
-      <span class="oc-prompt">$</span>
-      <span class="oc-cmd">cat ~/blog/*.md</span>
-      <span style="color: var(--oc-text-tertiary);">// {{ posts.size }} posts</span>
-    </div>
-    <div class="oc-topbar-right">
-      <span class="oc-status-text" style="color: var(--oc-text-tertiary);">{{ posts.size }} items</span>
-    </div>
-  </div>
+  <div class="oc-blog-wrap">
 
-  <!-- Content -->
-  <div style="padding: 10px; max-width: 960px; margin: 0 auto; width: 100%; flex: 1;">
+    <!-- Top Bar -->
+    <div class="oc-topbar oc-topbar--inset oc-fade-in">
+      <div class="oc-topbar-left">
+        <span class="oc-prompt">$</span>
+        <span class="oc-cmd">cat ~/blog/*.md</span>
+        <span style="color: var(--oc-text-tertiary);">// {{ posts.size }} posts</span>
+      </div>
+      <div class="oc-topbar-right">
+        <span class="oc-status-text" style="color: var(--oc-text-tertiary);">{{ posts.size }} items</span>
+      </div>
+    </div>
 
     <div class="oc-blog-list">
       {% for post in posts %}
@@ -96,185 +95,3 @@ layout: base
   </div>
 
 </div>
-
-<style>
-  /* Hide Jekyll header & footer on blog listing */
-  .intro-header { display: none !important; }
-  footer { display: none !important; }
-  .container-md[role="main"],
-  .container-fluid[role="main"] {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-  .container-md[role="main"] > .row,
-  .container-fluid[role="main"] > .row {
-    margin: 0 !important;
-  }
-  .container-md[role="main"] > .row > .col,
-  .container-fluid[role="main"] > .row > [class*="col-"] {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-width: 100% !important;
-    flex: 0 0 100% !important;
-  }
-
-  /* Blog list */
-  .oc-blog-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .oc-blog-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 14px 16px;
-    background: var(--oc-bg-alt);
-    border: 1px solid var(--oc-border);
-    border-radius: var(--oc-radius);
-    text-decoration: none;
-    color: var(--oc-text);
-    transition: all var(--oc-transition);
-  }
-
-  .oc-blog-thumb {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--oc-border);
-    background: var(--oc-bg-card);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .oc-blog-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform var(--oc-transition);
-  }
-
-  .oc-blog-thumb-fallback {
-    font-family: var(--oc-mono);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--oc-blue);
-    user-select: none;
-  }
-
-  .oc-blog-item:hover .oc-blog-thumb img {
-    transform: scale(1.06);
-  }
-
-  .oc-blog-item:hover {
-    border-color: var(--oc-blue);
-    background: var(--oc-bg);
-    box-shadow: 0 0 0 1px var(--oc-blue-border), 0 2px 8px var(--oc-blue-glow);
-    transform: translateX(4px);
-  }
-
-  .oc-blog-item-left {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .oc-blog-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--oc-text);
-    line-height: 1.4;
-    transition: color var(--oc-transition);
-  }
-
-  .oc-blog-item:hover .oc-blog-title {
-    color: var(--oc-blue);
-  }
-
-  .oc-blog-subtitle {
-    font-size: 13px;
-    color: var(--oc-text-secondary);
-    margin-top: 2px;
-  }
-
-  .oc-blog-meta {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-top: 6px;
-    flex-wrap: wrap;
-  }
-
-  .oc-blog-date {
-    font-family: var(--oc-mono);
-    font-size: 11px;
-    color: var(--oc-text-tertiary);
-  }
-
-  .oc-blog-date::before {
-    content: '// ';
-  }
-
-  .oc-blog-tags {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-  }
-
-  .oc-blog-item-right {
-    flex-shrink: 0;
-    margin-left: 12px;
-  }
-
-  .oc-blog-arrow {
-    font-family: var(--oc-mono);
-    font-size: 16px;
-    color: var(--oc-text-tertiary);
-    transition: color var(--oc-transition), transform var(--oc-transition);
-  }
-
-  .oc-blog-item:hover .oc-blog-arrow {
-    color: var(--oc-blue);
-    transform: translateX(4px);
-  }
-
-  /* Pagination */
-  .oc-blog-pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 16px;
-    padding: 12px;
-  }
-
-  .oc-blog-page-btn {
-    font-family: var(--oc-mono);
-    font-size: 12px;
-    padding: 6px 16px;
-    border: 1px solid var(--oc-border);
-    border-radius: 6px;
-    color: var(--oc-text-secondary);
-    text-decoration: none;
-    transition: all var(--oc-transition);
-  }
-
-  .oc-blog-page-btn:hover {
-    background: var(--oc-blue);
-    color: #fff;
-    border-color: var(--oc-blue);
-  }
-
-  .oc-blog-page-info {
-    font-family: var(--oc-mono);
-    font-size: 12px;
-    color: var(--oc-text-tertiary);
-  }
-</style>

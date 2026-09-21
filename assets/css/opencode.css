@@ -13,6 +13,7 @@
   --oc-text-secondary: #64748B;
   --oc-text-tertiary: #94A3B8;
   --oc-blue: #2563EB;
+  --oc-blue-hover: #1D4ED8;
   --oc-blue-light: #3B82F6;
   --oc-blue-lighter: #60A5FA;
   --oc-blue-bg: rgba(37, 99, 235, 0.06);
@@ -21,9 +22,22 @@
   --oc-border: #E2E8F0;
   --oc-border-light: #F1F5F9;
 
+  /* Surfaces with a job of their own. The masthead sits a shade below the
+     page so the navigation reads as a band rather than floating in the
+     document, and the footer mirrors it from underneath. */
+  --oc-masthead-bg: #EDF1F7;
+  --oc-footer-bg: #F8FAFC;
+
+  /* Text aliases so the base theme never has to name a hex. */
+  --oc-heading: #172033;
+  --oc-body-text: #29313D;
+  --oc-bg-elevated: #FFFFFF;
+  --oc-scrim: rgba(255, 255, 255, 0.85);
+
   /* Mono Font */
   --oc-mono: 'Monaco', 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
-  --oc-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --oc-serif: 'Newsreader', 'Source Serif 4', 'Noto Serif SC', 'Songti SC',
+              'STSong', 'Source Han Serif SC', Georgia, Times, serif;
 
   /* Spacing */
   --oc-gap: 16px;
@@ -46,6 +60,7 @@ html.dark-theme {
   --oc-text-secondary: #8B949E;
   --oc-text-tertiary: #6E7681;
   --oc-blue: #58A6FF;
+  --oc-blue-hover: #79C0FF;
   --oc-blue-light: #79C0FF;
   --oc-blue-lighter: #A5D6FF;
   --oc-blue-bg: rgba(88, 166, 255, 0.1);
@@ -53,6 +68,19 @@ html.dark-theme {
   --oc-blue-glow: rgba(88, 166, 255, 0.15);
   --oc-border: #30363D;
   --oc-border-light: #21262D;
+
+  --oc-masthead-bg: #161B22;
+  --oc-footer-bg: #0D1117;
+
+  --oc-bg-elevated: #161B22;
+  --oc-scrim: rgba(13, 17, 23, 0.78);
+
+  --oc-heading: #E6EDF3;
+  --oc-body-text: #B6BEC9;
+
+  /* The base theme paints <html> white, which flashes through the overscroll
+     gutter even though <body> is dark. */
+  background: var(--oc-bg);
 }
 
 html.dark-theme body {
@@ -95,7 +123,7 @@ html.dark-theme .navbar-custom .dropdown-item:hover {
 /* Dark theme toggle button - terminal style */
 .oc-term-btn {
   background: none;
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  border: 1px solid var(--oc-blue-border);
   border-radius: 4px;
   width: 36px;
   height: 32px;
@@ -103,7 +131,7 @@ html.dark-theme .navbar-custom .dropdown-item:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #58A6FF;
+  color: var(--oc-blue);
   font-family: var(--oc-mono);
   font-size: 16px;
   line-height: 1;
@@ -113,9 +141,9 @@ html.dark-theme .navbar-custom .dropdown-item:hover {
 }
 
 .oc-term-btn:hover {
-  background: rgba(37, 99, 235, 0.15);
+  background: var(--oc-blue-bg);
   border-color: var(--oc-blue);
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 8px var(--oc-blue-glow);
 }
 
 .oc-term-btn:active {
@@ -149,7 +177,7 @@ html:not(.dark-theme) .oc-term-btn .icon-moon { display: inline-block; }
 .oc-hamburger-lines span {
   display: block;
   height: 2px;
-  background: #58A6FF;
+  background: var(--oc-blue);
   border-radius: 1px;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -262,13 +290,16 @@ html.dark-theme .oc-avatar:hover {
    Main Container - Full Viewport, No Scroll
    ============================================ */
 .oc-layout {
-  height: calc(100vh - 50px);
   width: 100%;
+  /* Auto-height with a viewport-sized floor. It used to be a fixed
+     100vh-50px box with an inner scroll container, which assumed the old
+     50px Bootstrap navbar; the AcademicPages masthead is taller and the
+     document scrolls, so the measurement is now a minimum, not a height. */
+  min-height: calc(100vh - 5.6rem);
   display: flex;
   flex-direction: column;
   background: var(--oc-bg);
   color: var(--oc-text);
-  font-family: var(--oc-sans);
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -283,33 +314,18 @@ html.dark-theme .oc-avatar:hover {
   transition: none !important;
 }
 
-/* Kill the Jekyll header & footer & container padding on oc-layout pages only */
-body:has(.oc-layout) .intro-header {
-  display: none !important;
-}
-
+/* The AcademicPages footer is suppressed on pages that ship their own
+   terminal bottom bar, so the two strips never appear together. */
 body:has(.oc-layout) footer {
   display: none !important;
 }
 
-/* Prevent page-level scrolling on desktop; oc-layout handles its own scroll */
-@media (min-width: 901px) {
-  html:has(.oc-layout),
-  html:has(.oc-layout) body {
-    overflow: hidden;
-    height: 100%;
-  }
-}
-
-/* Remove ALL Bootstrap padding/margins so oc-layout fills 100% */
-body:has(.oc-layout) > .container-fluid,
-body:has(.oc-layout) .container-fluid[role="main"] {
-  padding: 0 !important;
-  margin: 0 !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  overflow-x: hidden;
-}
+/* NOTE: page-level scrolling used to be switched off here for oc-layout
+   pages, because .oc-layout was a fixed 100vh box with its own inner scroll
+   container. Once .oc-layout became auto-height that turned into a trap:
+   anything below the first viewport — the rest of the blog list, the lower
+   rows of a Vibing gallery — was clipped and unreachable. The document
+   scrolls again, and that now also explains the min-height below. */
 
 body:has(.oc-layout) .container-fluid[role="main"] > .row {
   margin: 0 !important;
@@ -326,13 +342,19 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
 /* ============================================
    Top Bar - Terminal Prompt Style
    ============================================ */
+/* Deliberately not a bar. Every page that uses it now renders below the
+   AcademicPages masthead, and with a background and a bottom border it
+   read as a second header stacked under the first. It is a prompt line
+   sitting at the top of the content, so it keeps only that job: the
+   horizontal padding matches the 10px gutter its sibling content uses,
+   which is what lines the prompt up with the grid underneath it. */
 .oc-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 32px;
-  border-bottom: 1px solid var(--oc-border);
-  background: var(--oc-bg);
+  padding: 12px 10px 6px;
+  border-bottom: none;
+  background: none;
   flex-shrink: 0;
 }
 
@@ -362,16 +384,17 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
 }
 
 .oc-lang-btn {
-  font-family: var(--oc-mono);
-  font-size: 15px;
+  font-family: var(--oc-serif);
+  font-size: 13px;
+  letter-spacing: 0;
   width: 36px;
   height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  border: 1px solid var(--oc-border);
-  background: var(--oc-bg);
+  border: 1px solid var(--oc-blue-border);
+  background: none;
   color: var(--oc-text-secondary);
   cursor: pointer;
   transition: all var(--oc-transition);
@@ -418,7 +441,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
 .oc-content {
   flex: 1;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 240px minmax(0, 1fr);
   grid-template-rows: 1fr;
   gap: 0;
   min-height: 0;
@@ -443,6 +466,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
 
 .oc-avatar-wrap {
@@ -579,6 +603,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   flex-direction: column;
   gap: 10px;
   overflow: hidden;
+  min-width: 0;
 }
 
 /* Section header - terminal style */
@@ -607,7 +632,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
    ============================================ */
 .oc-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   align-items: start;
 }
@@ -615,7 +640,7 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
 /* --- Recent Blogs --- */
 .oc-blogs-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 
@@ -730,13 +755,16 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .oc-card-badges {
   display: flex;
   gap: 6px;
   margin-left: auto;
+  flex-wrap: wrap;
 }
 
 .oc-card-title {
@@ -818,10 +846,28 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   grid-template-columns: 1fr auto;
   grid-template-areas:
     "title meta"
-    "sub sub";
+    "sub sub"
+    "desc desc";
   column-gap: 8px;
   row-gap: 2px;
   align-items: baseline;
+}
+
+/* --- One-line description row (work / education / awards) --- */
+.oc-item-desc {
+  grid-area: desc;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--oc-text-secondary);
+}
+
+.oc-item-desc a {
+  color: var(--oc-blue);
+  text-decoration: none;
+}
+
+.oc-item-desc a:hover {
+  text-decoration: underline;
 }
 
 .oc-item-title {
@@ -926,6 +972,79 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   padding: 1px 6px;
   border-radius: 4px;
   font-size: 13px;
+}
+
+/* Footnote under a card item list */
+.oc-card-note {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--oc-border);
+  font-family: var(--oc-mono);
+  font-size: 11px;
+  color: var(--oc-text-tertiary);
+}
+
+/* ============================================
+   About Me - long-form paragraphs
+   ============================================ */
+.oc-about-text {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--oc-text-secondary);
+  margin: 0 0 10px;
+}
+
+.oc-about-text:last-child {
+  margin-bottom: 0;
+}
+
+.oc-about-text strong {
+  color: var(--oc-text);
+  font-weight: 600;
+}
+
+.oc-about-text a {
+  color: var(--oc-blue);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oc-blue-border);
+  transition: all var(--oc-transition);
+}
+
+.oc-about-text a:hover {
+  color: var(--oc-blue-light);
+  border-bottom-color: var(--oc-blue-light);
+}
+
+/* ============================================
+   Miscellaneous - plain text list
+   ============================================ */
+.oc-misc-item {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--oc-text-secondary);
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background var(--oc-transition);
+}
+
+.oc-misc-item:hover {
+  background: var(--oc-blue-bg);
+}
+
+.oc-misc-item strong {
+  color: var(--oc-text);
+  font-weight: 600;
+}
+
+.oc-misc-item a {
+  color: var(--oc-blue);
+  text-decoration: none;
+  border-bottom: 1px solid var(--oc-blue-border);
+}
+
+.oc-misc-item a:hover {
+  color: var(--oc-blue-light);
+  border-bottom-color: var(--oc-blue-light);
 }
 
 /* ============================================
@@ -1060,10 +1179,10 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
    ============================================ */
 @media (max-width: 900px) {
   .oc-layout {
-    overflow-y: auto;
     overflow-x: hidden;
-    height: auto;
-    min-height: calc(100vh - 50px);
+    /* Same floor as the base rule — the 50px here was the height of a
+       navbar that no longer exists. */
+    min-height: calc(100vh - 5.6rem);
   }
 
   .oc-content {
@@ -1088,7 +1207,9 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
   }
 
   .oc-topbar {
-    padding: 10px 12px;
+    /* Same gutter as the desktop rule so the prompt still lines up with
+       the content grid on narrow screens. */
+    padding: 12px 10px 6px;
     gap: 4px;
   }
 
@@ -1115,13 +1236,14 @@ body:has(.oc-layout) .container-fluid[role="main"] > .row > [class*="col-"] {
     gap: 8px;
   }
 
-  /* Mobile: stack title / sub / meta(venue) into three rows */
+  /* Mobile: stack title / sub / meta(venue) / desc into four rows */
   .oc-item-body {
     grid-template-columns: 1fr;
     grid-template-areas:
       "title"
       "sub"
-      "meta";
+      "meta"
+      "desc";
   }
 
   /* Recent blogs: 4x1 on mobile */
@@ -1230,11 +1352,6 @@ html.lang-cn [data-lang="en"] {
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-}
-
-body {
-  font-family: var(--oc-sans);
-  line-height: 1.6;
 }
 
 ::selection {
@@ -1435,6 +1552,11 @@ body:not(:has(.oc-layout)) footer {
   border-radius: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
   overflow: hidden;
+  /* The base theme puts uppercase + 1px tracking on the whole .toc box,
+     which leaks onto the serif link list. Only the title keeps it. */
+  color: var(--oc-text-secondary);
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .toc-title {
@@ -1519,79 +1641,24 @@ body:not(:has(.oc-layout)) footer {
    Blog Page Unification - markdown/terminal style
    ============================================ */
 
-/* Unify all headings to the site sans chain */
-.intro-header .post-heading h1,
+/* Post headings stay in the site serif. They used to be forced onto a
+   CJK sans chain, which is why article headings looked like a different
+   site from the homepage ones. */
 .blog-post h1,
 .blog-post h2,
 .blog-post h3,
 .blog-post h4,
 .blog-post h5 {
-  font-family: 'Noto Sans CJK SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  color: var(--oc-text);
+  color: var(--oc-heading);
 }
 
-/* Post title (intro header) */
-.intro-header .post-heading h1 {
-  font-size: 2.4rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.3;
-}
-
-.intro-header .post-heading h1::before {
-  content: '# ';
-  color: var(--oc-blue);
-  font-family: var(--oc-mono);
-  font-weight: 400;
-  font-size: 0.85em;
-  opacity: 0.85;
-}
-
-.intro-header .post-heading .post-subheading {
-  font-family: 'Noto Sans CJK SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei',
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
-  font-weight: 400 !important;
-  color: var(--oc-text-secondary) !important;
-  margin-top: 0.6rem;
-}
-
-/* Post meta (date) -> terminal mono with $ prompt */
-.post-heading .post-meta {
-  font-family: var(--oc-mono) !important;
-  font-style: normal !important;
-  font-size: 0.85rem !important;
-  font-weight: 400 !important;
-  color: var(--oc-text-tertiary) !important;
-  letter-spacing: 0.5px;
-}
-
-.post-heading .post-meta::before {
-  content: '$ ';
-  color: var(--oc-blue);
-  font-weight: 700;
-}
-
-/* Post meta row: date on the left, per-post views pinned to the right */
-.post-heading .post-meta-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.post-heading .post-meta-row .post-views {
-  margin-left: auto;
-  white-space: nowrap;
-}
-
-.post-heading .post-meta-row .post-views::before {
-  content: '// ';
-  color: var(--oc-blue);
-  font-weight: 700;
-}
+/* Post meta: the terminal accents now hang off the .oc-post-meta markup
+   the post layout actually renders. They used to be scoped to
+   .post-heading, a class the AcademicPages post header never emits, so
+   the $ and // prompts had silently stopped rendering. */
 
 /* Per-post view counter loading dots */
-.post-heading .post-meta-row .post-views-loading {
+.post-views-loading {
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -1627,16 +1694,10 @@ body:not(:has(.oc-layout)) footer {
   }
 }
 
-/* Intro header bottom accent */
-.intro-header {
-  border-bottom: 1px solid var(--oc-border);
-  padding-bottom: 1.25rem;
-}
-
 /* --- Article headings --- */
 .blog-post h1 {
-  font-size: 1.9rem;
-  font-weight: 800;
+  font-size: 1.85rem;
+  font-weight: 600;
   margin-top: 2.2rem;
 }
 
@@ -1650,8 +1711,8 @@ body:not(:has(.oc-layout)) footer {
 }
 
 .blog-post h2 {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.45rem;
+  font-weight: 600;
   margin-top: 2.4rem;
   padding-bottom: 0.45rem;
   border-bottom: 1px solid var(--oc-border);
@@ -1667,8 +1728,8 @@ body:not(:has(.oc-layout)) footer {
 }
 
 .blog-post h3 {
-  font-size: 1.22rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 600;
   margin-top: 1.9rem;
 }
 
@@ -1683,7 +1744,7 @@ body:not(:has(.oc-layout)) footer {
 
 .blog-post h4 {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 1.6rem;
 }
 
@@ -1699,7 +1760,7 @@ body:not(:has(.oc-layout)) footer {
 }
 
 .blog-post a {
-  border-bottom: 1px solid rgba(37, 99, 235, 0.25);
+  border-bottom: 1px solid var(--oc-blue-border);
 }
 
 .blog-post a:hover {
@@ -1749,4 +1810,558 @@ body:not(:has(.oc-layout)) footer {
   color: #fff !important;
   background-color: var(--oc-blue) !important;
   border-color: var(--oc-blue) !important;
+}
+
+/* ============================================================
+   AcademicPages integration — the design layer
+   ------------------------------------------------------------
+   The site runs on exactly two stylesheets:
+
+     assets/css/acad.css      base theme, compiled from _sass/
+     assets/css/opencode.css  this file — tokens, oc-* components
+                              and the chrome bindings below
+
+   Division of labour, so that no selector is ever defined twice:
+
+     _sass/_custom.scss   page typography, the résumé timeline,
+                          the author sidebar. Colours come from the
+                          --oc-* tokens, never from a literal.
+     this section         chrome: the masthead band, the terminal
+                          buttons, the post grid, dark-theme bindings.
+
+   Type scale of the merged site:
+     serif   everything, prose and UI alike → --oc-serif
+     mono    metadata, tags, terminal bits  → --oc-mono
+   ============================================================ */
+
+/* --- Shell ------------------------------------------------------ */
+body {
+  background: var(--oc-bg);
+}
+
+/* --- Masthead ---------------------------------------------------
+   The navigation sits on its own tinted band instead of dissolving into
+   the page, so the header reads as chrome rather than as the first line
+   of the document. The base theme paints .greedy-nav white, which would
+   cover the tint, so it is neutralised below. */
+.masthead {
+  background: var(--oc-masthead-bg);
+  border-bottom: 1px solid var(--oc-border);
+  box-shadow: none;
+}
+
+.masthead__inner-wrap {
+  position: relative;
+}
+
+.masthead .greedy-nav {
+  background: transparent;
+}
+
+.masthead .greedy-nav a {
+  color: var(--oc-text-secondary);
+}
+
+.masthead .greedy-nav a:hover {
+  color: var(--oc-blue);
+}
+
+/* The site title is the one nav item that keeps full contrast. */
+.masthead .greedy-nav .masthead__menu-item--lg a {
+  color: var(--oc-text);
+  font-weight: 600;
+}
+
+/* Hover underline: the theme's washed-out grey becomes the accent. */
+.masthead .greedy-nav .visible-links a::before {
+  background: var(--oc-blue) !important;
+}
+
+/* Mobile menu button. The base theme paints it as a solid grey slab on
+   the far right — exactly where the two terminal buttons also live, so
+   the header ended up with three controls stacked on top of each other.
+   Recast it as a sibling of .oc-term-btn and dodge it leftwards. */
+.masthead .greedy-nav button {
+  top: 50%;
+  right: 0;
+  width: 40px;
+  height: 32px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid var(--oc-blue-border);
+  border-radius: 4px;
+  outline: none;
+  background: none;
+  color: var(--oc-text);
+  cursor: pointer;
+  transition: var(--oc-transition);
+}
+
+.masthead .greedy-nav button:hover {
+  border-color: var(--oc-blue);
+  background: var(--oc-blue-bg);
+}
+
+.oc-masthead-actions {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translateY(-50%);
+}
+
+.oc-masthead-actions .oc-lang-btn {
+  width: 44px;
+  height: 32px;
+}
+
+/* Above this width the four nav items always fit, so the theme's
+   hamburger is dead chrome that only collides with the buttons. */
+@media (min-width: 900px) {
+  .masthead .greedy-nav {
+    padding-right: 7rem;
+  }
+
+  .masthead .greedy-nav button {
+    display: none;
+  }
+}
+
+/* Once the hamburger is on stage it takes the right-hand corner, so the
+   terminal buttons step sideways instead of underneath it. */
+@media (max-width: 899px) {
+  .oc-masthead-actions {
+    right: 4.2rem;
+  }
+
+  .oc-masthead-actions .oc-lang-btn {
+    width: 36px;
+  }
+}
+
+/* --- Author profile links --------------------------------------- */
+.author__urls a {
+  color: var(--oc-blue);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.author__urls a:hover {
+  color: var(--oc-blue-hover);
+}
+
+/* --- Terminal accents on metadata ------------------------------- */
+.page__meta,
+.page__date {
+  font-family: var(--oc-mono);
+  font-size: 0.72em;
+  letter-spacing: 0;
+  color: var(--oc-text-secondary);
+}
+
+/* --- Inline list used by the Awards block ----------------------- */
+.oc-list {
+  margin-left: 0;
+  list-style: none;
+}
+
+.oc-list > li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.oc-list > li::before {
+  position: absolute;
+  left: 0;
+  color: var(--oc-text-tertiary);
+  font-family: var(--oc-mono);
+  font-size: 0.8em;
+  content: "[*]";
+}
+
+/* --- Language switch -------------------------------------------- */
+html.lang-en [data-lang="cn"],
+html.lang-cn [data-lang="en"] {
+  display: none !important;
+}
+
+/* --- Terminal pages ---------------------------------------------
+   .oc-layout carries its own viewport-sized min-height, see the base rule
+   near the top of this file. The hard 100vh-50px height is gone. */
+
+/* --- Post: content column plus a sticky table of contents ------- */
+.oc-post-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 2.4rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .oc-post-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+.oc-post-header {
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--oc-border);
+}
+
+.oc-post-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--oc-heading);
+}
+
+.oc-post-subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--oc-text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.oc-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin: 0.7rem 0 0;
+}
+
+/* The post header's metadata is the same terminal accent as the date
+   column on the homepage: mono, small, with a single $ prompt on the
+   first item rather than one on every field. */
+.oc-post-meta .post-meta {
+  font-family: var(--oc-mono);
+  font-size: 0.78rem;
+  color: var(--oc-text-tertiary);
+  white-space: nowrap;
+}
+
+.oc-post-meta .post-meta:first-child::before {
+  content: '$ ';
+  color: var(--oc-blue);
+  font-weight: 700;
+}
+
+.oc-post-meta .post-views {
+  margin-left: auto;
+}
+
+.oc-post-meta .post-views::before {
+  content: '// ';
+  color: var(--oc-blue);
+  font-weight: 700;
+}
+
+.oc-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0.9rem;
+}
+
+.oc-post-aside {
+  position: sticky;
+  top: 1.4rem;
+}
+
+/* --- Tag index -------------------------------------------------- */
+.oc-tag-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 1.8rem;
+}
+
+.oc-tag-section {
+  margin-top: 2rem;
+}
+
+.oc-tag-entry {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--oc-border-light);
+}
+
+.oc-tag-entry a {
+  text-decoration: none;
+}
+
+.oc-tag-entry time {
+  font-family: var(--oc-mono);
+  font-size: 0.72em;
+  color: var(--oc-text-tertiary);
+  white-space: nowrap;
+}
+
+/* --- 404 -------------------------------------------------------- */
+.oc-centered {
+  text-align: center;
+}
+
+.oc-centered img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--oc-radius);
+}
+
+/* --- Blog listing ------------------------------------------------
+   These rules used to live in an inline <style> block inside the layout,
+   which meant the blog looked like a third stylesheet. Moved here so the
+   design layer stays the one place this site is defined. */
+.oc-blog-wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem 2.5rem;
+  flex: 1;
+}
+
+.oc-blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 1.2rem;
+}
+
+.oc-blog-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--oc-bg-alt);
+  border: 1px solid var(--oc-border);
+  border-radius: var(--oc-radius);
+  text-decoration: none;
+  color: var(--oc-text);
+  transition: all var(--oc-transition);
+}
+
+/* Hovering used to wash the card out to the page colour, which in dark
+   mode made the row recede instead of lift. A blue tint reads as
+   selected in both themes. */
+.oc-blog-item:hover {
+  border-color: var(--oc-blue);
+  background: var(--oc-blue-bg);
+  box-shadow: 0 0 0 1px var(--oc-blue-border), 0 2px 8px var(--oc-blue-glow);
+  transform: translateX(4px);
+}
+
+.oc-blog-thumb {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--oc-border);
+  background: var(--oc-bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oc-blog-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--oc-transition);
+}
+
+.oc-blog-item:hover .oc-blog-thumb img {
+  transform: scale(1.06);
+}
+
+.oc-blog-thumb-fallback {
+  font-family: var(--oc-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--oc-blue);
+  user-select: none;
+}
+
+.oc-blog-item-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.oc-blog-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--oc-heading);
+  line-height: 1.4;
+  transition: color var(--oc-transition);
+}
+
+.oc-blog-item:hover .oc-blog-title {
+  color: var(--oc-blue);
+}
+
+.oc-blog-subtitle {
+  font-size: 0.92rem;
+  color: var(--oc-text-secondary);
+  margin-top: 2px;
+}
+
+.oc-blog-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.oc-blog-date {
+  font-family: var(--oc-mono);
+  font-size: 11px;
+  color: var(--oc-text-tertiary);
+}
+
+.oc-blog-date::before {
+  content: '// ';
+}
+
+.oc-blog-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.oc-blog-item-right {
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.oc-blog-arrow {
+  font-family: var(--oc-mono);
+  font-size: 16px;
+  color: var(--oc-text-tertiary);
+  transition: color var(--oc-transition), transform var(--oc-transition);
+}
+
+.oc-blog-item:hover .oc-blog-arrow {
+  color: var(--oc-blue);
+  transform: translateX(4px);
+}
+
+.oc-blog-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 1.6rem;
+  padding: 12px;
+}
+
+.oc-blog-page-btn {
+  font-family: var(--oc-mono);
+  font-size: 12px;
+  padding: 6px 16px;
+  border: 1px solid var(--oc-border);
+  border-radius: 6px;
+  color: var(--oc-text-secondary);
+  text-decoration: none;
+  transition: all var(--oc-transition);
+}
+
+.oc-blog-page-btn:hover {
+  background: var(--oc-blue);
+  color: #fff;
+  border-color: var(--oc-blue);
+}
+
+.oc-blog-page-info {
+  font-family: var(--oc-mono);
+  font-size: 12px;
+  color: var(--oc-text-tertiary);
+}
+
+/* The prompt strip sits inside the centred column, so it reads as the
+   first line of the page and lines up with the list beneath it. */
+.oc-topbar--inset {
+  padding: 0 0 0.3rem;
+}
+
+/* ============================================================
+   Dark theme bindings for the AcademicPages chrome
+   ------------------------------------------------------------
+   Only what genuinely needs a theme switch lives here. Any rule that
+   reads a --oc-* token is already themed, so it gets none — that is what
+   keeps the two themes from drifting apart.
+   ============================================================ */
+
+html.dark-theme body,
+html.dark-theme .page {
+  background: var(--oc-bg);
+  color: var(--oc-text);
+}
+
+html.dark-theme .page__footer a {
+  color: var(--oc-text-secondary);
+}
+
+html.dark-theme .page__footer a:hover {
+  color: var(--oc-blue);
+}
+
+/* The base theme hard-codes light backgrounds for code and tables. */
+html.dark-theme pre,
+html.dark-theme code,
+html.dark-theme tt {
+  background: var(--oc-bg-card) !important;
+  color: var(--oc-text) !important;
+  border-color: var(--oc-border) !important;
+}
+
+html.dark-theme .highlight {
+  background: var(--oc-bg-card) !important;
+  border-color: var(--oc-border) !important;
+}
+
+html.dark-theme blockquote {
+  border-left-color: var(--oc-border);
+  color: var(--oc-text-secondary);
+}
+
+html.dark-theme table,
+html.dark-theme th,
+html.dark-theme td {
+  border-color: var(--oc-border);
+  color: var(--oc-text);
+}
+
+html.dark-theme hr {
+  border-color: var(--oc-border);
+}
+
+/* The greedy-nav overflow dropdown washes its hover state with a pale blue
+   mixed out of white, which reads as a highlight in light mode but turns
+   into a bright slab under the dark surface. */
+html.dark-theme .masthead .greedy-nav .hidden-links {
+  border-color: var(--oc-border);
+}
+
+html.dark-theme .masthead .greedy-nav .hidden-links a:hover {
+  background: var(--oc-blue-bg);
+}
+
+/* The 404 page carries a bare search input from the base theme. It is the
+   only unstyled form control left, so it is pinned here rather than with a
+   blanket `input` rule that would fight the map pages' own control. */
+html.dark-theme #goog-wm-qt {
+  background: var(--oc-bg-card);
+  color: var(--oc-text);
+  border-color: var(--oc-border) !important;
 }

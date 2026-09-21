@@ -1,0 +1,83 @@
+﻿{% include acad/base_path %}
+
+<!-- start custom head snippets -->
+
+<link rel="icon" href="{{ base_path }}/assets/img/favicon.ico">
+
+<!-- Academicons: ORCID / Google Scholar glyphs used by the author profile -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
+
+<!-- Webfont via jsDelivr, which is reachable from mainland China; Google
+     Fonts is not. Newsreader is the only family the site uses — Inter was
+     dropped when the type scale went serif, so that request is gone too. -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/newsreader@5.0.14/index.css">
+
+<script>
+  /* Both preferences are applied before first paint to avoid a flash. */
+  (function () {
+    /* Language */
+    var lang = localStorage.getItem('oc-lang');
+    if (lang !== 'cn' && lang !== 'en') lang = 'en';
+    document.documentElement.classList.add('lang-' + lang);
+
+    /* Theme: an explicit choice wins, otherwise follow the time of day. */
+    function isNightTime() {
+      var now = new Date();
+      var t = now.getHours() * 60 + now.getMinutes();
+      return t < 6 * 60 + 30 || t >= 18 * 60 + 30;
+    }
+    var pref = localStorage.getItem('oc-theme');
+    if (pref === 'dark' || (pref === null && isNightTime())) {
+      document.documentElement.classList.add('dark-theme');
+    }
+  })();
+
+  /* Called by the masthead button. */
+  function toggleTheme() {
+    var html = document.documentElement;
+    if (html.classList.contains('dark-theme')) {
+      html.classList.remove('dark-theme');
+      localStorage.setItem('oc-theme', 'light');
+    } else {
+      html.classList.add('dark-theme');
+      localStorage.setItem('oc-theme', 'dark');
+    }
+  }
+
+  /* Without a manual choice, keep following the clock across the day. */
+  (function () {
+    setInterval(function () {
+      if (localStorage.getItem('oc-theme') !== null) return;
+      var now = new Date();
+      var t = now.getHours() * 60 + now.getMinutes();
+      var shouldDark = t < 6 * 60 + 30 || t >= 18 * 60 + 30;
+      var html = document.documentElement;
+      if (shouldDark && !html.classList.contains('dark-theme')) {
+        html.classList.add('dark-theme');
+      } else if (!shouldDark && html.classList.contains('dark-theme')) {
+        html.classList.remove('dark-theme');
+      }
+    }, 60000);
+  })();
+
+  /* Language toggle — delegated so it works whenever the button appears. */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-lang-toggle]') : null;
+    if (!btn) return;
+    e.preventDefault();
+    var html = document.documentElement;
+    var next = html.classList.contains('lang-cn') ? 'en' : 'cn';
+    html.classList.remove('lang-en', 'lang-cn');
+    html.classList.add('lang-' + next);
+    localStorage.setItem('oc-lang', next);
+    btn.textContent = next === 'cn' ? 'EN' : '中文';
+  });
+
+  window.addEventListener('DOMContentLoaded', function () {
+    var btn = document.querySelector('[data-lang-toggle]');
+    if (btn) btn.textContent = document.documentElement.classList.contains('lang-cn') ? 'EN' : '中文';
+  });
+</script>
+
+<!-- end custom head snippets -->

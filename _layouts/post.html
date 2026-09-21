@@ -1,118 +1,123 @@
 ---
-layout: base
+layout: acad-default
 ---
 
-{% include header.html type="post" %}
+{% assign date_format = site.date_format | default: "%B %-d, %Y" %}
 
-<div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
-  <div class="row row-cols-12">
-    <!-- <div class="{% if page.full-width %} col {% else %} col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 {% endif %}"> -->
-    <div class="col-md-9 col-xs-12">
-      {% if page.gh-repo %}
-      {% assign gh_split = page.gh-repo | split:'/' %}
-      {% assign gh_user = gh_split[0] %}
-      {% assign gh_repo = gh_split[1] %}
+<div id="main" role="main">
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="{{ page.title | strip_html | escape_once }}">
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    <meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">
 
-      <div id="header-gh-btns">
-        {% if page.gh-badge.size > 0 %}
-        {% for badge in page.gh-badge %}
-        {% case badge %}
-        {% when 'star'%}
-        <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=star&count=true"
-          frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-        {% when 'watch'%}
-        <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=watch&v=2&count=true"
-          frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-        {% when 'fork'%}
-        <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=fork&count=true"
-          frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-        {% when 'follow'%}
-        <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&type=follow&count=true" frameborder="0"
-          scrolling="0" width="220px" height="20px"></iframe>
-        {% endcase %}
-        {% endfor %}
-        {% endif %}
-      </div>
-      {% endif %}
+    <div class="page__inner-wrap">
 
-      {% if page.before-content %}
-      <div class="before-content">
-        {% for file in page.before-content %}
-        {% include {{ file }} %}
-        {% endfor %}
-      </div>
-      {% endif %}
+      <header class="oc-post-header">
+        <h1 class="oc-post-title" itemprop="headline">{{ page.title | strip_html }}</h1>
+        {% if page.subtitle %}<p class="oc-post-subtitle">{{ page.subtitle | strip_html }}</p>{% endif %}
 
-      <article role="main" class="blog-post">
-        {{ content }}
-      </article>
-
-      {% if page.tags.size > 0 %}
-      <div class="blog-tags">
-        <span>Tags:</span>
-        {% for tag in page.tags %}
-        <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      {% if page.after-content %}
-      <div class="after-content">
-        {% for file in page.after-content %}
-        {% include {{ file }} %}
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      {% if page.social-share %}
-      {% include social-share.html %}
-      {% endif %}
-
-      <ul class="pagination blog-pager">
-        {% if page.previous.url %}
-        <li class="page-item previous">
-          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top"
-            title="{{page.previous.title | strip_html | xml_escape}}">&larr; Previous Post</a>
-        </li>
-        {% endif %}
-        {% if page.next.url %}
-        <li class="page-item next">
-          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top"
-            title="{{page.next.title | strip_html | xml_escape}}">Next Post &rarr;</a>
-        </li>
-        {% endif %}
-      </ul>
-      <!-- Gitalk start -->
-      <div id="gitalk-container"></div>
-      <link rel="stylesheet" href="{{ '/assets/lib/gitalk/gitalk.css' | relative_url }}">
-      <script src="{{ '/assets/lib/gitalk/gitalk.min.js' | relative_url }}"></script>
-      <script>
-        var gitalk = new Gitalk({
-          id: window.location.pathname,   // Ensure uniqueness and length less than 50
-          clientID: '3620ef5a9f46ed0e3e6c',
-          clientSecret: '7c653668c5becda9946ce8d4bfb6537ef736a0ee',
-          repo: 'songqikong.github.io',
-          owner: 'songqikong',
-          admin: ['songqikong'],
-          distractionFreeMode: false  // Facebook-like distraction free mode
-        })
-        gitalk.render('gitalk-container')
-      </script>
-      <!-- Gitalk end -->
-    </div>
-
-    <div class='col-md-3 col-xs-0'>
-        <div class="toc">
-          <div class="toc-title">
-            <span class="toc-prompt">$</span><span class="toc-label">toc</span>
-          </div>
-          {% include toc.html html=content h_max=2 class='toc_style' %}
+        <div class="oc-post-meta">
+          <span class="post-meta">Posted on {{ page.date | date: date_format }}</span>
+          {% if page.last-updated %}
+          <span class="post-meta">Last updated {{ page.last-updated | date: date_format }}</span>
+          {% endif %}
+          {% assign word_count = content | number_of_words %}
+          <span class="post-meta" title="{{ word_count }} words">{{ word_count | divided_by: 200 | plus: 1 }} min read</span>
+          <span class="post-meta post-views" id="page-views-container">
+            <span class="post-views-loading" id="page-views-loading"><span class="post-views-dot"></span><span class="post-views-dot"></span><span class="post-views-dot"></span></span>
+            <span id="page-views-count" style="display:none">--</span> views
+          </span>
         </div>
+
+        {% if page.tags.size > 0 %}
+        <div class="oc-post-tags">
+          {% for tag in page.tags %}
+          <a class="oc-tag" href="{{ '/tags' | relative_url }}#{{ tag }}">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </header>
+
+      <div class="oc-post-grid">
+        <div class="oc-post-main">
+          {% if page.gh-repo %}
+            {% assign gh_split = page.gh-repo | split:'/' %}
+            <div id="header-gh-btns">
+              {% for badge in page.gh-badge %}
+              <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_split[0] }}&repo={{ gh_split[1] }}&type={{ badge }}&count=true"
+                frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if page.before-content %}
+          <div class="before-content">
+            {% for file in page.before-content %}
+            {% include {{ file }} %}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <article role="main" class="blog-post">
+            {{ content }}
+          </article>
+
+          {% if page.after-content %}
+          <div class="after-content">
+            {% for file in page.after-content %}
+            {% include {{ file }} %}
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% if page.social-share %}
+          {% include social-share.html %}
+          {% endif %}
+
+          <ul class="pagination blog-pager">
+            {% if page.previous.url %}
+            <li class="page-item previous">
+              <a class="page-link" href="{{ page.previous.url | relative_url }}" title="{{ page.previous.title | strip_html | xml_escape }}">&larr; Previous Post</a>
+            </li>
+            {% endif %}
+            {% if page.next.url %}
+            <li class="page-item next">
+              <a class="page-link" href="{{ page.next.url | relative_url }}" title="{{ page.next.title | strip_html | xml_escape }}">Next Post &rarr;</a>
+            </li>
+            {% endif %}
+          </ul>
+
+          <!-- Gitalk comments -->
+          <div id="gitalk-container"></div>
+          <link rel="stylesheet" href="{{ '/assets/lib/gitalk/gitalk.css' | relative_url }}">
+          <script src="{{ '/assets/lib/gitalk/gitalk.min.js' | relative_url }}"></script>
+          <script>
+            var gitalk = new Gitalk({
+              id: window.location.pathname,
+              clientID: '3620ef5a9f46ed0e3e6c',
+              clientSecret: '7c653668c5becda9946ce8d4bfb6537ef736a0ee',
+              repo: 'songqikong.github.io',
+              owner: 'songqikong',
+              admin: ['songqikong'],
+              distractionFreeMode: false
+            })
+            gitalk.render('gitalk-container')
+          </script>
+        </div>
+
+        <aside class="oc-post-aside">
+          <div class="toc">
+            <div class="toc-title">
+              <span class="toc-prompt">$</span><span class="toc-label">toc</span>
+            </div>
+            {% include toc.html html=content h_max=2 class='toc_style' %}
+          </div>
+        </aside>
+      </div>
+
     </div>
-
-  </div>
+  </article>
 </div>
-
 
 <script>
   (function () {

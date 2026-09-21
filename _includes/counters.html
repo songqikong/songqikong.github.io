@@ -1,0 +1,77 @@
+<!-- Site counters: 不蒜子 (busuanzi) + per-post view counter.
+     Extracted from the Beautiful Jekyll footer-scripts.html so the merged
+     AcademicPages layout chain can load them too. -->
+<script>
+  (function () {
+    if (!document.getElementById('busuanzi_value_site_uv') && !document.getElementById('busuanzi_value_site_pv')) return;
+
+    // 不蒜子 (busuanzi) 2.3 client, inlined verbatim from
+    // //busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js so the count
+    // request starts immediately instead of waiting for window.load (which on
+    // image-heavy posts fires only after every image has loaded).
+    var bszCaller, bszTag;
+    !function(){var c,d,e,a=!1,b=[];ready=function(c){return a||"interactive"===document.readyState||"complete"===document.readyState?c.call(document):b.push(function(){return c.call(this)}),this},d=function(){for(var a=0,c=b.length;c>a;a++)b[a].apply(document);b=[]},e=function(){a||(a=!0,d.call(window),document.removeEventListener?document.removeEventListener("DOMContentLoaded",e,!1):document.attachEvent&&(document.attachEvent("onreadystatechange",e),window==window.top&&(clearInterval(c),c=null)))},document.addEventListener?document.addEventListener("DOMContentLoaded",e,!1):document.attachEvent&&(document.attachEvent("onreadystatechange",function(){/loaded|complete/.test(document.readyState)&&e()}),window==window.top&&(c=setInterval(function(){try{a||document.documentElement.doScroll("left")}catch(b){return}e()},5)))}(),bszCaller={fetch:function(a,b){var c="BusuanziCallback_"+Math.floor(1099511627776*Math.random());window[c]=this.evalCall(b),a=a.replace("=BusuanziCallback","="+c),scriptTag=document.createElement("SCRIPT"),scriptTag.type="text/javascript",scriptTag.defer=!0,scriptTag.src=a,scriptTag.referrerPolicy="no-referrer-when-downgrade",document.getElementsByTagName("HEAD")[0].appendChild(scriptTag)},evalCall:function(a){return function(b){ready(function(){try{a(b),scriptTag.parentElement.removeChild(scriptTag)}catch(c){bszTag.hides()}})}}},bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback",function(a){bszTag.texts(a),bszTag.shows()}),bszTag={bszs:["site_pv","page_pv","site_uv"],texts:function(a){this.bszs.map(function(b){var c=document.getElementById("busuanzi_value_"+b);c&&(c.innerHTML=a[b])})},hides:function(){this.bszs.map(function(a){var b=document.getElementById("busuanzi_container_"+a);b&&(b.style.display="none")})},shows:function(){this.bszs.map(function(a){var b=document.getElementById("busuanzi_container_"+a);b&&(b.style.display="inline")})}};
+
+    // Fallback: if the count has not arrived within 3s (slow or unreachable
+    // server), reveal the placeholders so the row does not stay empty.
+    setTimeout(function () {
+      bszTag.bszs.forEach(function (b) {
+        var c = document.getElementById('busuanzi_container_' + b);
+        if (c && c.style.display === 'none') c.style.display = 'inline';
+      });
+    }, 3000);
+  })();
+</script>
+
+<!-- Per-post view counter (Cloudflare Worker, see counter-worker.js) -->
+{% if site.view_counter_url != '' %}
+<script>
+  (function () {
+    var base = '{{ site.view_counter_url }}'.replace(/\/+$/, '');
+    var el = document.getElementById('page-views-count');
+    var container = document.getElementById('page-views-container');
+    if (!base || !el || !container) return;
+
+    var real = false;
+    function reveal(n) {
+      var ld = document.getElementById('page-views-loading');
+      if (ld) ld.style.display = 'none';
+      el.textContent = n;
+      el.style.display = 'inline';
+    }
+
+    function attempt(triesLeft) {
+      fetch(base + '/count?path=' + encodeURIComponent(location.pathname), { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('bad status')); })
+        .then(function (d) {
+          if (d && typeof d.count === 'number') {
+            real = true;
+            reveal(d.count);
+          } else {
+            reveal('--');
+          }
+        })
+        .catch(function () {
+          // One retry after a short delay for transient network failures.
+          if (triesLeft > 0) setTimeout(function () { attempt(triesLeft - 1); }, 1500);
+          else reveal('--');
+        });
+    }
+
+    function start() {
+      // Fallback: swap the loading dots for '--' if the worker is slow or unreachable.
+      setTimeout(function () { if (!real) reveal('--'); }, 3000);
+      attempt(1);
+    }
+
+    // If Chrome pre-rendered this page in the background, wait until it
+    // becomes visible: the user should see the loading animation, and the
+    // view should only count for an actual visit, not a speculative preload.
+    if ('prerendering' in document && document.prerendering) {
+      document.addEventListener('prerenderingchange', start, { once: true });
+    } else {
+      start();
+    }
+  })();
+</script>
+{% endif %}

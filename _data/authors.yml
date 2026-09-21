@@ -1,0 +1,11 @@
+# Authors
+# Used by _includes/acad/author-profile.html when the page sets `author: <key>`.
+
+carsonkong:
+  name     : "Songqi (Carson) Kong"
+  avatar   : "avatar.png"
+  bio      : "Algorithm Engineer at <a href='https://xgrids.cn/'>XGRIDS</a><br>3D Vision · LiDAR · 3D Reconstruction"
+  location : "Qingdao, China"
+  email    : "kkanshan@outlook.com"
+  github   : "songqikong"
+  uri      : "https://songqikong.github.io"

@@ -1,0 +1,30 @@
+﻿{% include acad/base_path %}
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="{{ base_path }}/">{{ site.title }}</a></li>
+          {% for link in site.data.navigation.main %}
+            {% if link.url contains 'http' %}
+              {% assign domain = '' %}
+              {% else %}
+              {% assign domain = base_path %}
+            {% endif %}
+            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+        <div class="oc-masthead-actions">
+          <button class="oc-term-btn" type="button" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">
+            <span class="oc-term-btn-icon icon-moon">◐</span>
+            <span class="oc-term-btn-icon icon-sun">◑</span>
+          </button>
+          <button class="oc-lang-btn" data-lang-toggle type="button" aria-label="Switch language">中文</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

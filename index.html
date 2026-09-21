@@ -1,415 +1,182 @@
 ---
-layout: homepage
-full-width: true
+layout: acad-single
+permalink: /
+title: "About Me"
+excerpt: "Algorithm Engineer at XGRIDS, working on 3D vision, LiDAR point clouds and 3D reconstruction."
+author: carsonkong
+author_profile: true
 ---
 
-<!-- Set language class on <html> before content renders (avoids flash) -->
-<script>
-  (function () {
-    var lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('oc-lang') || 'en';
-    if (lang !== 'en' && lang !== 'cn') lang = 'en';
-    document.documentElement.classList.remove('lang-en', 'lang-cn');
-    document.documentElement.classList.add('lang-' + lang);
-    localStorage.setItem('oc-lang', lang);
-  })();
-</script>
+<p data-lang="en">Hi! I'm Songqi, also known as Carson. I am currently an Algorithm Engineer at <strong>XGRIDS</strong>, working on 3D vision and LiDAR point cloud algorithms. I received my master's degree from the <strong>Ocean University of China</strong>, where I was advised by Prof. <a href="https://tocaiqing.github.io/">Cai Qing</a> at <a href="https://ouc-cv-lab.github.io/">VMV Lab</a>.</p>
 
-<!-- OpenCode-style Terminal Layout -->
-<div class="oc-layout">
+<p data-lang="cn">你好，我是孔松琦。目前在 <strong>XGRIDS</strong> 担任算法工程师，从事三维视觉与激光雷达点云算法研发。硕士毕业于<strong>中国海洋大学</strong>，师从<a href="https://tocaiqing.github.io/">蔡青</a>教授，就读于 <a href="https://ouc-cv-lab.github.io/">VMV Lab</a>。</p>
 
-  <!-- Top Bar -->
-  <div class="oc-topbar oc-fade-in">
-    <div class="oc-topbar-left">
-      <span class="oc-prompt">$</span>
-      <span class="oc-cmd">cat ~/profile.md</span>
-      <span style="color: var(--oc-text-tertiary);">// songqikong.github.io</span>
+<p data-lang="en">My interests lie in 3D vision, LiDAR and point cloud algorithms in autonomous driving, and 3D reconstruction from uncalibrated scenarios. Outside of research I enjoy building small tools with vibe coding, see <a href="/VIBING">Vibing</a> for what I have made.</p>
+
+<p data-lang="cn">研究课题包括三维视觉、自动驾驶场景中的激光雷达与点云算法，以及非标定场景下的三维重建。研究之外喜欢用 Vibe Coding 做点小工具，见 <a href="/VIBING">Vibing</a>。</p>
+
+<p data-lang="en">I am always happy to connect with people working on 3D perception and reconstruction. <a href="mailto:kkanshan@outlook.com">Drop me an email →</a></p>
+
+<p data-lang="cn">欢迎做三维感知与重建方向的朋友交流。<a href="mailto:kkanshan@outlook.com">给我发邮件 →</a></p>
+
+# Work Experience
+
+<div class="experience-list">
+  <article class="experience-item experience-item--featured">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <img src="{{ '/assets/img/icons/xgrids.svg' | relative_url }}" alt="XGRIDS logo">
+        <strong>XGRIDS</strong>
+      </div>
+      <span data-lang="en">July 2026 – Present</span>
+      <span data-lang="cn">2026/07 – 至今</span>
     </div>
-    <div class="oc-topbar-right">
-      <a onclick="toggleLang()" class="oc-lang-btn" title="Switch language" style="cursor:pointer">
-        <i class="fas fa-language" aria-hidden="true"></i>
-      </a>
+    <div class="experience-role">
+      <span data-lang="en">Full-time · Algorithm Engineer</span>
+      <span data-lang="cn">全职 · 算法工程师</span>
     </div>
-  </div>
-
-  <!-- Content Area -->
-  <div class="oc-content">
-
-    <!-- Left Sidebar - Profile -->
-    <div class="oc-sidebar">
-      <div class="oc-avatar-wrap oc-fade-in oc-delay-1">
-        <img src="/assets/img/avatar.png" alt="Songqi(Carson) Kong" class="oc-avatar">
-        <div class="oc-avatar-info">
-          <h1><span data-lang="en">Songqi(Carson) Kong</span><span data-lang="cn">孔松琦</span></h1>
-          <span class="oc-handle">@songqikong</span>
-        </div>
+    <p data-lang="en">3D vision, LiDAR point clouds, and 3D reconstruction from uncalibrated scenarios.</p>
+    <p data-lang="cn">三维视觉、激光雷达点云，以及非标定场景下的三维重建。</p>
+  </article>
+  <article class="experience-item">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <img src="{{ '/assets/img/icons/deeproute.svg' | relative_url }}" alt="DeepRoute.AI logo">
+        <strong>DeepRoute.AI</strong>
       </div>
-
-      <div class="oc-sidebar-section oc-fade-in oc-delay-2">
-        <span class="oc-sidebar-label"><span data-lang="en">// about</span><span data-lang="cn">// 关于</span></span>
-        <p class="oc-bio" data-lang="en">
-          Algorithm Engineer at <a href="https://xgrids.cn/">XGRIDS</a>.
-          Graduated from <a href="https://ouc-cv-lab.github.io/">VMV Lab</a>,
-          <a href="http://ouc.edu.cn/">Ocean University of China</a>,
-          advised by <a href="https://tocaiqing.github.io/">Prof. Cai Qing</a>.
-          Check out <a href="/VIBING">Vibing</a> to see some fun stuff I built with Vibe coding.
-        </p>
-        <p class="oc-bio" data-lang="cn">
-          <a href="https://xgrids.cn/">XGRIDS</a>算法工程师。
-          毕业于<a href="https://ouc-cv-lab.github.io/">中国海洋大学VMV Lab</a>，
-          师从<a href="https://tocaiqing.github.io/">蔡青</a>教授。
-          查看<a href="/VIBING">Vibing</a>看我Vibe coding写的一些有趣的小玩意。
-        </p>
-      </div>
-
-      <div class="oc-sidebar-section oc-fade-in oc-delay-3">
-        <span class="oc-sidebar-label"><span data-lang="en">// research</span><span data-lang="cn">// 研究方向</span></span>
-        <div class="oc-tags">
-          <span class="oc-tag" data-lang="en">3D Vision</span><span class="oc-tag" data-lang="cn">3D视觉</span>
-          <span class="oc-tag" data-lang="en">Point Cloud</span><span class="oc-tag" data-lang="cn">点云</span>
-          <span class="oc-tag" data-lang="en">Scene Seg</span><span class="oc-tag" data-lang="cn">场景分割</span>
-          <span class="oc-tag" data-lang="en">Completion</span><span class="oc-tag" data-lang="cn">补全</span>
-        </div>
-      </div>
-
-      <div class="oc-sidebar-section oc-fade-in oc-delay-4">
-        <span class="oc-sidebar-label"><span data-lang="en">// interests</span><span data-lang="cn">// 兴趣</span></span>
-        <div class="oc-tags">
-          <span class="oc-tag" data-lang="en">Cycling</span><span class="oc-tag" data-lang="cn">骑行</span>
-          <span class="oc-tag" data-lang="en">Swimming</span><span class="oc-tag" data-lang="cn">游泳</span>
-          <span class="oc-tag" data-lang="en">Fitness</span><span class="oc-tag" data-lang="cn">健身</span>
-        </div>
-      </div>
-
-      <div class="oc-sidebar-section oc-fade-in oc-delay-5">
-        <span class="oc-sidebar-label"><span data-lang="en">// links</span><span data-lang="cn">// 链接</span></span>
-        <div class="oc-links">
-          <a href="https://github.com/songqikong" class="oc-link">
-            <svg class="oc-link-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-            github.com/songqikong
-          </a>
-          <a href="mailto:kkanshan@outlook.com" class="oc-link">
-            <svg class="oc-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-            </svg>
-            kkanshan@outlook.com
-          </a>
-        </div>
-      </div>
+      <span data-lang="en">January 2026 – April 2026</span>
+      <span data-lang="cn">2026/01 – 2026/04</span>
     </div>
-
-    <!-- Main Area -->
-    <div class="oc-main">
-      <!-- <div class="oc-section-header oc-fade-in oc-delay-2">
-        <span class="oc-prompt">$</span> ls -la ~/experience/
-        <span class="oc-comment"><span data-lang="en">// education &amp; work</span><span data-lang="cn">//
-            教育与工作</span></span>
-      </div> -->
-
-      <div class="oc-card oc-fade-in oc-delay-2">
-        <div class="oc-card-header">
-          <span class="oc-card-title" data-lang="en">Recent Blogs</span>
-          <span class="oc-card-title" data-lang="cn">最新博客</span>
-          <span class="oc-card-badges">
-            <a href="/BLOG" class="oc-link oc-blog-more" data-lang="en">all →</a>
-            <a href="/BLOG" class="oc-link oc-blog-more" data-lang="cn">全部 →</a>
-          </span>
-        </div>
-        <div class="oc-blogs-grid">
-          {% for post in site.posts limit:4 %}
-          {% assign thumb = post.thumbnail-img %}
-          {% if thumb == nil or thumb == '' %}
-            {% assign content_parts = post.content | split: '<img ' %}
-            {% if content_parts.size > 1 %}
-              {% assign img_tag = content_parts[1] | split: '>' | first %}
-              {% assign src_parts = img_tag | split: 'src="' %}
-              {% if src_parts.size > 1 %}
-                {% assign thumb = src_parts[1] | split: '"' | first %}
-                {% assign thumb = thumb | remove_first: '../' | remove_first: '../' | remove_first: '../' %}
-                {% assign thumb = thumb | relative_url %}
-              {% endif %}
-            {% endif %}
-          {% endif %}
-          <a href="{{ post.url }}" class="oc-blog-mini">
-            <span class="oc-blog-mini-row">
-              {% if thumb %}
-              <img class="oc-blog-mini-thumb" src="{{ thumb }}" alt="" loading="lazy">
-              {% else %}
-              <span class="oc-blog-mini-thumb oc-blog-mini-thumb-fb">{{ post.title | strip_html | truncate: 1, '' }}</span>
-              {% endif %}
-              <span class="oc-blog-mini-title">{{ post.title | strip_html }}</span>
-            </span>
-            <span class="oc-blog-mini-meta">
-              <span class="oc-blog-mini-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-              {% if post.tags.size > 0 %}
-              <span class="oc-blog-mini-tags">
-                {% for tag in post.tags limit:2 %}<span class="oc-tag">{{ tag }}</span>{% endfor %}
-              </span>
-              {% endif %}
-            </span>
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="oc-grid">
-        <!-- Education Card -->
-        <div class="oc-card oc-fade-in oc-delay-3">
-          <div class="oc-card-header">
-            <span class="oc-card-title">Education</span>
-          </div>
-          <div class="oc-items">
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <img class="oc-item-icon" src="/assets/img/icons/ouc.svg" alt="Ocean University of China">
-              <div class="oc-item-body">
-                <div class="oc-item-title-line">
-                  <span class="oc-item-title" data-lang="en">Master of Science in Agricultural Informatization</span>
-                  <span class="oc-item-title" data-lang="cn">农业工程与信息技术硕士</span>
-                </div>
-                <div class="oc-item-sub-row">
-                  <div class="oc-item-sub" data-lang="en">Ocean University of China</div>
-                  <div class="oc-item-sub" data-lang="cn">中国海洋大学</div>
-                </div>
-                <span class="oc-item-meta">2023 → 2026</span>
-              </div>
-            </div>
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <img class="oc-item-icon" src="/assets/img/icons/qut.svg" alt="Qingdao University of Technology">
-              <div class="oc-item-body">
-                <div class="oc-item-title-line">
-                  <span class="oc-item-title" data-lang="en">Bachelor of Science in Computer Science</span>
-                  <span class="oc-item-title" data-lang="cn">计算机科学与技术学士</span>
-                </div>
-                <div class="oc-item-sub-row">
-                  <div class="oc-item-sub" data-lang="en">Qingdao University of Technology</div>
-                  <div class="oc-item-sub" data-lang="cn">青岛理工大学</div>
-                </div>
-                <span class="oc-item-meta">2018 → 2022</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Work Experience Card -->
-        <div class="oc-card oc-fade-in oc-delay-4">
-          <div class="oc-card-header">
-            <span class="oc-card-title" data-lang="en">Work Experience</span>
-            <span class="oc-card-title" data-lang="cn">工作经历</span>
-          </div>
-          <div class="oc-items">
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <img class="oc-item-icon" src="/assets/img/icons/xgrids.svg" alt="XGRIDS">
-              <div class="oc-item-body">
-                <div class="oc-item-title-line">
-                  <span class="oc-item-title" data-lang="en">Algorithm Engineer</span>
-                  <span class="oc-item-title" data-lang="cn">算法工程师</span>
-                </div>
-                <div class="oc-item-sub">XGRIDS</div>
-                <span class="oc-item-meta" data-lang="en">2026/07 → Present</span>
-                <span class="oc-item-meta" data-lang="cn">2026/07 → 至今</span>
-              </div>
-            </div>
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <img class="oc-item-icon" src="/assets/img/icons/deeproute.svg" alt="DeepRoute.AI">
-              <div class="oc-item-body">
-                  <div class="oc-item-title-line">
-                    <span class="oc-item-title-group">
-                      <span class="oc-item-title" data-lang="en">Perception Algorithm Engineer</span>
-                      <span class="oc-item-title" data-lang="cn">感知算法工程师</span>
-                      <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
-                      <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
-                    </span>
-                  </div>
-                  <div class="oc-item-sub-row">
-                    <div class="oc-item-sub" data-lang="en">DeepRoute.AI</div>
-                    <div class="oc-item-sub" data-lang="cn">元戎启行 (DeepRoute.ai)</div>
-                  </div>
-                  <span class="oc-item-meta">2026/01 → 2026/04</span>
-              </div>
-            </div>
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <img class="oc-item-icon" src="/assets/img/icons/tencentcloud.svg" alt="Tencent Cloud">
-              <div class="oc-item-body">
-                  <div class="oc-item-title-line">
-                    <span class="oc-item-title-group">
-                      <span class="oc-item-title" data-lang="en">Cloud Computing Architect</span>
-                      <span class="oc-item-title" data-lang="cn">云计算架构师</span>
-                      <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
-                      <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
-                    </span>
-                  </div>
-                  <div class="oc-item-sub-row">
-                    <div class="oc-item-sub" data-lang="en">Tencent Cloud Technology Co., Ltd</div>
-                    <div class="oc-item-sub" data-lang="cn">腾讯云科技有限公司</div>
-                  </div>
-                  <span class="oc-item-meta">2025/05 → 2025/08</span>
-              </div>
-            </div>
-            <!-- <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <img class="oc-item-icon" src="/assets/img/icons/hndz.png" alt="Tianjin Huaning Electronics">
-              <div class="oc-item-body">
-                <div class="oc-item-title-line">
-                  <span class="oc-item-title-group">
-                    <span class="oc-item-title" data-lang="en">Assistant Java Engineer</span>
-                    <span class="oc-item-title" data-lang="cn">助理Java工程师</span>
-                    <span class="oc-badge oc-badge--amber" data-lang="en">Intern</span>
-                    <span class="oc-badge oc-badge--amber" data-lang="cn">实习</span>
-                  </span>
-                  <span class="oc-item-meta">2023/02 → 2023/05</span>
-                </div>
-                <div class="oc-item-sub-row">
-                  <div class="oc-item-sub" data-lang="en">Tianjin Huaning Electronics Co., Ltd</div>
-                  <div class="oc-item-sub" data-lang="cn">天津华宁电子有限公司</div>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
-
-        <!-- Research Card - Full Width -->
-        <div class="oc-card oc-card--full oc-fade-in oc-delay-5">
-          <div class="oc-card-header">
-            <span class="oc-card-title">Research</span>
-            <span class="oc-card-badges">
-              <span class="oc-badge oc-badge--green" data-lang="en">1 Accepted</span>
-              <span class="oc-badge oc-badge--green" data-lang="cn">1篇已录用</span>
-              <span class="oc-badge oc-badge--amber" data-lang="en">1 Under Review</span>
-              <span class="oc-badge oc-badge--amber" data-lang="cn">1篇在投</span>
-            </span>
-          </div>
-          <div class="oc-bio" style="margin-bottom: 10px;" data-lang="en">
-            Research interests include 3D vision, LiDAR and point cloud algorithms in autonomous driving, and 3D
-            reconstruction from uncalibrated scenarios.
-          </div>
-          <div class="oc-bio" style="margin-bottom: 10px;" data-lang="cn">
-            研究课题包括：三维视觉、自动驾驶场景中LiDAR和点云算法、非标定场景下的三维重建算法。
-          </div>
-          <div class="oc-items">
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <div class="oc-item-body">
-                <div class="oc-research-title">
-                  <span><code>MESC-3D</code>: Mining Effective Semantic Cues for 3D Reconstruction from a Single
-                    Image</span>
-                </div>
-                <div class="oc-item-sub" data-lang="en">3D Reconstruction · Single Image · Semantic Cues</div>
-                <div class="oc-item-sub" data-lang="cn">三维重建 · 单图像 · 语义线索</div>
-                <span class="oc-research-venue" data-lang="en">CVPR · Accepted</span>
-                <span class="oc-research-venue" data-lang="cn">CVPR录用</span>
-              </div>
-            </div>
-            <!-- <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <div class="oc-item-body">
-                <div class="oc-research-title">
-                  <span><code>AS4C</code>: Arbitrary-Scale Self-Supervised Semantic Scene Completion from LiDAR</span>
-                  <span class="oc-research-venue" data-lang="en">ACM MM · CCF-A · Under Review</span>
-                  <span class="oc-research-venue" data-lang="cn">ACM MM在投 · CCF-A</span>
-                </div>
-                <div class="oc-item-sub" data-lang="en">Semantic Scene Completion · LiDAR · Self-Supervised</div>
-                <div class="oc-item-sub" data-lang="cn">语义场景补全 · 激光雷达 · 自监督</div>
-              </div>
-            </div> -->
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <div class="oc-item-body">
-                <div class="oc-research-title">
-                  <span><code>SMSPC</code>: Semantic-aware Multi-class Self-supervised Point Cloud Completion</span>
-                </div>
-                <div class="oc-item-sub" data-lang="en">Point Cloud Completion · Multi-class · Self-Supervised</div>
-                <div class="oc-item-sub" data-lang="cn">点云补全 · 多类别 · 自监督</div>
-                <span class="oc-research-venue" data-lang="en">TIP · Under Review</span>
-                <span class="oc-research-venue" data-lang="cn">TIP在投</span>
-              </div>
-            </div>
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <div class="oc-item-body">
-                <div class="oc-research-title">
-                  <span data-lang="en">Self-supervised 3D Point Cloud Completion Method for Underwater Objects</span>
-                  <span data-lang="cn">一种针对水下目标物的自监督三维点云补全方法</span>
-                </div>
-                <div class="oc-item-sub" data-lang="en">Underwater · Point Cloud Completion · Self-Supervised</div>
-                <div class="oc-item-sub" data-lang="cn">水下目标 · 点云补全 · 自监督</div>
-                <span class="oc-research-venue" data-lang="en">Invention Patent · Granted</span>
-                <span class="oc-research-venue" data-lang="cn">发明专利 · 已授权</span>
-              </div>
-            </div>
-            <div class="oc-item">
-              <span class="oc-item-marker">[*]</span>
-              <div class="oc-item-body">
-                <div class="oc-research-title">
-                  <span data-lang="en">3D Object Reconstruction from a Single Uncalibrated View</span>
-                  <span data-lang="cn">一种基于非标定单视图的三维目标重建方法</span>
-                </div>
-                <div class="oc-item-sub" data-lang="en">3D Reconstruction · Uncalibrated · Single View</div>
-                <div class="oc-item-sub" data-lang="cn">三维重建 · 非标定 · 单视图</div>
-                <span class="oc-research-venue" data-lang="en">Invention Patent · Granted</span>
-                <span class="oc-research-venue" data-lang="cn">发明专利 · 已授权</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="experience-role">
+      <span data-lang="en">Research Intern · Perception Algorithm</span>
+      <span data-lang="cn">研究实习 · 感知算法</span>
     </div>
-  </div>
-
-  <!-- Bottom Bar -->
-  <div class="oc-bottombar oc-fade-in oc-delay-6">
-    <div class="oc-stats">
-      <div class="oc-stat">
-        <span class="oc-stat-value">2</span>
-        <span class="oc-stat-label">paper</span>
+    <p data-lang="en">Autonomous driving perception, working on LiDAR-based detection and segmentation.</p>
+    <p data-lang="cn">自动驾驶感知，从事基于激光雷达的检测与分割。</p>
+  </article>
+  <article class="experience-item">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <img src="{{ '/assets/img/icons/tencentcloud.svg' | relative_url }}" alt="Tencent Cloud logo">
+        <strong>Tencent Cloud</strong>
       </div>
-      <div class="oc-stat">
-        <span class="oc-stat-value">3</span>
-        <span class="oc-stat-label" data-lang="en">positions</span>
-        <span class="oc-stat-label" data-lang="cn">职位</span>
-      </div>
-      <div class="oc-stat">
-        <span class="oc-stat-value">3D Vision</span>
-        <span class="oc-stat-label" data-lang="en">research</span>
-        <span class="oc-stat-label" data-lang="cn">研究</span>
-      </div>
-      <div class="oc-stat">
-        <span class="oc-stat-value" id="busuanzi_value_site_uv">--</span>
-        <span class="oc-stat-label" data-lang="en">visitors</span>
-        <span class="oc-stat-label" data-lang="cn">访客</span>
-      </div>
-      <div class="oc-stat">
-        <span class="oc-stat-value" id="busuanzi_value_site_pv">--</span>
-        <span class="oc-stat-label" data-lang="en">views</span>
-        <span class="oc-stat-label" data-lang="cn">访问</span>
-      </div>
+      <span data-lang="en">May 2025 – August 2025</span>
+      <span data-lang="cn">2025/05 – 2025/08</span>
     </div>
-    <div style="font-family: var(--oc-mono); font-size: 11px; color: var(--oc-text-tertiary);">
-      last updated: 2026 <span class="oc-cursor"></span>
+    <div class="experience-role">
+      <span data-lang="en">Intern · Cloud Computing Architect</span>
+      <span data-lang="cn">实习 · 云计算架构师</span>
     </div>
-  </div>
-
+    <p data-lang="en">Cloud architecture design and engineering practice.</p>
+    <p data-lang="cn">云计算架构设计与工程实践。</p>
+  </article>
 </div>
 
-<!-- Language toggle logic -->
-<script>
-  function toggleLang() {
-    var html = document.documentElement;
-    var isEn = html.classList.contains('lang-en');
-    var newLang = isEn ? 'cn' : 'en';
-    html.classList.remove('lang-en', 'lang-cn');
-    html.classList.add('lang-' + newLang);
-    localStorage.setItem('oc-lang', newLang);
-    var url = new URL(window.location);
-    if (newLang === 'en') { url.searchParams.delete('lang'); }
-    else { url.searchParams.set('lang', 'cn'); }
-    history.replaceState(null, '', url);
-  }
-</script>
+# Education
+
+<div class="experience-list education-list">
+  <article class="experience-item experience-item--featured education-item">
+    <div class="experience-heading">
+      <div class="experience-company education-company">
+        <img src="{{ '/assets/img/icons/ouc.svg' | relative_url }}" alt="Ocean University of China logo">
+        <strong>Ocean University of China</strong>
+      </div>
+      <span data-lang="en">September 2023 – June 2026</span>
+      <span data-lang="cn">2023/09 – 2026/06</span>
+    </div>
+    <div class="experience-role">
+      <span data-lang="en">M.S. in Agricultural Informatization</span>
+      <span data-lang="cn">农业工程与信息技术 硕士</span>
+    </div>
+    <p data-lang="en">Advised by Prof. <a href="https://tocaiqing.github.io/">Cai Qing</a> at <a href="https://ouc-cv-lab.github.io/">VMV Lab</a>.</p>
+    <p data-lang="cn">师从<a href="https://tocaiqing.github.io/">蔡青</a>教授，<a href="https://ouc-cv-lab.github.io/">VMV Lab</a>。</p>
+  </article>
+  <article class="experience-item education-item">
+    <div class="experience-heading">
+      <div class="experience-company education-company">
+        <img src="{{ '/assets/img/icons/qut.svg' | relative_url }}" alt="Qingdao University of Technology logo">
+        <strong>Qingdao University of Technology</strong>
+      </div>
+      <span data-lang="en">September 2018 – June 2022</span>
+      <span data-lang="cn">2018/09 – 2022/06</span>
+    </div>
+    <div class="experience-role">
+      <span data-lang="en">B.S. in Computer Science and Technology</span>
+      <span data-lang="cn">计算机科学与技术 学士</span>
+    </div>
+  </article>
+</div>
+
+# Publications
+
+<div class="experience-list pub-list">
+  <article class="experience-item experience-item--featured">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <strong>MESC-3D: Mining Effective Semantic Cues for 3D Reconstruction from a Single Image</strong>
+      </div>
+      <span>CVPR 2026</span>
+    </div>
+    <div class="experience-role">
+      <span data-lang="en">Accepted</span>
+      <span data-lang="cn">已录用</span>
+    </div>
+  </article>
+  <article class="experience-item">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <strong>SMSPC: Semantic-aware Multi-class Self-supervised Point Cloud Completion</strong>
+      </div>
+      <span>IEEE TIP</span>
+    </div>
+    <div class="experience-role">
+      <span data-lang="en">Under review</span>
+      <span data-lang="cn">审稿中</span>
+    </div>
+  </article>
+  <article class="experience-item">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <strong data-lang="en">Self-supervised 3D Point Cloud Completion for Underwater Objects</strong>
+        <strong data-lang="cn">一种针对水下目标物的自监督三维点云补全方法</strong>
+      </div>
+      <span>Patent</span>
+    </div>
+    <div class="experience-role">
+      <span data-lang="en">Invention patent, granted</span>
+      <span data-lang="cn">发明专利，已授权</span>
+    </div>
+  </article>
+  <article class="experience-item">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <strong data-lang="en">3D Object Reconstruction from a Single Uncalibrated View</strong>
+        <strong data-lang="cn">一种基于非标定单视图的三维目标重建方法</strong>
+      </div>
+      <span>Patent</span>
+    </div>
+    <div class="experience-role">
+      <span data-lang="en">Invention patent, granted</span>
+      <span data-lang="cn">发明专利，已授权</span>
+    </div>
+  </article>
+</div>
+
+{% assign has_awards = false %}
+{% if site.data.awards and site.data.awards.size > 0 %}{% assign has_awards = true %}{% endif %}
+{% if has_awards %}
+# Awards
+
+<ul class="oc-list">
+  {% for award in site.data.awards %}
+  <li>
+    {% if award.link %}<a href="{{ award.link }}">{{ award.title }}</a>{% else %}{{ award.title }}{% endif %}{% if award.desc %} — {{ award.desc }}{% endif %}{% if award.year %} <span class="oc-tag oc-tag--muted">{{ award.year }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+# Miscellaneous
+
+- <span data-lang="en">Outside of work I ride along the west coast of Qingdao and the Haihe River in Tianjin. Photos are in <a href="/CYCLING">Cycling</a>.</span><span data-lang="cn">工作之外常骑青岛西海岸与天津海河沿线，照片见 <a href="/CYCLING">Cycling</a>。</span>
+- <span data-lang="en">I also swim and work out regularly, and I am a heavy user of vibe coding.</span><span data-lang="cn">平时也游泳、健身，同时是 Vibe Coding 的重度用户。</span>

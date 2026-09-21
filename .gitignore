@@ -1,5 +1,6 @@
 # project
 _site
+_preview
 .sass-cache
 .vagrant
 
@@ -15,3 +16,6 @@ beautiful-jekyll-theme-*.gem
 # jekyll build (local)
 vendor/
 .bundle/
+
+# agent workspace notes
+.workbuddy/

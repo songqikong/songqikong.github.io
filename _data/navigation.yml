@@ -1,0 +1,13 @@
+# main links links
+main:
+  - title: "About me"
+    url: /
+
+  - title: "Blog"
+    url: /BLOG
+
+  - title: "Vibing"
+    url: /VIBING
+
+  - title: "Cycling"
+    url: /CYCLING

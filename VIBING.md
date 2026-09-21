@@ -3,7 +3,7 @@ layout: page
 full-width: true
 ---
 
-<div class="oc-layout" style="height: calc(100vh - 50px); overflow: auto;">
+<div class="oc-layout">
   <!-- Top Bar -->
   <div class="oc-topbar oc-fade-in">
     <div class="oc-topbar-left">

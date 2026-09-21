@@ -1,0 +1,9 @@
+﻿{% include acad/base_path %}
+
+{% if site.tag_archive.type and page.tags[0] %}
+  {% include acad/tag-list.html %}
+{% endif %}
+
+{% if site.category_archive.type and page.categories[0] %}
+  {% include acad/category-list.html %}
+{% endif %}

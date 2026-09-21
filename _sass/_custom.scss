@@ -1,0 +1,209 @@
+/* ==========================================================================
+   Page typography and the résumé timeline
+   --------------------------------------------------------------------------
+   This file compiles into acad.css and owns layout, rhythm and the type
+   scale. Terminal accents — tags, the masthead buttons, the post grid —
+   live in assets/css/opencode.css.
+
+   Colours are never hard-coded here. Every one of them is a --oc-* custom
+   property, so the palette has a single definition and the dark theme
+   needs no per-selector overrides. A hard-coded #fff ring on the timeline
+   dot used to leave a white halo in dark mode; that class of bug is what
+   this rule exists to prevent.
+   ========================================================================== */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  color: var(--oc-body-text, #29313D);
+  line-height: 1.62;
+}
+
+/* --- Headings ------------------------------------------------------
+   No negative tracking. Newsreader is tightly fitted to begin with, and
+   the CJK editions render as faux-condensed when letter-spacing goes
+   negative — the Chinese version is half the site. */
+.page__title,
+.page__content h1,
+.page__content h2,
+.page__content h3,
+.page__content h4 {
+  color: var(--oc-heading, #172033);
+}
+
+/* The page title has to visibly outrank the section headings, which are
+   plain h1s inside .page__content. */
+.page__title {
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.page__content h1 {
+  margin-top: 2.6rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--oc-border);
+  font-size: 1.32em;
+  font-weight: 600;
+}
+
+.page__content h2 {
+  font-size: 1.18em;
+  font-weight: 600;
+}
+
+.page__content h3 {
+  font-size: 1.06em;
+  font-weight: 600;
+}
+
+/* Small run-in label used inside posts. */
+.page__content h4 {
+  margin-top: 1.9rem;
+  color: var(--oc-text-secondary);
+  font-size: 0.84em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.page__content a {
+  color: var(--oc-blue);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.page__content a:hover {
+  color: var(--oc-blue-hover);
+}
+
+.page__content > ul li {
+  margin-bottom: 0.7rem;
+}
+
+/* --- Résumé timeline ------------------------------------------------
+   One structure shared by Work Experience, Education and Publications:
+   rail plus dot on the left, heading with the date or venue pushed right,
+   a secondary line underneath, then an optional description. */
+.experience-list {
+  margin: 0.25rem 0 2.4rem;
+}
+
+.experience-item {
+  position: relative;
+  padding: 1.05rem 0 1.05rem 1.2rem;
+  border-left: 2px solid var(--oc-border);
+}
+
+.experience-item::before {
+  position: absolute;
+  top: 1.5rem;
+  left: -0.36rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  /* The ring is painted in the page colour so the dot punches a hole in
+     the rail instead of sitting on top of it. */
+  border: 2px solid var(--oc-bg);
+  border-radius: 50%;
+  background: var(--oc-text-tertiary);
+  content: "";
+}
+
+.experience-item--featured::before {
+  background: var(--oc-blue);
+}
+
+.experience-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.experience-heading strong {
+  color: var(--oc-heading, #172033);
+  font-size: 1.06em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.experience-company {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.experience-company img {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+}
+
+.education-company img {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+/* Dates and venues are the terminal accent: mono, small, quiet. */
+.experience-heading span {
+  flex: none;
+  font-family: var(--oc-mono);
+  font-size: 0.78em;
+  letter-spacing: 0;
+  color: var(--oc-text-tertiary);
+  white-space: nowrap;
+}
+
+/* The role and status line is prose, so it stays in the serif. */
+.experience-role {
+  margin-top: 0.18rem;
+  color: var(--oc-text-secondary);
+  font-size: 0.94em;
+}
+
+.experience-item p {
+  margin: 0.5rem 0 0;
+  color: var(--oc-text-secondary);
+  font-size: 0.94em;
+  line-height: 1.55;
+}
+
+/* Paper titles run long, so their heading cannot sit in a flex row next
+   to the venue. */
+.pub-list .experience-company {
+  display: block;
+  min-width: 0;
+}
+
+.pub-list .experience-heading strong {
+  font-size: 1em;
+}
+
+/* --- Author sidebar ------------------------------------------------- */
+.author__name {
+  font-weight: 600;
+}
+
+.author__bio {
+  color: var(--oc-text-secondary);
+  font-size: 0.9em;
+  line-height: 1.55;
+}
+
+@media (max-width: 600px) {
+  .experience-heading {
+    display: block;
+  }
+
+  .experience-heading span {
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .experience-item {
+    padding-left: 1rem;
+  }
+}
