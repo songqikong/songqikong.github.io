@@ -14,7 +14,7 @@ Gemfile.lock
 beautiful-jekyll-theme-*.gem
 
 # jekyll build (local)
-vendor/
+/vendor/
 .bundle/
 
 # agent workspace notes
