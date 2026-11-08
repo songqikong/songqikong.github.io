@@ -1,97 +1,28 @@
 ---
-layout: acad-default
+layout: acad-single
 ---
 
-{% assign posts = paginator.posts | default: site.posts %}
+{{ content }}
 
-<div class="oc-layout">
+<h1>Posts</h1>
 
-  <div class="oc-blog-wrap">
-
-    <!-- Top Bar -->
-    <div class="oc-topbar oc-topbar--inset oc-fade-in">
-      <div class="oc-topbar-left">
-        <span class="oc-prompt">$</span>
-        <span class="oc-cmd">cat ~/blog/*.md</span>
-        <span style="color: var(--oc-text-tertiary);">// {{ posts.size }} posts</span>
+<div class="experience-list post-list">
+  {% for post in site.posts %}
+  <article class="experience-item">
+    <div class="experience-heading">
+      <div class="experience-company">
+        <strong><a href="{{ post.url | relative_url }}">{{ post.title | strip_html }}</a></strong>
       </div>
-      <div class="oc-topbar-right">
-        <span class="oc-status-text" style="color: var(--oc-text-tertiary);">{{ posts.size }} items</span>
-      </div>
+      <span>{{ post.date | date: "%Y/%m/%d" }}</span>
     </div>
-
-    <div class="oc-blog-list">
-      {% for post in posts %}
-      {% assign thumb = post.thumbnail-img %}
-      {% if thumb == nil or thumb == '' %}
-        {% assign content_parts = post.content | split: '<img ' %}
-        {% if content_parts.size > 1 %}
-          {% assign img_tag = content_parts[1] | split: '>' | first %}
-          {% assign src_parts = img_tag | split: 'src="' %}
-          {% if src_parts.size > 1 %}
-            {% assign thumb = src_parts[1] | split: '"' | first %}
-            {% assign thumb = thumb | remove_first: '../' | remove_first: '../' | remove_first: '../' %}
-            {% assign thumb = thumb | relative_url %}
-          {% endif %}
-        {% endif %}
-      {% endif %}
-      <a href="{{ post.url }}" class="oc-blog-item oc-fade-in" style="animation-delay: {{ forloop.index | times: 0.05 }}s;">
-        <div class="oc-blog-thumb">
-          {% if thumb %}
-          <img src="{{ thumb }}" alt="" loading="lazy">
-          {% else %}
-          <span class="oc-blog-thumb-fallback">{{ post.title | strip_html | truncate: 1, '' }}</span>
-          {% endif %}
-        </div>
-        <div class="oc-blog-item-left">
-          <div class="oc-blog-title">{{ post.title | strip_html }}</div>
-          {% if post.subtitle %}
-          <div class="oc-blog-subtitle">{{ post.subtitle | strip_html }}</div>
-          {% endif %}
-          <div class="oc-blog-meta">
-            <span class="oc-blog-date">{% assign date_format = site.date_format | default: "%Y-%m-%d" %}{{ post.date | date: date_format }}</span>
-            {% if site.feed_show_tags != false and post.tags.size > 0 %}
-            <span class="oc-blog-tags">
-              {% for tag in post.tags %}
-              <span class="oc-tag">{{ tag }}</span>
-              {% endfor %}
-            </span>
-            {% endif %}
-          </div>
-        </div>
-        <div class="oc-blog-item-right">
-          <span class="oc-blog-arrow">→</span>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
-
-    <!-- Pagination -->
-    {% if paginator.total_pages > 1 %}
-    <div class="oc-blog-pagination">
-      {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | relative_url }}" class="oc-blog-page-btn">← Newer</a>
-      {% endif %}
-      <span class="oc-blog-page-info">{{ paginator.page }} / {{ paginator.total_pages }}</span>
-      {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | relative_url }}" class="oc-blog-page-btn">Older →</a>
-      {% endif %}
+    {% if post.subtitle %}
+    <div class="experience-role">{{ post.subtitle | strip_html }}</div>
+    {% endif %}
+    {% if post.tags.size > 0 %}
+    <div class="post-tags">
+      {% for tag in post.tags %}<span class="oc-tag">{{ tag }}</span>{% endfor %}
     </div>
     {% endif %}
-
-  </div>
-
-  <!-- Bottom Bar -->
-  <div class="oc-bottombar oc-fade-in" style="margin-top: auto;">
-    <div class="oc-stats">
-      <div class="oc-stat">
-        <span class="oc-stat-value">{{ posts.size }}</span>
-        <span class="oc-stat-label">posts</span>
-      </div>
-    </div>
-    <div style="font-family: var(--oc-mono); font-size: 11px; color: var(--oc-text-tertiary);">
-      ~/blog/ <span class="oc-cursor"></span>
-    </div>
-  </div>
-
+  </article>
+  {% endfor %}
 </div>

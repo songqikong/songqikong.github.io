@@ -57,7 +57,7 @@ title: "Flappy Bird"
       </div>
     </div>
 
-    <a href="/VIBING" class="fb-back oc-fade-in oc-delay-4">← cd ~/vibing/</a>
+    <a href="/" class="fb-back oc-fade-in oc-delay-4">← cd ~/</a>
   </div>
 
   <!-- Bottom Bar -->

@@ -6,8 +6,5 @@ main:
   - title: "Blog"
     url: /BLOG
 
-  - title: "Vibing"
-    url: /VIBING
-
-  - title: "Cycling"
-    url: /CYCLING
+  - title: "Miscellaneous"
+    url: /MISCELLANEOUS

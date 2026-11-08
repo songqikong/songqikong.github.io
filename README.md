@@ -1,37 +1,38 @@
 # songqikong.github.io
 
-> Personal website of **Songqi(Carson) Kong** (孔松琦) — built with [Beautiful Jekyll](https://beautifuljekyll.com/) and a custom **OpenCode** dark terminal theme.
+> Personal website of **Songqi(Carson) Kong** (孔松琦) — Jekyll on the AcademicPages layout chain, with a custom **OpenCode** design layer.
 
 ---
 
 ## Overview
 
-A bilingual (EN/CN) personal site featuring:
+A bilingual EN/CN personal site featuring:
 
-- **Homepage** — Terminal-style profile card with education, internship, and research sections
+- **Homepage** — Serif résumé timeline with work experience, education and publications
 - **Blog** — Technical writings on 3D vision, point cloud, and deep learning
-- **Vibing** — Interactive coding toys built via Vibe Coding
-- **Cycling** — Photo gallery from cycling trips
+- **Miscellaneous** — Cycling photos and notes from outside work
+
+The standalone toy pages under `vibing/` stay in the repository and remain reachable by their direct URLs, but intentionally have no navigation entry.
 
 ## Site Structure
 
 ```
-├── _config.yml          # Jekyll config (theme, nav, comments, social)
-├── _layouts/            # Page templates (homepage, post, page, minimal…)
-├── _includes/           # Partial templates (header, footer, nav, comments…)
+├── _config.yml          # Jekyll config (nav, comments, social)
+├── _layouts/            # Page templates (acad-single, home, page, post…)
+├── _includes/           # Partial templates (masthead, footer, head, scripts…)
 ├── _posts/              # Blog posts (14 articles, 2023)
-├── _data/               # Jekyll data files
+├── _data/               # Jekyll data files, including navigation.yml
+├── _sass/               # Base theme sources, compiled into assets/css/acad.css
 ├── assets/
 │   ├── css/
-│   │   └── opencode.css # OpenCode dark terminal theme
+│   │   └── opencode.css # Design layer: tokens, oc-* components, chrome bindings
 │   ├── js/
 │   │   └── custom-animations.js  # Page transition & scroll animations
-│   └── img/             # Images & thumbnails (144 PNG, 13 JPG)
-├── index.html           # Homepage (terminal-style profile)
-├── BLOG.md              # Blog listing page
-├── VIBING.md            # Interactive toys gallery (5 items)
-├── CYCLING.md           # Cycling photo gallery
-├── vibing/
+│   └── img/             # Images & thumbnails
+├── index.html           # Homepage, serif résumé timeline
+├── BLOG.md              # Blog listing, homepage visual style
+├── MISCELLANEOUS.md     # Cycling photos + notes, homepage visual style
+├── vibing/              # Standalone toys, no navigation entry
 │   ├── 2048.md          # 2048 game
 │   ├── flappybird.md    # Flappy Bird game
 │   ├── germany-map.md   # Interactive Germany map
@@ -41,19 +42,18 @@ A bilingual (EN/CN) personal site featuring:
 └── 404.html             # Custom 404 page
 ```
 
-## OpenCode Theme
+## Styling
 
-The site uses a custom **OpenCode** dark terminal aesthetic (`assets/css/opencode.css`):
+Two stylesheets, one layout chain:
 
-- Color palette: `#0D1117` (bg) → `#C9D1D9` (text) → `#58A6FF` (accent)
-- Monospace typography (`JetBrains Mono`, `Menlo`, `Consolas`)
-- Terminal-style UI elements: `$` prompts, `[*]` markers, status dots
-- Fade-in animations with staggered delays
-- Bilingual toggle (EN ↔ CN) with `localStorage` persistence
+- `assets/css/acad.css` — base theme compiled from `_sass/`, serif-first typography
+- `assets/css/opencode.css` — `--oc-*` colour tokens, terminal accents, dark theme, masthead and footer bindings
 
-## Vibing Toys
+Colours live only in `:root` / `html.dark-theme`; the base theme reads them through `var(--oc-*)`. Bilingual text is switched with `data-lang="en"` / `data-lang="cn"`, persisted in `localStorage`.
 
-Interactive projects in the [Vibing](/VIBING) gallery:
+## Standalone Toys
+
+Kept in the repository, reachable only by direct URL:
 
 | Toy | Description |
 |-----|-------------|
@@ -73,8 +73,8 @@ Interactive projects in the [Vibing](/VIBING) gallery:
 
 ## Tech Stack
 
-- **Static Site Generator**: [Jekyll](https://jekyllrb.com/) (GitHub Pages)
-- **Theme**: [Beautiful Jekyll](https://beautifuljekyll.com/) + custom OpenCode dark theme
+- **Static Site Generator**: Jekyll (GitHub Pages)
+- **Theme**: AcademicPages layout chain + custom OpenCode design layer
 - **Comments**: Gitalk (GitHub Issues-based)
 - **Analytics**: Busuanzi (visitor/page view counts)
 - **Hosting**: GitHub Pages
@@ -93,4 +93,4 @@ bundle exec jekyll serve
 
 ## License
 
-Content is personal. Site template based on [Beautiful Jekyll](https://beautifuljekyll.com/) (MIT License).
+Content is personal. Site template based on AcademicPages / Beautiful Jekyll (MIT License).

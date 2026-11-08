@@ -193,6 +193,85 @@ body {
   line-height: 1.55;
 }
 
+/* --- Tags under a blog post entry -------------------------------- */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0.55rem;
+}
+
+/* --- Miscellaneous photo rail ------------------------------------
+   Same timeline language as .experience-list, with a bounded image
+   under each entry so the photos stay inside the content column. */
+.misc-photos {
+  margin: 0.25rem 0 2.4rem;
+}
+
+.misc-photo {
+  position: relative;
+  padding: 1.05rem 0 1.5rem 1.2rem;
+  border-left: 2px solid var(--oc-border);
+}
+
+.misc-photo::before {
+  position: absolute;
+  top: 1.5rem;
+  left: -0.36rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 2px solid var(--oc-bg);
+  border-radius: 50%;
+  background: var(--oc-text-tertiary);
+  content: "";
+}
+
+.misc-photo img {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  margin-top: 0.8rem;
+  border: 1px solid var(--oc-border);
+  border-radius: 4px;
+}
+
+/* --- Publication entries: authors, teaser, abstract -------------- */
+.pub-authors {
+  margin-top: 0.45rem;
+  font-size: 0.84em;
+  line-height: 1.55;
+  color: var(--oc-text-secondary);
+}
+
+.pub-authors strong {
+  color: var(--oc-heading, #172033);
+  font-weight: 600;
+}
+
+.pub-figure {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0.85rem 0 0;
+  border: 1px solid var(--oc-border);
+  border-radius: 4px;
+  background: var(--oc-bg);
+}
+
+/* Outranks .experience-item p without an !important. */
+.experience-item .pub-abstract {
+  max-width: 48rem;
+  margin-top: 0.75rem;
+  font-size: 0.9em;
+  line-height: 1.62;
+}
+
+@media (max-width: 600px) {
+  .pub-figure {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .experience-heading {
     display: block;
@@ -203,7 +282,8 @@ body {
     margin-top: 0.2rem;
   }
 
-  .experience-item {
+  .experience-item,
+  .misc-photo {
     padding-left: 1rem;
   }
 }
